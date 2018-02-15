@@ -1,0 +1,12 @@
+{
+  "namespace": "WebresortsComponents",
+  "fsNamespace": "webresorts-components",
+  "loader": "../webresorts-components.js",
+  "core": "webresorts-components.fiyj2mbs.js",
+  "corePolyfilled": "webresorts-components.zejpniqj.js",
+  "components": {
+    "webresorts-checkbox": {
+      "$": "fh9l89js"
+    }
+  }
+}
