@@ -2,13 +2,13 @@
   "name": "my-component",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
-  "main": "dist/webresorts-components.js",
+  "main": "dist/wrsts-components.js",
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "files": [
     "dist/"
   ],
-  "browser": "dist/webresorts-components.js",
+  "browser": "dist/wrsts-components.js",
   "scripts": {
     "build": "stencil build",
     "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",

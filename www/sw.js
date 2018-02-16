@@ -37,32 +37,32 @@ self.__precacheManifest = [
     "revision": "c699f91234a66ec78d6009d1454b1f7a"
   },
   {
-    "url": "build/webresorts-components.js",
-    "revision": "aadf2086ff6012e4714e21462a4ac0fd"
+    "url": "build/wrsts-components.js",
+    "revision": "2dab0a2e98ab785eb76264f28ba2b7c9"
   },
   {
-    "url": "build/webresorts-components/g9j1buws.es5.js",
-    "revision": "1c8be82ae48fce9d536beb8163c5f430"
+    "url": "build/wrsts-components/plgdv4be.es5.js",
+    "revision": "1da736555b91449003f7d97879a6c2d7"
   },
   {
-    "url": "build/webresorts-components/g9j1buws.js",
-    "revision": "91b91bdcd82aab002503d8723cbe47df"
+    "url": "build/wrsts-components/plgdv4be.js",
+    "revision": "8ee3e139c00ef69095fff6a753c7cd19"
   },
   {
-    "url": "build/webresorts-components/webresorts-components.bj6l2fp3.js",
-    "revision": "4d868efc8e4ded00065b8fb6aaa08940"
+    "url": "build/wrsts-components/wrsts-components.7oklmzar.js",
+    "revision": "4ac99f398722dabdff1d7d5b41a149a5"
   },
   {
-    "url": "build/webresorts-components/webresorts-components.oixmmxvp.js",
-    "revision": "a0388d9886a9f31579e29c837e50bc8f"
+    "url": "build/wrsts-components/wrsts-components.registry.json",
+    "revision": "07e5a9334c3097a682d75416130aae60"
   },
   {
-    "url": "build/webresorts-components/webresorts-components.registry.json",
-    "revision": "2fba17e60b6d8c3dda5f719a704b1a90"
+    "url": "build/wrsts-components/wrsts-components.x3pioboi.js",
+    "revision": "5ffaf482edda4c73ecea54235180d56b"
   },
   {
     "url": "index.html",
-    "revision": "99f255028a13f98d443366ab630d1c84"
+    "revision": "8ba26efaabc168785bda71d728b105d2"
   }
 ].concat(self.__precacheManifest || []);
 

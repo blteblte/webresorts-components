@@ -1,16 +1,16 @@
 import { Component, Event, EventEmitter, Prop, Method, Element } from '@stencil/core';
 
 @Component({
-  tag: 'webresorts-checkbox',
-  styleUrl: 'webresorts-checkbox.scss',
+  tag: 'wrsts-checkbox',
+  styleUrl: 'wrsts-checkbox.scss',
   shadow: false
 })
-export class WebresortsCheckbox {
-
-  @Event() change: EventEmitter
+export class WrstsCheckbox {
 
   @Element() webresortsCheckBox: HTMLElement
   checkbox: HTMLInputElement
+
+  @Event() change: EventEmitter
 
   @Prop({ mutable: true }) checked: boolean
   @Prop() disabled: boolean
@@ -22,6 +22,9 @@ export class WebresortsCheckbox {
     this.checkbox.checked = this.checked
   }
 
+  /**
+   * Check the checkbox programmatically
+   */
   @Method() check() {
     if (this.checked) { return }
     this.checked = true
@@ -29,6 +32,9 @@ export class WebresortsCheckbox {
     this.change.emit(true)
   }
 
+  /**
+   * Uncheck the checkbox programmatically
+   */
   @Method() uncheck() {
     if (!this.checked) { return }
     this.checked = false
@@ -36,6 +42,9 @@ export class WebresortsCheckbox {
     this.change.emit(false)
   }
 
+  /**
+   * Get the native HTMLInputElement
+   */
   @Method() getNativeElement() {
     return this.checkbox
   }

@@ -1,9 +1,9 @@
 exports.config = {
 
-  namespace: 'webresorts-components',
+  namespace: 'wrsts-components',
 
   bundles: [
-    { components: ['webresorts-checkbox'] }
+    { components: ['wrsts-checkbox'] }
   ],
 
   generateDistribution: true,

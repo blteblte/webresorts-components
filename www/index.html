@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
-  <script src="/build/webresorts-components.js"></script>
+  <script src="/build/wrsts-components.js"></script>
   <style>
-    webresorts-checkbox {
+    wrsts-checkbox {
       color: green;
     }
-    webresorts-checkbox[disabled] {
+    wrsts-checkbox[disabled] {
       color: gray;
     }
   </style>
@@ -17,23 +17,23 @@
 <body>
 
   <p>
-      <webresorts-checkbox></webresorts-checkbox>
-      <webresorts-checkbox></webresorts-checkbox>
-      <webresorts-checkbox></webresorts-checkbox>
-      <webresorts-checkbox></webresorts-checkbox>
-      <webresorts-checkbox></webresorts-checkbox>
-      <webresorts-checkbox></webresorts-checkbox>
-      <webresorts-checkbox></webresorts-checkbox>
-      <webresorts-checkbox></webresorts-checkbox>
+      <wrsts-checkbox></wrsts-checkbox>
+      <wrsts-checkbox></wrsts-checkbox>
+      <wrsts-checkbox></wrsts-checkbox>
+      <wrsts-checkbox></wrsts-checkbox>
+      <wrsts-checkbox></wrsts-checkbox>
+      <wrsts-checkbox></wrsts-checkbox>
+      <wrsts-checkbox></wrsts-checkbox>
+      <wrsts-checkbox></wrsts-checkbox>
   </p>
   <p>
     <form action="" method="GET">
-      <webresorts-checkbox name="agree" id="agree" checked>I have a label and checked by default in form</webresorts-checkbox>
+      <wrsts-checkbox name="agree" id="agree" checked>I have a label and checked by default in form</wrsts-checkbox>
       <input type="submit" value="submit" />
     </form>
   </p>
   <p>
-    <webresorts-checkbox disabled>I am disabled</webresorts-checkbox>
+    <wrsts-checkbox disabled>I am disabled</wrsts-checkbox>
   </p>
 <script>"serviceWorker"in navigator&&"file:"!==location.protocol&&window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").then(function(e){console.log("service worker registered",e),e.onupdatefound=function(){var n=e.installing;n.onstatechange=function(){"installed"===n.state&&window.dispatchEvent(new Event("swUpdate"))}}}).catch(function(e){console.log("service worker error",e)})});</script>
 </body>

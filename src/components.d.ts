@@ -15,29 +15,29 @@ declare global {
 
 
 import {
-  WebresortsCheckbox as WebresortsCheckbox
-} from './components/webresorts-checkbox/webresorts-checkbox';
+  WrstsCheckbox as WrstsCheckbox
+} from './components/wrsts-checkbox/wrsts-checkbox';
 
 declare global {
-  interface HTMLWebresortsCheckboxElement extends WebresortsCheckbox, HTMLStencilElement {
+  interface HTMLWrstsCheckboxElement extends WrstsCheckbox, HTMLStencilElement {
   }
-  var HTMLWebresortsCheckboxElement: {
-    prototype: HTMLWebresortsCheckboxElement;
-    new (): HTMLWebresortsCheckboxElement;
+  var HTMLWrstsCheckboxElement: {
+    prototype: HTMLWrstsCheckboxElement;
+    new (): HTMLWrstsCheckboxElement;
   };
   interface HTMLElementTagNameMap {
-    "webresorts-checkbox": HTMLWebresortsCheckboxElement;
+    "wrsts-checkbox": HTMLWrstsCheckboxElement;
   }
   interface ElementTagNameMap {
-    "webresorts-checkbox": HTMLWebresortsCheckboxElement;
+    "wrsts-checkbox": HTMLWrstsCheckboxElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "webresorts-checkbox": JSXElements.WebresortsCheckboxAttributes;
+      "wrsts-checkbox": JSXElements.WrstsCheckboxAttributes;
     }
   }
   namespace JSXElements {
-    export interface WebresortsCheckboxAttributes extends HTMLAttributes {
+    export interface WrstsCheckboxAttributes extends HTMLAttributes {
       checked?: boolean;
       disabled?: boolean;
       id?: string;
