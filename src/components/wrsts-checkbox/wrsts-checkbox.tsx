@@ -30,7 +30,12 @@ export class WrstsCheckbox {
       .filter(x => x.elementRef.group === this.groupToggler)
       .length
   }
-  groupCheckedCount = 0
+  get groupCheckedCount() {
+    return this.groupBoxesBindings
+      .filter(x => x.elementRef.group === this.groupToggler
+                   && x.elementRef.checked)
+      .length
+  }
 
   @Event() change: EventEmitter
 
@@ -104,9 +109,8 @@ export class WrstsCheckbox {
       this.groupBoxesBindings.push({
         index: i,
         elementRef: el,
-        listener: (el as any).addEventListener('change', this.changeGroupElementHandler.bind(this, i, el))
+        listener: (el as any).addEventListener('change', this.changeGroupElementHandler.bind(this))
       })
-      if (el.checked) this.groupCheckedCount++
     })
   }
 
@@ -127,22 +131,10 @@ export class WrstsCheckbox {
         (x.elementRef as any).removeEventListener('change', x.listener)
       })
     }
-    this.groupCheckedCount = 0
     this.groupBoxesBindings = []
   }
 
-  changeGroupElementHandler(index: number, el: WrstsCheckbox) {
-    if (el.group !== this.groupToggler) {
-      this.removeGroupElement(el)
-    }
-
-    const groupBox = this.groupBoxesBindings.find(x => x.index === index)
-    if (groupBox.elementRef.checked) {
-      this.groupCheckedCount++
-    } else {
-      this.groupCheckedCount--
-    }
-
+  changeGroupElementHandler() {
     if (this.groupCheckedCount === this.totalGroupBoxesCount) {
       this.check()
     } else {
@@ -152,21 +144,10 @@ export class WrstsCheckbox {
 
   handleGroupElementsOnTogglerCheck(checked: boolean) {
     this.groupBoxesBindings.forEach((x) => {
-      if (x.elementRef.group !== this.groupToggler) {
-        this.removeGroupElement(x.elementRef)
-      } else {
+      if (x.elementRef.group === this.groupToggler) {
         x.elementRef.checked = checked
       }
     })
-  }
-
-  removeGroupElement(el: WrstsCheckbox/*, index: number*/) {
-    // this.groupBoxesBindings =
-    //   [ ...this.groupBoxesBindings.filter(x => x.index !== index) ]
-    //   .map((x, i) => ({ ...x, index: i }))
-    if (!el.checked) {
-      this.groupCheckedCount--
-    }
   }
 
   clickHandler() {

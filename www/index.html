@@ -16,7 +16,7 @@
 </head>
 <body>
 
-  <p>
+  <div>
     <h3>Multi select:</h3>
     <wrsts-checkbox group-toggler="1">Select all</wrsts-checkbox>
     <wrsts-checkbox group="1"></wrsts-checkbox>
@@ -26,18 +26,21 @@
     <wrsts-checkbox group="1"></wrsts-checkbox>
     <wrsts-checkbox group="1"></wrsts-checkbox>
     <wrsts-checkbox group="1"></wrsts-checkbox>
-  </p>
-  <p>
+  </div>
+
+  <div>
     <h3>Form:</h3>
     <form action="" method="GET">
-      <wrsts-checkbox name="agree" id="agree" checked>I have a label and checked by default in form</wrsts-checkbox>
+      <wrsts-checkbox name="agree" id="agree" checked>I have a label and checked by default in a form</wrsts-checkbox>
       <input type="submit" value="submit" />
     </form>
-  </p>
-  <p>
+  </div>
+
+  <div>
     <h3>Disabled:</h3>
     <wrsts-checkbox disabled>I am disabled</wrsts-checkbox>
-  </p>
+  </div>
+
 <script>"serviceWorker"in navigator&&"file:"!==location.protocol&&window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").then(function(e){console.log("service worker registered",e),e.onupdatefound=function(){var n=e.installing;n.onstatechange=function(){"installed"===n.state&&window.dispatchEvent(new Event("swUpdate"))}}}).catch(function(e){console.log("service worker error",e)})});</script>
 </body>
 </html>
