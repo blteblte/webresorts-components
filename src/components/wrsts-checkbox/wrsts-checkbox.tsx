@@ -21,28 +21,15 @@ interface ChildBoxBinding {
 })
 export class WrstsCheckbox {
 
-  @Element() webresortsCheckBox: HTMLElement
-  checkbox: HTMLInputElement
-
-  groupBoxesBindings: ChildBoxBinding[] = []
-  get totalGroupBoxesCount() {
-    return this.groupBoxesBindings
-      .filter(x => x.elementRef.group === this.groupToggler)
-      .length
-  }
-  get groupCheckedCount() {
-    return this.groupBoxesBindings
-      .filter(x => x.elementRef.group === this.groupToggler
-                   && x.elementRef.checked)
-      .length
-  }
+  @Element() wrstsCheckBox: HTMLElement
 
   @Event() change: EventEmitter
 
-  @Prop({ mutable: true }) checked: boolean
-  @Prop() disabled: boolean
+  @Prop({ mutable: true }) checked: boolean = false
+  @Prop() disabled: boolean = false
   @Prop() name: string
   @Prop() id: string
+  @Prop() customData: string
 
   @Prop() group: string
   @Prop() groupToggler: string
@@ -54,30 +41,25 @@ export class WrstsCheckbox {
     }
   }
 
-  componentDidLoad() {
-    this.checkbox = this.webresortsCheckBox.querySelector('input[type="checkbox"]')
-    this.checkbox.checked = this.checked
-
-    this.rebindGroupElements()
-  }
-
   /**
    * Check the checkbox programmatically
    */
-  @Method() check() {
+  @Method() check(fromGroupElement?: boolean) {
     if (this.checked) { return }
     this.checked = true
     this.checkbox.checked = true
+    /* prevent inf-loop */ !fromGroupElement && this.handleGroupElementsOnTogglerCheck(true)
     this.change.emit(true)
   }
 
   /**
    * Uncheck the checkbox programmatically
    */
-  @Method() uncheck() {
+  @Method() uncheck(fromGroupElement?: boolean) {
     if (!this.checked) { return }
     this.checked = false
     this.checkbox.checked = false
+    /* prevent inf-loop */ !fromGroupElement && this.handleGroupElementsOnTogglerCheck(false)
     this.change.emit(false)
   }
 
@@ -92,9 +74,7 @@ export class WrstsCheckbox {
    * Rebind group elements for toggler checkbox
    */
   @Method() rebindGroupElements() {
-    if (!(this.groupToggler !== undefined && this.groupToggler !== null && this.groupToggler !== '')) {
-      return
-    }
+    if (!this.isToggler) { return }
 
     this.releaseGroupBindings()
 
@@ -121,8 +101,64 @@ export class WrstsCheckbox {
     return this.groupBoxesBindings
   }
 
-  @Method() toJsonObject() {
+  /**
+   * Get collection of data attributes
+   */
+  @Method() getData() {
+    return [].filter
+      .call(this.wrstsCheckBox.attributes, at => /^data-/.test(at.name))
+      .map((attr) => {
+        const nameCamelCase = attr.name.substr(5).replace(/-(.)/g, (_$0, $1) =>  $1.toUpperCase())
+        return  { [nameCamelCase] : attr.value }
+      })
+  }
 
+  /**
+   * get json object for checkbox or group
+  */
+  @Method() toJson() {
+    if (this.isToggler) {
+      return this.groupBoxesBindings.reduce((p, c: ChildBoxBinding, i) => {
+        const key = c.elementRef.name || c.elementRef.id || i
+        p[key] = { value: c.elementRef.checked, data: c.elementRef.getData() }
+        return p
+      }, {})
+    } else {
+      return {
+        [ this.name || this.id || 0 ]: { value: this.checked, data: this.getData() }
+      }
+    }
+  }
+
+  componentDidLoad() {
+    this.checkbox = this.wrstsCheckBox.querySelector('input[type="checkbox"]')
+    this.checkbox.checked = this.checked
+    this.rebindGroupElements()
+  }
+
+  /* native input[type="checkbox"] element ref */
+  checkbox: HTMLInputElement
+
+  /* group boxes reference if item is toggler */
+  groupBoxesBindings: ChildBoxBinding[] = []
+
+  get totalGroupBoxesCount() {
+    return this.groupBoxesBindings
+      .filter(x => x.elementRef.group === this.groupToggler)
+      .length
+  }
+
+  get groupCheckedCount() {
+    return this.groupBoxesBindings
+      .filter(x => x.elementRef.group === this.groupToggler
+                   && x.elementRef.checked)
+      .length
+  }
+
+  get isToggler() {
+    return this.groupToggler !== undefined
+        && this.groupToggler !== null
+        && this.groupToggler !== ''
   }
 
   releaseGroupBindings() {
@@ -136,9 +172,9 @@ export class WrstsCheckbox {
 
   changeGroupElementHandler() {
     if (this.groupCheckedCount === this.totalGroupBoxesCount) {
-      this.check()
+      this.check(true)
     } else {
-      this.uncheck()
+      this.uncheck(true)
     }
   }
 
@@ -154,7 +190,6 @@ export class WrstsCheckbox {
     if (this.disabled) { return }
     if (this.checked) { this.uncheck() }
     else { this.check() }
-    this.handleGroupElementsOnTogglerCheck(this.checked)
   }
 
   getCheckboxIcon () {

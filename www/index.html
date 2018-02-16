@@ -18,14 +18,18 @@
 
   <div>
     <h3>Multi select:</h3>
-    <wrsts-checkbox group-toggler="1">Select all</wrsts-checkbox>
-    <wrsts-checkbox group="1"></wrsts-checkbox>
-    <wrsts-checkbox group="1"></wrsts-checkbox>
-    <wrsts-checkbox group="1"></wrsts-checkbox>
-    <wrsts-checkbox group="1"></wrsts-checkbox>
-    <wrsts-checkbox group="1"></wrsts-checkbox>
-    <wrsts-checkbox group="1"></wrsts-checkbox>
-    <wrsts-checkbox group="1"></wrsts-checkbox>
+    <wrsts-checkbox id="toggler" group-toggler="1">Select all</wrsts-checkbox>
+    <wrsts-checkbox name="sub1" data-my-value="yeah" data-my-other-value="cool" group="1"></wrsts-checkbox>
+    <wrsts-checkbox name="sub2" group="1"></wrsts-checkbox>
+    <wrsts-checkbox name="sub3" group="1"></wrsts-checkbox>
+    <wrsts-checkbox name="sub4" group="1"></wrsts-checkbox>
+    <wrsts-checkbox name="sub5" group="1"></wrsts-checkbox>
+    <wrsts-checkbox name="sub6" group="1"></wrsts-checkbox>
+    <wrsts-checkbox name="sub7" group="1"></wrsts-checkbox>
+    <div>
+      <button id="showJson">show json</button>
+      <div id="output" style="font-family: Consolas; font-size: 9px;"></div>
+    </div>
   </div>
 
   <div>
@@ -40,6 +44,17 @@
     <h3>Disabled:</h3>
     <wrsts-checkbox disabled>I am disabled</wrsts-checkbox>
   </div>
+
+  <script>
+    document.getElementById('showJson').addEventListener('click', function() {
+      this.innerText = 'refresh json'
+      var $toggler = document.getElementById('toggler')
+      var $output = document.getElementById('output')
+      $output.innerHTML = JSON.stringify($toggler.toJson(), null, 2)
+        .replace(/\n/g, '<br/>')
+        .replace(/\ /g, '&nbsp;')
+    })
+  </script>
 
 <script>"serviceWorker"in navigator&&"file:"!==location.protocol&&window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").then(function(e){console.log("service worker registered",e),e.onupdatefound=function(){var n=e.installing;n.onstatechange=function(){"installed"===n.state&&window.dispatchEvent(new Event("swUpdate"))}}}).catch(function(e){console.log("service worker error",e)})});</script>
 </body>
