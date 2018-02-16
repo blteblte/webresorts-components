@@ -40,6 +40,8 @@ declare global {
     export interface WebresortsCheckboxAttributes extends HTMLAttributes {
       checked?: boolean;
       disabled?: boolean;
+      id?: string;
+      name?: string;
     }
   }
 }

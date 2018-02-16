@@ -1,26 +1,43 @@
-import { Component, Event, EventEmitter, Prop, Method } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, Method, Element } from '@stencil/core';
 
 @Component({
   tag: 'webresorts-checkbox',
   styleUrl: 'webresorts-checkbox.scss',
-  shadow: true
+  shadow: false
 })
 export class WebresortsCheckbox {
 
   @Event() change: EventEmitter
+
+  @Element() webresortsCheckBox: HTMLElement
+  checkbox: HTMLInputElement
+
   @Prop({ mutable: true }) checked: boolean
   @Prop() disabled: boolean
+  @Prop() name: string
+  @Prop() id: string
+
+  componentDidLoad() {
+    this.checkbox = this.webresortsCheckBox.querySelector('input[type="checkbox"]')
+    this.checkbox.checked = this.checked
+  }
 
   @Method() check() {
     if (this.checked) { return }
     this.checked = true
+    this.checkbox.checked = true
     this.change.emit(true)
   }
 
   @Method() uncheck() {
     if (!this.checked) { return }
     this.checked = false
+    this.checkbox.checked = false
     this.change.emit(false)
+  }
+
+  @Method() getNativeElement() {
+    return this.checkbox
   }
 
   clickHandler() {
@@ -29,25 +46,17 @@ export class WebresortsCheckbox {
     else { this.check() }
   }
 
-  getCheckboxUI () {
+  getCheckboxSrc () {
     return this.checked
-      ? (
-        <svg width="100%" height="100%" class="checked">
-          <rect x="0" y="0" width="20" height="20" stroke="gray" stroke-width="2" fill="#fff" />
-          <path d="M3 3 L10 17 L18 6 L10 14 Z" />
-        </svg>
-      )
-      :(
-        <svg width="100%" height="100%" class="unchecked">
-          <rect x="0" y="0" width="20" height="20" stroke="gray" stroke-width="2" fill="#fff" />
-        </svg>
-      )
+      ? '/assets/img/checkbox-checked.svg'
+      : '/assets/img/checkbox-unchecked.svg'
   }
 
   render() {
     return (
       <div class="webresorts-checkbox-container" onClick={this.clickHandler.bind(this)}>
-        <i class="icon">{this.getCheckboxUI()}</i>
+        <input type="checkbox" name={this.name} id={this.id} />
+        <img class="icon" src={this.getCheckboxSrc()} />
         <label><slot /></label>
       </div>
     )

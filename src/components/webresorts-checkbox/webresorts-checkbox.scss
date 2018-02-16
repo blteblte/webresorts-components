@@ -1,4 +1,4 @@
-:host {
+webresorts-checkbox {
   user-select: none;
   display: inline-block;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -7,18 +7,24 @@
     display: inline-block;
   }
 
+  label {
+    margin-left: 4px;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
   .icon {
     display: inline-block;
     width: 20px;
     height: 20px;
-    margin-right: 4px;
-    svg {
-      margin-bottom: -3px;
-    }
+    margin-bottom: -3px;
   }
+
 }
 
-:host[disabled] {
+webresorts-checkbox[disabled] {
   color: gray;
 }
 

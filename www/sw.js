@@ -29,40 +29,40 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.0.0-alpha.3
  */
 self.__precacheManifest = [
   {
+    "url": "assets/img/checkbox-checked.svg",
+    "revision": "fa68fd03723003bb9be800a002960474"
+  },
+  {
+    "url": "assets/img/checkbox-unchecked.svg",
+    "revision": "c699f91234a66ec78d6009d1454b1f7a"
+  },
+  {
     "url": "build/webresorts-components.js",
-    "revision": "15ebd0624dc2bd71c48cee186c34fc9c"
+    "revision": "46bcd703557a4cd6b2905db8b9583c73"
   },
   {
-    "url": "build/webresorts-components/fh9l89js.es5.js",
-    "revision": "f38e6c4a9e906ee958dc604b038bc932"
+    "url": "build/webresorts-components/vxrfygnd.es5.js",
+    "revision": "f1f0e05731d82c76a31e9880a506edf6"
   },
   {
-    "url": "build/webresorts-components/fh9l89js.js",
-    "revision": "47d0c0629dfde3ebaf7f9a1159eabf76"
+    "url": "build/webresorts-components/vxrfygnd.js",
+    "revision": "ae83a0d3bd664c88146943d38d07cbd8"
   },
   {
-    "url": "build/webresorts-components/fh9l89js.sc.es5.js",
-    "revision": "f5fad4d5d7401aa1b8557afbc91ca0a2"
+    "url": "build/webresorts-components/webresorts-components.bj6l2fp3.js",
+    "revision": "4d868efc8e4ded00065b8fb6aaa08940"
   },
   {
-    "url": "build/webresorts-components/fh9l89js.sc.js",
-    "revision": "78815080ba9bc71079d248a08ba546e8"
-  },
-  {
-    "url": "build/webresorts-components/webresorts-components.fiyj2mbs.js",
-    "revision": "cb0ffff652530c85019a8106f36a00a2"
+    "url": "build/webresorts-components/webresorts-components.oixmmxvp.js",
+    "revision": "a0388d9886a9f31579e29c837e50bc8f"
   },
   {
     "url": "build/webresorts-components/webresorts-components.registry.json",
-    "revision": "a2cfcc43a14291ac0c5267cd1340cb6c"
-  },
-  {
-    "url": "build/webresorts-components/webresorts-components.zejpniqj.js",
-    "revision": "cb314747885b90f5bba62a38ec99ca00"
+    "revision": "991230f267cbe0943d21ca57164b7143"
   },
   {
     "url": "index.html",
-    "revision": "863bff6dbb97c7d2b81e43f6ab32cd1c"
+    "revision": "99f255028a13f98d443366ab630d1c84"
   }
 ].concat(self.__precacheManifest || []);
 
