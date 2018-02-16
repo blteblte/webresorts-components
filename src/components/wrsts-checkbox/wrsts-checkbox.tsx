@@ -9,7 +9,6 @@ import {
 } from '@stencil/core';
 
 interface ChildBoxBinding {
-  index: number,
   elementRef: WrstsCheckbox,
   listener: any
 }
@@ -37,29 +36,35 @@ export class WrstsCheckbox {
     if (!(newValue !== null && newValue !== undefined && newValue !== '')) {
       this.releaseGroupBindings()
     } else {
-      this.rebindGroupElements()
+      this.rebindGroup()
     }
   }
+
+  /* native input[type="checkbox"] element ref */
+  checkbox: HTMLInputElement
+
+  /* group boxes reference if item is toggler */
+  groupBoxesBindings: ChildBoxBinding[] = []
 
   /**
    * Check the checkbox programmatically
    */
-  @Method() check(fromGroupElement?: boolean) {
+  @Method() check(handleGroupElements?: boolean) {
     if (this.checked) { return }
     this.checked = true
     this.checkbox.checked = true
-    /* prevent inf-loop */ !fromGroupElement && this.handleGroupElementsOnTogglerCheck(true)
+    /* prevent inf-loop */ !handleGroupElements && this.handleGroupElementsOnTogglerCheck(true)
     this.change.emit(true)
   }
 
   /**
    * Uncheck the checkbox programmatically
    */
-  @Method() uncheck(fromGroupElement?: boolean) {
+  @Method() uncheck(handleGroupElements?: boolean) {
     if (!this.checked) { return }
     this.checked = false
     this.checkbox.checked = false
-    /* prevent inf-loop */ !fromGroupElement && this.handleGroupElementsOnTogglerCheck(false)
+    /* prevent inf-loop */ !handleGroupElements && this.handleGroupElementsOnTogglerCheck(false)
     this.change.emit(false)
   }
 
@@ -73,7 +78,7 @@ export class WrstsCheckbox {
   /**
    * Rebind group elements for toggler checkbox
    */
-  @Method() rebindGroupElements() {
+  @Method() rebindGroup() {
     if (!this.isToggler) { return }
 
     this.releaseGroupBindings()
@@ -85,9 +90,8 @@ export class WrstsCheckbox {
 
     this.groupBoxesBindings = []
 
-    groupBoxes.forEach((el: WrstsCheckbox, i: number) => {
+    groupBoxes.forEach((el: WrstsCheckbox) => {
       this.groupBoxesBindings.push({
-        index: i,
         elementRef: el,
         listener: (el as any).addEventListener('change', this.changeGroupElementHandler.bind(this))
       })
@@ -97,12 +101,12 @@ export class WrstsCheckbox {
   /**
    * Get all the binded group boxes without toggler
   */
-  @Method() getGroupBoxes() {
+  @Method() getGroupBoxesBindings() {
     return this.groupBoxesBindings
   }
 
   /**
-   * Get collection of data attributes
+   * Get collection of data attributes as { [name]: value }
    */
   @Method() getData() {
     return [].filter
@@ -133,14 +137,8 @@ export class WrstsCheckbox {
   componentDidLoad() {
     this.checkbox = this.wrstsCheckBox.querySelector('input[type="checkbox"]')
     this.checkbox.checked = this.checked
-    this.rebindGroupElements()
+    this.rebindGroup()
   }
-
-  /* native input[type="checkbox"] element ref */
-  checkbox: HTMLInputElement
-
-  /* group boxes reference if item is toggler */
-  groupBoxesBindings: ChildBoxBinding[] = []
 
   get totalGroupBoxesCount() {
     return this.groupBoxesBindings

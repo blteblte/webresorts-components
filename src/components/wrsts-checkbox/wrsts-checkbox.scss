@@ -1,7 +1,7 @@
 wrsts-checkbox {
   user-select: none;
   display: inline-block;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  //font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
   div {
     display: inline-block;
@@ -19,7 +19,7 @@ wrsts-checkbox {
     display: inline-block;
     width: 20px;
     height: 20px;
-    margin-bottom: -3px;
+    margin-bottom: -4px;
     &.checked {
       background: url(/assets/img/checkbox-checked.svg)
     }

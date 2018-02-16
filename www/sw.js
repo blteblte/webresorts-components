@@ -38,15 +38,15 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components.js",
-    "revision": "1f0dc1d148d15dd466d7ffc255705ea3"
+    "revision": "c62b6787910883423917ceca80e6030b"
   },
   {
-    "url": "build/wrsts-components/3ojyk2sg.es5.js",
-    "revision": "d010eb32209b71707712e272a82f7f03"
+    "url": "build/wrsts-components/pcxympdh.es5.js",
+    "revision": "765152493b02e1fffa29f5d2072feda0"
   },
   {
-    "url": "build/wrsts-components/3ojyk2sg.js",
-    "revision": "d5c5cefad08a1e980135b2c8f4ac7883"
+    "url": "build/wrsts-components/pcxympdh.js",
+    "revision": "684fe507aa45a88747ad89017733fc4c"
   },
   {
     "url": "build/wrsts-components/wrsts-components.glghvxpw.js",
@@ -58,11 +58,11 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components/wrsts-components.registry.json",
-    "revision": "709570692d42018fa172b995a99ebaa4"
+    "revision": "1430efa2bcd76a36e740098adaada16d"
   },
   {
     "url": "index.html",
-    "revision": "d9f9d66cd896c5619b6edfc0c2e10da5"
+    "revision": "a97b10d0e8d2fb8c4d9b6673d72a7614"
   }
 ].concat(self.__precacheManifest || []);
 
