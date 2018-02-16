@@ -52,11 +52,17 @@ export class WebresortsCheckbox {
       : '/assets/img/checkbox-unchecked.svg'
   }
 
+  getCheckboxAlt() {
+    return this.checked
+      ? 'true'
+      : 'false'
+  }
+
   render() {
     return (
       <div class="webresorts-checkbox-container" onClick={this.clickHandler.bind(this)}>
         <input type="checkbox" name={this.name} id={this.id} />
-        <img class="icon" src={this.getCheckboxSrc()} />
+        <img class="icon" src={this.getCheckboxSrc()} alt={this.getCheckboxAlt()} />
         <label><slot /></label>
       </div>
     )
