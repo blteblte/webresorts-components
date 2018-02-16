@@ -40,6 +40,8 @@ declare global {
     export interface WrstsCheckboxAttributes extends HTMLAttributes {
       checked?: boolean;
       disabled?: boolean;
+      group?: string;
+      groupToggler?: string;
       id?: string;
       name?: string;
     }

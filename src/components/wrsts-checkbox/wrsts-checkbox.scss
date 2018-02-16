@@ -15,11 +15,17 @@ wrsts-checkbox {
     display: none;
   }
 
-  .icon {
+  i {
     display: inline-block;
     width: 20px;
     height: 20px;
     margin-bottom: -3px;
+    &.checked {
+      background: url(/assets/img/checkbox-checked.svg)
+    }
+    &.unchecked {
+      background: url(/assets/img/checkbox-unchecked.svg)
+    }
   }
 
 }

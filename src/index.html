@@ -17,22 +17,25 @@
 <body>
 
   <p>
-      <wrsts-checkbox></wrsts-checkbox>
-      <wrsts-checkbox></wrsts-checkbox>
-      <wrsts-checkbox></wrsts-checkbox>
-      <wrsts-checkbox></wrsts-checkbox>
-      <wrsts-checkbox></wrsts-checkbox>
-      <wrsts-checkbox></wrsts-checkbox>
-      <wrsts-checkbox></wrsts-checkbox>
-      <wrsts-checkbox></wrsts-checkbox>
+    <h3>Multi select:</h3>
+    <wrsts-checkbox group-toggler="1">Select all</wrsts-checkbox>
+    <wrsts-checkbox group="1"></wrsts-checkbox>
+    <wrsts-checkbox group="1"></wrsts-checkbox>
+    <wrsts-checkbox group="1"></wrsts-checkbox>
+    <wrsts-checkbox group="1"></wrsts-checkbox>
+    <wrsts-checkbox group="1"></wrsts-checkbox>
+    <wrsts-checkbox group="1"></wrsts-checkbox>
+    <wrsts-checkbox group="1"></wrsts-checkbox>
   </p>
   <p>
+    <h3>Form:</h3>
     <form action="" method="GET">
       <wrsts-checkbox name="agree" id="agree" checked>I have a label and checked by default in form</wrsts-checkbox>
       <input type="submit" value="submit" />
     </form>
   </p>
   <p>
+    <h3>Disabled:</h3>
     <wrsts-checkbox disabled>I am disabled</wrsts-checkbox>
   </p>
 </body>

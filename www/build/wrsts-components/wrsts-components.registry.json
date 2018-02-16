@@ -2,11 +2,11 @@
   "namespace": "WrstsComponents",
   "fsNamespace": "wrsts-components",
   "loader": "../wrsts-components.js",
-  "core": "wrsts-components.x3pioboi.js",
-  "corePolyfilled": "wrsts-components.7oklmzar.js",
+  "core": "wrsts-components.pw14yfvz.js",
+  "corePolyfilled": "wrsts-components.glghvxpw.js",
   "components": {
     "wrsts-checkbox": {
-      "$": "plgdv4be"
+      "$": "ujlja1ug"
     }
   }
 }
