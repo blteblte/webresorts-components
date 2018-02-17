@@ -53,7 +53,7 @@ export class WrstsCheckbox {
     if (this.checked) { return }
     this.checked = true
     this.checkbox.checked = true
-    /* prevent inf-loop */ !handleGroupElements && this.handleGroupElementsOnTogglerCheck(true)
+    this.isToggler && !handleGroupElements && this.handleGroupElementsOnTogglerCheck(true)
     this.change.emit(true)
   }
 
@@ -64,7 +64,7 @@ export class WrstsCheckbox {
     if (!this.checked) { return }
     this.checked = false
     this.checkbox.checked = false
-    /* prevent inf-loop */ !handleGroupElements && this.handleGroupElementsOnTogglerCheck(false)
+    this.isToggler && !handleGroupElements && this.handleGroupElementsOnTogglerCheck(false)
     this.change.emit(false)
   }
 
@@ -179,7 +179,11 @@ export class WrstsCheckbox {
   handleGroupElementsOnTogglerCheck(checked: boolean) {
     this.groupBoxesBindings.forEach((x) => {
       if (x.elementRef.group === this.groupToggler) {
-        x.elementRef.checked = checked
+        if (checked) {
+          x.elementRef.check()
+        } else {
+          x.elementRef.uncheck()
+        }
       }
     })
   }

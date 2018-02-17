@@ -38,15 +38,15 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components.js",
-    "revision": "c62b6787910883423917ceca80e6030b"
+    "revision": "fc34444a88489c835fc32fcdea61fca1"
   },
   {
-    "url": "build/wrsts-components/pcxympdh.es5.js",
-    "revision": "765152493b02e1fffa29f5d2072feda0"
+    "url": "build/wrsts-components/hopnprcc.es5.js",
+    "revision": "06083f2e36943acb74ef57c3ea8af2fa"
   },
   {
-    "url": "build/wrsts-components/pcxympdh.js",
-    "revision": "684fe507aa45a88747ad89017733fc4c"
+    "url": "build/wrsts-components/hopnprcc.js",
+    "revision": "7e2375597ba7fb5325c9e8b032744221"
   },
   {
     "url": "build/wrsts-components/wrsts-components.glghvxpw.js",
@@ -58,7 +58,7 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components/wrsts-components.registry.json",
-    "revision": "1430efa2bcd76a36e740098adaada16d"
+    "revision": "00a6ff32a700b1617d9bc310881df560"
   },
   {
     "url": "index.html",
