@@ -30,27 +30,27 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.0.0-alpha.3
 self.__precacheManifest = [
   {
     "url": "assets/img/checkbox-checked.svg",
-    "revision": "fa68fd03723003bb9be800a002960474"
+    "revision": "6c5c9dbe147baff09ad934b3187394d7"
   },
   {
     "url": "assets/img/checkbox-indeterminate.svg",
-    "revision": "e2c9dc38dd21b1ae4e70a4c06e76a5a0"
+    "revision": "d14737f2f8e9b5032801f1e3bf682892"
   },
   {
     "url": "assets/img/checkbox-unchecked.svg",
-    "revision": "c699f91234a66ec78d6009d1454b1f7a"
+    "revision": "9da6b694a8530d5150586e4452c8e5b2"
   },
   {
     "url": "build/wrsts-components.js",
-    "revision": "93ee528b163c3b35bbc1dbe01f5f2700"
+    "revision": "379a80454a7aeff1612f20421f5b689c"
   },
   {
-    "url": "build/wrsts-components/sji9ule8.es5.js",
-    "revision": "f0477bd6ef30f962c590194e59766426"
+    "url": "build/wrsts-components/cqyizwao.es5.js",
+    "revision": "8c63a3e67a0a73227ef4a8bf8d86ca0c"
   },
   {
-    "url": "build/wrsts-components/sji9ule8.js",
-    "revision": "da122dc85322e5c282f4d60e6280625e"
+    "url": "build/wrsts-components/cqyizwao.js",
+    "revision": "38a9ef2b5c2c47f309d67cf9144f1e5d"
   },
   {
     "url": "build/wrsts-components/wrsts-components.glghvxpw.js",
@@ -62,7 +62,7 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components/wrsts-components.registry.json",
-    "revision": "1a4bd80b2c09ca8e313cf4427a831b79"
+    "revision": "6aaaeef2018de1296b07a1d34368fe9b"
   },
   {
     "url": "index.html",

@@ -2,6 +2,7 @@ wrsts-checkbox {
   user-select: none;
   display: inline-block;
   font-family: Helvetica, sans-serif;
+  font-size: 14px;
   &[hidden] {
     display: none;
   }
@@ -9,23 +10,24 @@ wrsts-checkbox {
     color: gray;
   }
 
-  div {
-    display: inline-block;
-  }
-
-  label {
-    margin-left: 4px;
-  }
-
   input[type="checkbox"] {
     display: none;
   }
 
+  div {
+    display: table;
+  }
+
+  label {
+    display: table-cell;
+    line-height: 20px;
+    padding-left: 3px;
+  }
+
   i {
-    display: inline-block;
+    display: table-cell;
     width: 20px;
     height: 20px;
-    margin-bottom: -4px;
     &.checked {
       background: url(/assets/img/checkbox-checked.svg);
     }
