@@ -2,6 +2,12 @@ wrsts-checkbox {
   user-select: none;
   display: inline-block;
   font-family: Helvetica, sans-serif;
+  &[hidden] {
+    display: none;
+  }
+  &[disabled] {
+    color: gray;
+  }
 
   div {
     display: inline-block;
@@ -21,22 +27,13 @@ wrsts-checkbox {
     height: 20px;
     margin-bottom: -4px;
     &.checked {
-      background: url(/assets/img/checkbox-checked.svg)
+      background: url(/assets/img/checkbox-checked.svg);
     }
     &.unchecked {
-      background: url(/assets/img/checkbox-unchecked.svg)
+      background: url(/assets/img/checkbox-unchecked.svg);
     }
     &.indeterminate {
-      background: url(/assets/img/checkbox-indeterminate.svg)
+      background: url(/assets/img/checkbox-indeterminate.svg);
     }
   }
 }
-
-wrsts-checkbox[disabled] {
-  color: gray;
-}
-
-wrsts-checkbox[hidden] {
-  display: none;
-}
-

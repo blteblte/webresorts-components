@@ -42,15 +42,15 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components.js",
-    "revision": "719688f0ab0b35707ac119124b974689"
+    "revision": "93ee528b163c3b35bbc1dbe01f5f2700"
   },
   {
-    "url": "build/wrsts-components/rrm49xvc.es5.js",
-    "revision": "d79d7b912fa4d87a929ffa6115b3962c"
+    "url": "build/wrsts-components/sji9ule8.es5.js",
+    "revision": "f0477bd6ef30f962c590194e59766426"
   },
   {
-    "url": "build/wrsts-components/rrm49xvc.js",
-    "revision": "c867fba6ed150713de61f2cb809b79ec"
+    "url": "build/wrsts-components/sji9ule8.js",
+    "revision": "da122dc85322e5c282f4d60e6280625e"
   },
   {
     "url": "build/wrsts-components/wrsts-components.glghvxpw.js",
@@ -62,11 +62,11 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components/wrsts-components.registry.json",
-    "revision": "cf710265dfbafc418e3e5a786a930df8"
+    "revision": "1a4bd80b2c09ca8e313cf4427a831b79"
   },
   {
     "url": "index.html",
-    "revision": "387c4876f0b9a42333375ba660ec77b9"
+    "revision": "8d51c770c09bcf40b4e4df31f3d2f7bc"
   }
 ].concat(self.__precacheManifest || []);
 
