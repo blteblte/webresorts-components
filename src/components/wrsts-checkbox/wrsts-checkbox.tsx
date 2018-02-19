@@ -8,8 +8,14 @@ import {
   , Element
 } from '@stencil/core';
 
+import {
+    ComponentSerializer
+  , ComponentSerializerResolver
+  , SerializationType
+} from './../../lib/component-serialization';
+
 interface ChildBoxBinding {
-  elementRef: WrstsCheckbox,
+  elementRef: WrstsCheckbox & HTMLElement,
   listener: any
 }
 
@@ -20,7 +26,7 @@ interface ChildBoxBinding {
 })
 export class WrstsCheckbox {
 
-  @Element() wrstsCheckBox: HTMLElement
+  @Element() wrstsCheckBox: WrstsCheckbox & HTMLElement
 
   @Event() change: EventEmitter
 
@@ -28,7 +34,7 @@ export class WrstsCheckbox {
   @Prop() disabled: boolean = false
   @Prop() name: string
   @Prop() id: string
-  @Prop() customData: string
+  @Prop() hidden: boolean
 
   @Prop() group: string
   @Prop() groupToggler: string
@@ -90,7 +96,7 @@ export class WrstsCheckbox {
 
     this.groupBoxesBindings = []
 
-    groupBoxes.forEach((el: WrstsCheckbox) => {
+    groupBoxes.forEach((el) => {
       this.groupBoxesBindings.push({
         elementRef: el,
         listener: (el as any).addEventListener('change', this.changeGroupElementHandler.bind(this))
@@ -108,29 +114,27 @@ export class WrstsCheckbox {
   /**
    * Get collection of data attributes as { [name]: value }
    */
-  @Method() getData() {
-    return [].filter
-      .call(this.wrstsCheckBox.attributes, at => /^data-/.test(at.name))
-      .map((attr) => {
-        const nameCamelCase = attr.name.substr(5).replace(/-(.)/g, (_$0, $1) =>  $1.toUpperCase())
-        return  { [nameCamelCase] : attr.value }
-      })
+  @Method() getData(type = 1) {
+    return ComponentSerializerResolver.ResolveDataAttributes(this.wrstsCheckBox, type as SerializationType)
   }
 
   /**
    * get json object for checkbox or group
   */
-  @Method() toJson() {
+  @Method() toJson(type = 0) {
+    const serializationType = type as SerializationType
     if (this.isToggler) {
-      return this.groupBoxesBindings.reduce((p, c: ChildBoxBinding, i) => {
-        const key = c.elementRef.name || c.elementRef.id || i
-        p[key] = { value: c.elementRef.checked, data: c.elementRef.getData() }
-        return p
-      }, {})
+      return ComponentSerializer.SerializeData(
+          this.groupBoxesBindings.map(el => el.elementRef)
+        , serializationType
+        , { valueResolver: ComponentSerializerResolver.ResolveCheckboxValue }
+      )
     } else {
-      return {
-        [ this.name || this.id || 0 ]: { value: this.checked, data: this.getData() }
-      }
+      return ComponentSerializer.Serialize(
+          this.wrstsCheckBox
+        , serializationType
+        , { valueResolver: ComponentSerializerResolver.ResolveCheckboxValue }
+      )
     }
   }
 
@@ -202,7 +206,7 @@ export class WrstsCheckbox {
 
   render() {
     return (
-      <div class="webresorts-checkbox-container" onClick={this.clickHandler.bind(this)}>
+      <div onClick={this.clickHandler.bind(this)}>
         <input type="checkbox" name={this.name} id={this.id} />
         {this.getCheckboxIcon()}
         <label><slot /></label>

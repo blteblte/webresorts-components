@@ -27,10 +27,13 @@ wrsts-checkbox {
       background: url(/assets/img/checkbox-unchecked.svg)
     }
   }
-
 }
 
 wrsts-checkbox[disabled] {
   color: gray;
+}
+
+wrsts-checkbox[hidden] {
+  display: none;
 }
 

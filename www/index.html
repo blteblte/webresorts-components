@@ -27,6 +27,11 @@
     <wrsts-checkbox name="sub6" group="1"></wrsts-checkbox>
     <wrsts-checkbox name="sub7" group="1"></wrsts-checkbox>
     <div>
+      <select id="showJsonType">
+        <option value="0" selected>Default</option>
+        <option value="1">Object</option>
+        <option value="2">Array</option>
+      </select>
       <button id="showJson">show json</button>
       <div id="output" style="font-family: Consolas; font-size: 9px;"></div>
     </div>
@@ -57,12 +62,13 @@
       this.innerText = 'refresh json'
       var $toggler = document.getElementById('toggler')
       var $output = document.getElementById('output')
-      $output.innerHTML = JSON.stringify($toggler.toJson(), null, 2)
+      var $select = document.getElementById('showJsonType')
+      var serializeType = parseInt($select.options[$select.selectedIndex].value)
+      $output.innerHTML = JSON.stringify($toggler.toJson(serializeType), null, 2)
         .replace(/\n/g, '<br/>')
         .replace(/\ /g, '&nbsp;')
     })
   </script>
 
-<script>"serviceWorker"in navigator&&"file:"!==location.protocol&&window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").then(function(e){console.log("service worker registered",e),e.onupdatefound=function(){var n=e.installing;n.onstatechange=function(){"installed"===n.state&&window.dispatchEvent(new Event("swUpdate"))}}}).catch(function(e){console.log("service worker error",e)})});</script>
 </body>
 </html>

@@ -39,10 +39,10 @@ declare global {
   namespace JSXElements {
     export interface WrstsCheckboxAttributes extends HTMLAttributes {
       checked?: boolean;
-      customData?: string;
       disabled?: boolean;
       group?: string;
       groupToggler?: string;
+      hidden?: boolean;
       id?: string;
       name?: string;
     }
