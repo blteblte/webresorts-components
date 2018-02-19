@@ -148,7 +148,6 @@ export class WrstsCheckbox {
     this.checked = false
     this.checkbox.checked = false
     this.checkbox.indeterminate = true
-    // this.isToggler && !handleGroupElements && this.handleGroupElementsOnTogglerCheck(false)
     this.change.emit(false)
   }
 
@@ -289,7 +288,6 @@ export class WrstsCheckbox {
   }
 
   getCheckboxIcon () {
-
     if (this.isToggler && this.indeterminate) {
       if (this.indeterminateState) {
         return <i class="indeterminate"></i>
