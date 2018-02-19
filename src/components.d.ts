@@ -44,7 +44,9 @@ declare global {
       groupToggler?: string;
       hidden?: boolean;
       id?: string;
+      indeterminate?: boolean;
       name?: string;
+      value?: string;
     }
   }
 }

@@ -26,6 +26,9 @@ wrsts-checkbox {
     &.unchecked {
       background: url(/assets/img/checkbox-unchecked.svg)
     }
+    &.indeterminate {
+      background: url(/assets/img/checkbox-indeterminate.svg)
+    }
   }
 }
 

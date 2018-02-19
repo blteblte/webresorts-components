@@ -6,6 +6,7 @@ import {
   , Watch
   , Method
   , Element
+  , State
 } from '@stencil/core';
 
 import {
@@ -26,18 +27,70 @@ interface ChildBoxBinding {
 })
 export class WrstsCheckbox {
 
+  /**
+   * WrstsCheckbox DOM element reference
+   */
   @Element() wrstsCheckBox: WrstsCheckbox & HTMLElement
 
+  /**
+   * Fires on checkbox change
+   */
   @Event() change: EventEmitter
 
+  /**
+   * WrstsCheckbox 'checked' attribute. Mimics native checkbox 'checked' attribute
+   */
   @Prop({ mutable: true }) checked: boolean = false
-  @Prop() disabled: boolean = false
+
+  /**
+   * native checkbox 'name' attribute
+   */
   @Prop() name: string
+
+  /**
+   * native checkbox 'id' attribute
+   */
   @Prop() id: string
+
+  /**
+   * native checkbox 'value' attribute
+   */
+  @Prop() value: string
+
+  /**
+   * WrstsCheckbox 'indeterminate' attribute controlls if checkbox should have
+   * 'indeterminate' state when used as a toggler and not all of checkboxes are selected
+   */
+  @Prop() indeterminate: boolean
+
+  /**
+   * WrstsCheckbox indeterminate state
+   */
+  @State() indeterminateState: boolean
+
+  /**
+   * WrstsCheckbox 'hidden' attribute. Hides the DOM element
+   */
   @Prop() hidden: boolean
 
+  /**
+   * WrstsCheckbox 'disabled' attribute. Disables the DOM element
+   */
+  @Prop() disabled: boolean = false
+
+  /**
+   * WrstsCheckbox 'group' attribute. Specifies if checkbox belongs to certain group
+   */
   @Prop() group: string
+
+  /**
+   * WrstsCheckbox 'group-toggler' attribute. Specifies the toggler checkbox for the group
+   */
   @Prop() groupToggler: string
+
+  /**
+   * Watch for 'group-toggler' attribute change realtime
+   */
   @Watch('groupToggler') onGroupTogglerChanged(newValue: string/*, oldValue: string*/) {
     if (!(newValue !== null && newValue !== undefined && newValue !== '')) {
       this.releaseGroupBindings()
@@ -56,6 +109,12 @@ export class WrstsCheckbox {
    * Check the checkbox programmatically
    */
   @Method() check(handleGroupElements?: boolean) {
+
+    if (this.indeterminate) {
+      this.indeterminateState = false
+      this.checkbox.indeterminate = false
+    }
+
     if (this.checked) { return }
     this.checked = true
     this.checkbox.checked = true
@@ -67,10 +126,29 @@ export class WrstsCheckbox {
    * Uncheck the checkbox programmatically
    */
   @Method() uncheck(handleGroupElements?: boolean) {
+
+    if (this.indeterminate) {
+      this.indeterminateState = false
+      this.checkbox.indeterminate = false
+    }
+
     if (!this.checked) { return }
     this.checked = false
     this.checkbox.checked = false
     this.isToggler && !handleGroupElements && this.handleGroupElementsOnTogglerCheck(false)
+    this.change.emit(false)
+  }
+
+  /**
+   * Set checkbox state as indeterminate. WrstsCheckbox element must have 'indeterminate' attribute
+   */
+  @Method() setIndeterminate() {
+    if (!(this.indeterminate && !this.indeterminateState)) { return }
+    this.indeterminateState = true
+    this.checked = false
+    this.checkbox.checked = false
+    this.checkbox.indeterminate = true
+    // this.isToggler && !handleGroupElements && this.handleGroupElementsOnTogglerCheck(false)
     this.change.emit(false)
   }
 
@@ -125,7 +203,7 @@ export class WrstsCheckbox {
     const serializationType = type as SerializationType
     if (this.isToggler) {
       return ComponentSerializer.SerializeData(
-          this.groupBoxesBindings.map(el => el.elementRef)
+          [ this.wrstsCheckBox, ...this.groupBoxesBindings.map(el => el.elementRef) ]
         , serializationType
         , { valueResolver: ComponentSerializerResolver.ResolveCheckboxValue }
       )
@@ -173,10 +251,22 @@ export class WrstsCheckbox {
   }
 
   changeGroupElementHandler() {
-    if (this.groupCheckedCount === this.totalGroupBoxesCount) {
-      this.check(true)
+    if (this.indeterminate) {
+      const total = this.totalGroupBoxesCount
+      const checked = this.groupCheckedCount
+      if (checked > 0 && checked < total) {
+        this.setIndeterminate()
+      } else if (checked === 0) {
+        this.uncheck(true)
+      } else {
+        this.check(true)
+      }
     } else {
-      this.uncheck(true)
+      if (this.groupCheckedCount === this.totalGroupBoxesCount) {
+        this.check(true)
+      } else {
+        this.uncheck(true)
+      }
     }
   }
 
@@ -199,15 +289,27 @@ export class WrstsCheckbox {
   }
 
   getCheckboxIcon () {
-    return this.checked
-      ? <i class="checked"></i>
-      : <i class="unchecked"></i>
+
+    if (this.isToggler && this.indeterminate) {
+      if (this.indeterminateState) {
+        return <i class="indeterminate"></i>
+      } else if (!this.checked) {
+        return <i class="unchecked"></i>
+      } else {
+        return <i class="checked"></i>
+      }
+
+    } else {
+      return this.checked
+        ? <i class="checked"></i>
+        : <i class="unchecked"></i>
+    }
   }
 
   render() {
     return (
       <div onClick={this.clickHandler.bind(this)}>
-        <input type="checkbox" name={this.name} id={this.id} />
+        <input type="checkbox" name={this.name} id={this.id} value={this.value} />
         {this.getCheckboxIcon()}
         <label><slot /></label>
       </div>
