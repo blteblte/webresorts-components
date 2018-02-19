@@ -1,0 +1,103 @@
+{
+  "components": [
+    {
+      "tag": "wrsts-checkbox",
+      "dependencies": [],
+      "componentClass": "WrstsCheckbox",
+      "componentPath": "components/wrsts-checkbox/wrsts-checkbox.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/wrsts-checkbox/wrsts-checkbox.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "checked",
+          "type": "Boolean",
+          "mutable": true
+        },
+        {
+          "name": "disabled",
+          "type": "Boolean"
+        },
+        {
+          "name": "group",
+          "type": "String"
+        },
+        {
+          "name": "groupToggler",
+          "type": "String",
+          "watch": [
+            "onGroupTogglerChanged"
+          ]
+        },
+        {
+          "name": "hidden",
+          "type": "Boolean"
+        },
+        {
+          "name": "id",
+          "type": "String"
+        },
+        {
+          "name": "indeterminate",
+          "type": "Boolean"
+        },
+        {
+          "name": "name",
+          "type": "String"
+        },
+        {
+          "name": "value",
+          "type": "String"
+        }
+      ],
+      "states": [
+        {
+          "name": "indeterminateState"
+        }
+      ],
+      "methods": [
+        {
+          "name": "check"
+        },
+        {
+          "name": "getData"
+        },
+        {
+          "name": "getGroupBoxesBindings"
+        },
+        {
+          "name": "getNativeElement"
+        },
+        {
+          "name": "rebindGroup"
+        },
+        {
+          "name": "setIndeterminate"
+        },
+        {
+          "name": "toJson"
+        },
+        {
+          "name": "uncheck"
+        }
+      ],
+      "hostElement": {
+        "name": "wrstsCheckBox"
+      },
+      "events": [
+        {
+          "event": "change"
+        }
+      ]
+    }
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "0.4.0",
+    "typescriptVersion": "2.7.1"
+  }
+}

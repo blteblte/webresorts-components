@@ -1,0 +1,41 @@
+wrsts-checkbox {
+  user-select: none;
+  display: inline-block;
+  font-family: Helvetica, sans-serif;
+  font-size: 14px;
+  &[hidden] {
+    display: none;
+  }
+  &[disabled] {
+    color: gray;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  div {
+    display: table;
+  }
+
+  label {
+    display: table-cell;
+    line-height: 20px;
+    padding-left: 3px;
+  }
+
+  i {
+    display: table-cell;
+    width: 20px;
+    height: 20px;
+    &.checked {
+      background: url(/assets/img/checkbox-checked.svg);
+    }
+    &.unchecked {
+      background: url(/assets/img/checkbox-unchecked.svg);
+    }
+    &.indeterminate {
+      background: url(/assets/img/checkbox-indeterminate.svg);
+    }
+  }
+}
