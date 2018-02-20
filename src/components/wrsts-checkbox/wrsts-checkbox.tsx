@@ -309,7 +309,7 @@ export class WrstsCheckbox {
       <div onClick={this.clickHandler.bind(this)}>
         <input type="checkbox" name={this.name} id={this.id} value={this.value} />
         {this.getCheckboxIcon()}
-        <label><slot /></label>
+        <label>&nbsp;<slot /></label>
       </div>
     )
   }

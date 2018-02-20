@@ -18,14 +18,16 @@
 
   <div>
     <h3>Multi select:</h3>
-    <wrsts-checkbox id="toggler" group-toggler="1" indeterminate>Select all</wrsts-checkbox>
-    <wrsts-checkbox name="sub1" data-my-value="yeah" data-my-other-value="cool" group="1"></wrsts-checkbox>
-    <wrsts-checkbox name="sub2" group="1"></wrsts-checkbox>
-    <wrsts-checkbox name="sub3" group="1"></wrsts-checkbox>
-    <wrsts-checkbox name="sub4" group="1"></wrsts-checkbox>
-    <wrsts-checkbox name="sub5" group="1"></wrsts-checkbox>
-    <wrsts-checkbox name="sub6" group="1"></wrsts-checkbox>
-    <wrsts-checkbox name="sub7" group="1"></wrsts-checkbox>
+    <div>
+      <wrsts-checkbox id="toggler" group-toggler="1" indeterminate>Select all</wrsts-checkbox>
+      <wrsts-checkbox name="sub1" data-my-value="yeah" data-my-other-value="cool" group="1"></wrsts-checkbox>
+      <wrsts-checkbox name="sub2" group="1"></wrsts-checkbox>
+      <wrsts-checkbox name="sub3" group="1"></wrsts-checkbox>
+      <wrsts-checkbox name="sub4" group="1"></wrsts-checkbox>
+      <wrsts-checkbox name="sub5" group="1"></wrsts-checkbox>
+      <wrsts-checkbox name="sub6" group="1"></wrsts-checkbox>
+      <wrsts-checkbox name="sub7" group="1"></wrsts-checkbox>
+    </div>
     <div>
       <select id="showJsonType">
         <option value="0" selected>Default</option>
@@ -41,10 +43,20 @@
     <h3>Form:</h3>
     <form action="" method="GET">
       <div>
-        <wrsts-checkbox name="agree" id="agree" value="yes" checked>I have a label and checked by default</wrsts-checkbox>
+        Agree:
+        <wrsts-checkbox name="agree" id="agree" value="yes" checked>
+          I have a label and checked by default
+        </wrsts-checkbox>
       </div>
       <div>
-        <wrsts-checkbox name="status" id="status" value="true" checked>I have a label and checked by default</wrsts-checkbox>
+        Status:
+        <wrsts-checkbox name="status" id="status" value="true" checked>
+          I have a label and checked by default
+        </wrsts-checkbox>
+      </div>
+      <div>
+        Hidden:
+        <wrsts-checkbox name="hidden" value="hidden" hidden checked>You can not see me</wrsts-checkbox>
       </div>
       <div>
         <input type="submit" value="submit" />

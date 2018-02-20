@@ -42,15 +42,15 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components.js",
-    "revision": "379a80454a7aeff1612f20421f5b689c"
+    "revision": "b8442f5d96aecd57140d23da69c91465"
   },
   {
-    "url": "build/wrsts-components/cqyizwao.es5.js",
-    "revision": "8c63a3e67a0a73227ef4a8bf8d86ca0c"
+    "url": "build/wrsts-components/9bzz7bss.es5.js",
+    "revision": "319c7201e8942c1579ba58bdc84e2bf4"
   },
   {
-    "url": "build/wrsts-components/cqyizwao.js",
-    "revision": "38a9ef2b5c2c47f309d67cf9144f1e5d"
+    "url": "build/wrsts-components/9bzz7bss.js",
+    "revision": "584ef89c7761b78437863c3a89258505"
   },
   {
     "url": "build/wrsts-components/wrsts-components.glghvxpw.js",
@@ -62,11 +62,11 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components/wrsts-components.registry.json",
-    "revision": "6aaaeef2018de1296b07a1d34368fe9b"
+    "revision": "d40bb070650c8af6d3638e720af7cac9"
   },
   {
     "url": "index.html",
-    "revision": "8d51c770c09bcf40b4e4df31f3d2f7bc"
+    "revision": "9400b853de4e7ac7ca445df87c6830ca"
   }
 ].concat(self.__precacheManifest || []);
 
