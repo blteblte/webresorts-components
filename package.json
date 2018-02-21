@@ -1,7 +1,7 @@
 {
-  "name": "my-component",
+  "name": "wrsts-components",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "WebResorts Components",
   "main": "dist/wrsts-components.js",
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
@@ -31,14 +31,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "git+https://github.com/blteblte/webresorts-components.git"
   },
-  "author": "Ionic Team",
+  "author": "WebResorts",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ionic-team/stencil"
+    "url": "https://github.com/blteblte/webresorts-components/issues"
   },
-  "homepage": "https://github.com/ionic-team/stencil",
+  "homepage": "https://github.com/blteblte/webresorts-components",
   "jest": {
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
