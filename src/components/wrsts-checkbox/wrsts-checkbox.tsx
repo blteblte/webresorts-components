@@ -109,12 +109,10 @@ export class WrstsCheckbox {
    * Check the checkbox programmatically
    */
   @Method() check(handleGroupElements?: boolean) {
-
     if (this.indeterminate) {
       this.indeterminateState = false
       this.checkbox.indeterminate = false
     }
-
     if (this.checked) { return }
     this.checked = true
     this.checkbox.checked = true
@@ -126,12 +124,10 @@ export class WrstsCheckbox {
    * Uncheck the checkbox programmatically
    */
   @Method() uncheck(handleGroupElements?: boolean) {
-
     if (this.indeterminate) {
       this.indeterminateState = false
       this.checkbox.indeterminate = false
     }
-
     if (!this.checked) { return }
     this.checked = false
     this.checkbox.checked = false
@@ -163,17 +159,13 @@ export class WrstsCheckbox {
    */
   @Method() rebindGroup() {
     if (!this.isToggler) { return }
-
     this.releaseGroupBindings()
 
-    const groupBoxes = Array.prototype.slice
-      .call(document.querySelectorAll(`wrsts-checkbox[group="${this.groupToggler}"]`))
-
-    if (!groupBoxes) { return }
-
     this.groupBoxesBindings = []
-
-    groupBoxes.forEach((el) => {
+    1 && [].forEach.call(
+        document.querySelectorAll(`wrsts-checkbox[group="${this.groupToggler}"]`)
+      , (el) =>
+    {
       this.groupBoxesBindings.push({
         elementRef: el,
         listener: (el as any).addEventListener('change', this.changeGroupElementHandler.bind(this))
@@ -189,27 +181,31 @@ export class WrstsCheckbox {
   }
 
   /**
-   * Get collection of data attributes as { [name]: value }
+   * Get data attributes as json for current object
+   * @param type json creation type 'SerializationType'
    */
   @Method() getData(type = 1) {
     return ComponentSerializerResolver.ResolveDataAttributes(this.wrstsCheckBox, type as SerializationType)
   }
 
   /**
-   * get json object for checkbox or group
-  */
-  @Method() toJson(type = 0) {
-    const serializationType = type as SerializationType
+   * Get json object for checkbox or toggler's group
+   * @param type json creation type 'SerializationType'
+   * @param includeToggler include toggler information when creating json
+   */
+  @Method() toJson(type: SerializationType = 0, includeToggler = true) {
     if (this.isToggler) {
       return ComponentSerializer.SerializeData(
-          [ this.wrstsCheckBox, ...this.groupBoxesBindings.map(el => el.elementRef) ]
-        , serializationType
+        includeToggler
+          ? [ this.wrstsCheckBox, ...this.groupBoxesBindings.map(el => el.elementRef) ]
+          : this.groupBoxesBindings.map(el => el.elementRef)
+        , type
         , { valueResolver: ComponentSerializerResolver.ResolveCheckboxValue }
       )
     } else {
       return ComponentSerializer.Serialize(
           this.wrstsCheckBox
-        , serializationType
+        , type
         , { valueResolver: ComponentSerializerResolver.ResolveCheckboxValue }
       )
     }

@@ -1,4 +1,11 @@
+@keyframes wrsts-checkbox-appear {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 wrsts-checkbox {
+  animation: wrsts-checkbox-appear .2s ease-in;
+
   user-select: none;
   display: inline-table;
   &[hidden] {
@@ -30,6 +37,8 @@ wrsts-checkbox {
     display: table-cell;
     width: 20px;
     height: 20px;
+
+    transition: background-image .2s ease-in-out;
     &.checked {
       background: url(/assets/img/checkbox-checked.svg);
     }

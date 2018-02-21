@@ -27,7 +27,7 @@
         <option value="2">Array</option>
       </select>
       <button id="showJson">show json</button>
-      <div id="output" style="font-family: Consolas; font-size: 9px;"></div>
+      <div id="output" style="font-family: Consolas; font-size: 9px; line-height: 9px;"></div>
     </div>
   </div>
 
@@ -64,6 +64,7 @@
   <style>
     body {
       background-color: #ebebeb;
+      line-height: 20px;
     }
     wrsts-checkbox {
       color: #036403;
@@ -72,11 +73,11 @@
     wrsts-checkbox label {
       transition: color .3s ease-in-out;
     }
-    wrsts-checkbox label:hover {
+    wrsts-checkbox:not([disabled]) label:hover {
       cursor: pointer;
       color: #038803;
     }
-    wrsts-checkbox i:hover {
+    wrsts-checkbox:not([disabled]) i:hover {
       cursor: pointer;
     }
   </style>

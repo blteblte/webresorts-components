@@ -15,7 +15,8 @@
     "serve": "stencil-dev-server",
     "start": "npm run dev",
     "test": "jest --no-cache",
-    "test.watch": "jest --watch --no-cache"
+    "test.watch": "jest --watch --no-cache",
+    "prod": "npm run build && node app.js"
   },
   "dependencies": {
     "@stencil/core": "0.6.5",
@@ -25,6 +26,7 @@
     "@stencil/dev-server": "latest",
     "@stencil/utils": "latest",
     "@types/jest": "^21.1.1",
+    "express": "^4.16.2",
     "jest": "^21.2.1"
   },
   "repository": {

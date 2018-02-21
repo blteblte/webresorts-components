@@ -82,13 +82,8 @@ export class WrstsCheckbox {
             return;
         }
         this.releaseGroupBindings();
-        const groupBoxes = Array.prototype.slice
-            .call(document.querySelectorAll(`wrsts-checkbox[group="${this.groupToggler}"]`));
-        if (!groupBoxes) {
-            return;
-        }
         this.groupBoxesBindings = [];
-        groupBoxes.forEach((el) => {
+        1 && [].forEach.call(document.querySelectorAll(`wrsts-checkbox[group="${this.groupToggler}"]`), (el) => {
             this.groupBoxesBindings.push({
                 elementRef: el,
                 listener: el.addEventListener('change', this.changeGroupElementHandler.bind(this))
@@ -102,21 +97,25 @@ export class WrstsCheckbox {
         return this.groupBoxesBindings;
     }
     /**
-     * Get collection of data attributes as { [name]: value }
+     * Get data attributes as json for current object
+     * @param type json creation type 'SerializationType'
      */
     getData(type = 1) {
         return ComponentSerializerResolver.ResolveDataAttributes(this.wrstsCheckBox, type);
     }
     /**
-     * get json object for checkbox or group
-    */
-    toJson(type = 0) {
-        const serializationType = type;
+     * Get json object for checkbox or toggler's group
+     * @param type json creation type 'SerializationType'
+     * @param includeToggler include toggler information when creating json
+     */
+    toJson(type = 0, includeToggler = true) {
         if (this.isToggler) {
-            return ComponentSerializer.SerializeData([this.wrstsCheckBox, ...this.groupBoxesBindings.map(el => el.elementRef)], serializationType, { valueResolver: ComponentSerializerResolver.ResolveCheckboxValue });
+            return ComponentSerializer.SerializeData(includeToggler
+                ? [this.wrstsCheckBox, ...this.groupBoxesBindings.map(el => el.elementRef)]
+                : this.groupBoxesBindings.map(el => el.elementRef), type, { valueResolver: ComponentSerializerResolver.ResolveCheckboxValue });
         }
         else {
-            return ComponentSerializer.Serialize(this.wrstsCheckBox, serializationType, { valueResolver: ComponentSerializerResolver.ResolveCheckboxValue });
+            return ComponentSerializer.Serialize(this.wrstsCheckBox, type, { valueResolver: ComponentSerializerResolver.ResolveCheckboxValue });
         }
     }
     componentDidLoad() {
