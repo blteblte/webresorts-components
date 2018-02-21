@@ -184,8 +184,8 @@ export class WrstsCheckbox {
    * Get data attributes as json for current object
    * @param type json creation type 'SerializationType'
    */
-  @Method() getData(type = 1) {
-    return ComponentSerializerResolver.ResolveDataAttributes(this.wrstsCheckBox, type as SerializationType)
+  @Method() getData(type: SerializationType = 1) {
+    return ComponentSerializerResolver.ResolveDataAttributes(this.wrstsCheckBox, type)
   }
 
   /**
