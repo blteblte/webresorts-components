@@ -51,4 +51,35 @@ declare global {
   }
 }
 
+
+import {
+  WrstsTinymce as WrstsTinymce
+} from './components/wrsts-tinymce/wrsts-tinymce';
+
+declare global {
+  interface HTMLWrstsTinymceElement extends WrstsTinymce, HTMLStencilElement {
+  }
+  var HTMLWrstsTinymceElement: {
+    prototype: HTMLWrstsTinymceElement;
+    new (): HTMLWrstsTinymceElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-tinymce": HTMLWrstsTinymceElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-tinymce": HTMLWrstsTinymceElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-tinymce": JSXElements.WrstsTinymceAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsTinymceAttributes extends HTMLAttributes {
+      id?: string;
+      name?: string;
+    }
+  }
+}
+
 declare global { namespace JSX { interface StencilJSX {} } }

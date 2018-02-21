@@ -93,6 +93,32 @@
           "event": "change"
         }
       ]
+    },
+    {
+      "tag": "wrsts-tinymce",
+      "dependencies": [],
+      "componentClass": "WrstsTinymce",
+      "componentPath": "components/wrsts-tinymce/wrsts-tinymce.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/wrsts-tinymce/wrsts-tinymce.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "id",
+          "type": "String"
+        },
+        {
+          "name": "name",
+          "type": "String"
+        }
+      ],
+      "hostElement": {
+        "name": "wrstsTinymce"
+      }
     }
   ],
   "compiler": {

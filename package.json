@@ -20,12 +20,14 @@
   },
   "dependencies": {
     "@stencil/core": "0.6.5",
-    "@stencil/sass": "0.0.2"
+    "@stencil/sass": "0.0.2",
+    "tinymce": "^4.7.7"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
     "@stencil/utils": "latest",
     "@types/jest": "^21.1.1",
+    "@types/node": "^9.4.6",
     "express": "^4.16.2",
     "jest": "^21.2.1"
   },
