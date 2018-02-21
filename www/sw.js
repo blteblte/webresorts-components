@@ -11,16 +11,9 @@
  * See https://goo.gl/YYPcyY
  */
 
-
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.0.0-alpha.3/workbox-sw.js");
-
-
-
-
-
-
-
-
+importScripts(
+  "https://storage.googleapis.com/workbox-cdn/releases/3.0.0-alpha.6/workbox-sw.js"
+);
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
@@ -30,47 +23,48 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.0.0-alpha.3
 self.__precacheManifest = [
   {
     "url": "assets/img/checkbox-checked.svg",
-    "revision": "6c5c9dbe147baff09ad934b3187394d7"
+    "revision": "c9d2ad4c31a5dc12f3b6ac8ce27b59c1"
   },
   {
     "url": "assets/img/checkbox-indeterminate.svg",
-    "revision": "d14737f2f8e9b5032801f1e3bf682892"
+    "revision": "40274e52863514e606652513159f8ff5"
   },
   {
     "url": "assets/img/checkbox-unchecked.svg",
-    "revision": "9da6b694a8530d5150586e4452c8e5b2"
+    "revision": "92127e053967651c313959dda0bea437"
   },
   {
     "url": "build/wrsts-components.js",
-    "revision": "b8442f5d96aecd57140d23da69c91465"
+    "revision": "a1c068379c8ab2bd396799370801acbe"
   },
   {
-    "url": "build/wrsts-components/9bzz7bss.es5.js",
-    "revision": "319c7201e8942c1579ba58bdc84e2bf4"
+    "url": "build/wrsts-components/tuqrkueb.es5.js",
+    "revision": "5773846d090040f71c5ce1f9a597b3c0"
   },
   {
-    "url": "build/wrsts-components/9bzz7bss.js",
-    "revision": "584ef89c7761b78437863c3a89258505"
+    "url": "build/wrsts-components/tuqrkueb.js",
+    "revision": "1408e0b684b42b3a406a882a346d608d"
   },
   {
-    "url": "build/wrsts-components/wrsts-components.glghvxpw.js",
-    "revision": "272f5f1b5dce08d87c494d1ba7ff3b16"
+    "url": "build/wrsts-components/wrsts-components.7m4ivvt1.js",
+    "revision": "c7a7af2db4257ab7858ee83924b5a2d7"
   },
   {
-    "url": "build/wrsts-components/wrsts-components.pw14yfvz.js",
-    "revision": "b66c15f7d848c2abfa7087e576f9bdca"
+    "url": "build/wrsts-components/wrsts-components.doomxah3.js",
+    "revision": "cb9fc93b275356937972b8b41eabd537"
   },
   {
     "url": "build/wrsts-components/wrsts-components.registry.json",
-    "revision": "d40bb070650c8af6d3638e720af7cac9"
+    "revision": "a8e265325e0f7ebf0861157cc8601853"
+  },
+  {
+    "url": "host.config.json",
+    "revision": "924078fa54fa49ec609b6c2f96911900"
   },
   {
     "url": "index.html",
-    "revision": "9400b853de4e7ac7ca445df87c6830ca"
+    "revision": "eedf6f36215a099ce93b36464a8e78cd"
   }
 ].concat(self.__precacheManifest || []);
-
-if (Array.isArray(self.__precacheManifest)) {
-  workbox.precaching.suppressWarnings();
-  workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
-}
+workbox.precaching.suppressWarnings();
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});

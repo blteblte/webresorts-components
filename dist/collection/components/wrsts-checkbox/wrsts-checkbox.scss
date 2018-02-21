@@ -1,9 +1,6 @@
 wrsts-checkbox {
   user-select: none;
   display: inline-table;
-  font-family: Helvetica, sans-serif;
-  font-size: 14px;
-  padding-left: 4px;
   &[hidden] {
     display: none;
   }
@@ -22,7 +19,11 @@ wrsts-checkbox {
   label {
     display: inline-block;
     line-height: 20px;
-    min-width: 4px;
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+    }
   }
 
   i {

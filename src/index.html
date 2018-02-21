@@ -5,14 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
   <script src="/build/wrsts-components.js"></script>
-  <style>
-    wrsts-checkbox {
-      color: green;
-    }
-    wrsts-checkbox[disabled] {
-      color: gray;
-    }
-  </style>
 </head>
 <body>
 
@@ -68,6 +60,26 @@
     <h3>Disabled:</h3>
     <wrsts-checkbox disabled>I am disabled</wrsts-checkbox>
   </div>
+
+  <style>
+    body {
+      background-color: #ebebeb;
+    }
+    wrsts-checkbox {
+      color: #036403;
+      font-weight: bold;
+    }
+    wrsts-checkbox label {
+      transition: color .3s ease-in-out;
+    }
+    wrsts-checkbox label:hover {
+      cursor: pointer;
+      color: #038803;
+    }
+    wrsts-checkbox i:hover {
+      cursor: pointer;
+    }
+  </style>
 
   <script>
     document.getElementById('showJson').addEventListener('click', function() {

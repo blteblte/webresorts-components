@@ -217,7 +217,6 @@ export class WrstsCheckbox {
             h("input", { type: "checkbox", name: this.name, id: this.id, value: this.value }),
             this.getCheckboxIcon(),
             h("label", null,
-                "\u00A0",
                 h("slot", null))));
     }
     static get is() { return "wrsts-checkbox"; }
