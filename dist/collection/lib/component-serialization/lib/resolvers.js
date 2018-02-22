@@ -5,6 +5,7 @@ export class ComponentSerializerResolver {
 ComponentSerializerResolver.ResolveKey = resolveKey;
 /* values */
 ComponentSerializerResolver.ResolveCheckboxValue = resolveCheckboxValue;
+ComponentSerializerResolver.ResolveTextareaValue = resolveTextareaValue;
 /* data attributes */
 ComponentSerializerResolver.ResolveDataAttributes = (obj, type) => type === SerializationType.Object
     ? resolveDataAttributesToObj(obj)
@@ -12,10 +13,13 @@ ComponentSerializerResolver.ResolveDataAttributes = (obj, type) => type === Seri
 function resolveKey(obj, i) {
     return obj.name || obj.id || i;
 }
-export function resolveCheckboxValue(obj) {
+function resolveCheckboxValue(obj) {
     return obj.checked;
 }
-export function resolveDataAttributesToObj(obj) {
+function resolveTextareaValue(obj) {
+    return obj.value;
+}
+function resolveDataAttributesToObj(obj) {
     const rArr = resolveDataAttributesToArr(obj);
     const result = {};
     rArr.forEach(el => {
@@ -23,7 +27,7 @@ export function resolveDataAttributesToObj(obj) {
     });
     return result;
 }
-export function resolveDataAttributesToArr(obj) {
+function resolveDataAttributesToArr(obj) {
     return [].filter
         .call(obj.attributes, at => /^data-/.test(at.name))
         .map((attr) => {

@@ -1,5 +1,6 @@
 import { WrstsCheckbox } from '../../../components/wrsts-checkbox/wrsts-checkbox';
 import { SerializationType } from './serialization-type';
+import { WrstsTinymce } from '../../../components/wrsts-tinymce/wrsts-tinymce';
 
 export class ComponentSerializerResolver {
   /* key */
@@ -7,6 +8,7 @@ export class ComponentSerializerResolver {
 
   /* values */
   public static ResolveCheckboxValue = resolveCheckboxValue
+  public static ResolveTextareaValue = resolveTextareaValue
 
   /* data attributes */
   public static ResolveDataAttributes = (obj: any, type: SerializationType) =>
@@ -19,11 +21,15 @@ function resolveKey(obj: any, i: number) {
   return obj.name || obj.id || i
 }
 
-export function resolveCheckboxValue(obj: WrstsCheckbox) {
+function resolveCheckboxValue(obj: WrstsCheckbox) {
   return obj.checked
 }
 
-export function resolveDataAttributesToObj(obj: any) {
+function resolveTextareaValue(obj: WrstsTinymce) {
+  return obj.value
+}
+
+function resolveDataAttributesToObj(obj: any) {
   const rArr = resolveDataAttributesToArr(obj)
 
   const result = {}
@@ -33,7 +39,7 @@ export function resolveDataAttributesToObj(obj: any) {
   return result
 }
 
-export function resolveDataAttributesToArr(obj: any) {
+function resolveDataAttributesToArr(obj: any) {
   return [].filter
     .call(obj.attributes, at => /^data-/.test(at.name))
     .map((attr) => {

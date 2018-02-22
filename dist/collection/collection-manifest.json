@@ -95,6 +95,115 @@
       ]
     },
     {
+      "tag": "wrsts-tab-control",
+      "dependencies": [],
+      "componentClass": "WrstsTabControl",
+      "componentPath": "components/wrsts-tab-control/wrsts-tab-control.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/wrsts-tab-control/wrsts-tab-control.scss"
+          ]
+        }
+      },
+      "hostElement": {
+        "name": "wrstsTabControl"
+      }
+    },
+    {
+      "tag": "wrsts-tab-control-content",
+      "dependencies": [],
+      "componentClass": "WrstsTabControlContent",
+      "componentPath": "components/wrsts-tab-control-content/wrsts-tab-control-content.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/wrsts-tab-control-content/wrsts-tab-control-content.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "active",
+          "type": "Boolean",
+          "mutable": true
+        }
+      ],
+      "methods": [
+        {
+          "name": "setActive"
+        },
+        {
+          "name": "unsetActive"
+        }
+      ],
+      "hostElement": {
+        "name": "wrstsTabControlContent"
+      }
+    },
+    {
+      "tag": "wrsts-tab-control-contents",
+      "dependencies": [],
+      "componentClass": "WrstsTabControlContents",
+      "componentPath": "components/wrsts-tab-control-contents/wrsts-tab-control-contents.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/wrsts-tab-control-contents/wrsts-tab-control-contents.scss"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "wrsts-tab-control-tab",
+      "dependencies": [],
+      "componentClass": "WrstsTabControlTab",
+      "componentPath": "components/wrsts-tab-control-tab/wrsts-tab-control-tab.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/wrsts-tab-control-tab/wrsts-tab-control-tab.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "active",
+          "type": "Boolean",
+          "mutable": true
+        }
+      ],
+      "methods": [
+        {
+          "name": "setActive"
+        },
+        {
+          "name": "unsetActive"
+        }
+      ],
+      "hostElement": {
+        "name": "wrstsTabControlTab"
+      },
+      "events": [
+        {
+          "event": "clicked"
+        }
+      ]
+    },
+    {
+      "tag": "wrsts-tab-control-tabs",
+      "dependencies": [],
+      "componentClass": "WrstsTabControlTabs",
+      "componentPath": "components/wrsts-tab-control-tabs/wrsts-tab-control-tabs.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/wrsts-tab-control-tabs/wrsts-tab-control-tabs.scss"
+          ]
+        }
+      }
+    },
+    {
       "tag": "wrsts-tinymce",
       "dependencies": [],
       "componentClass": "WrstsTinymce",
@@ -108,17 +217,55 @@
       },
       "props": [
         {
+          "name": "baseUrl",
+          "type": "String"
+        },
+        {
+          "name": "height",
+          "type": "String"
+        },
+        {
           "name": "id",
           "type": "String"
         },
         {
           "name": "name",
           "type": "String"
+        },
+        {
+          "name": "value",
+          "type": "String"
+        },
+        {
+          "name": "width",
+          "type": "String"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getEditor"
+        },
+        {
+          "name": "getNativeElement"
+        },
+        {
+          "name": "getTinyMce"
+        },
+        {
+          "name": "toJson"
         }
       ],
       "hostElement": {
         "name": "wrstsTinymce"
-      }
+      },
+      "events": [
+        {
+          "event": "change"
+        },
+        {
+          "event": "load"
+        }
+      ]
     }
   ],
   "compiler": {

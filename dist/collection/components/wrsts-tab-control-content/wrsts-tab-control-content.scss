@@ -1,0 +1,22 @@
+$lbl-bg-color: #f1f1f1;
+$lbl-font-color: #595959;
+
+@keyframes wrsts-tab-control-content-in {
+  0% { opacity: 0; transform: scale(.99, .99); }
+  100% { opacity: 1; transform: scale(1, 1); }
+}
+
+wrsts-tab-control-content {
+  display: none;
+  padding: 10px 8px;
+  background-color: lighten($lbl-bg-color, 5%);
+  color: darken($lbl-font-color, 10%);
+
+  &[active] {
+    display: block;
+  }
+}
+
+wrsts-tab-control-content > div {
+  animation: wrsts-tab-control-content-in .2s ease-in-out;
+}

@@ -6,10 +6,25 @@
   "corePolyfilled": "wrsts-components.doomxah3.js",
   "components": {
     "wrsts-checkbox": {
-      "$": "lbrg4f4i"
+      "$": "u1pzieir"
+    },
+    "wrsts-tab-control": {
+      "$": "tygjgyqn"
+    },
+    "wrsts-tab-control-content": {
+      "$": "tygjgyqn"
+    },
+    "wrsts-tab-control-contents": {
+      "$": "tygjgyqn"
+    },
+    "wrsts-tab-control-tab": {
+      "$": "tygjgyqn"
+    },
+    "wrsts-tab-control-tabs": {
+      "$": "tygjgyqn"
     },
     "wrsts-tinymce": {
-      "$": "m3z0dowe"
+      "$": "mlzab888"
     }
   }
 }

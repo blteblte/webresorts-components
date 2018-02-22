@@ -1,0 +1,22 @@
+$lbl-bg-color: #f1f1f1;
+$lbl-font-color: #595959;
+
+wrsts-tab-control-tab {
+  display: inline-block;
+  user-select: none;
+  label {
+    display: inline-block;
+    background-color: $lbl-bg-color;
+    color: $lbl-font-color;
+    padding: 10px 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color .2s ease-in-out;
+  }
+  label:hover {
+    background-color: darken($lbl-bg-color, 5%);
+  }
+  &[active] label {
+    background-color: lighten($lbl-bg-color, 5%);
+  }
+}

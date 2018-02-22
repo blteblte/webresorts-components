@@ -53,6 +53,156 @@ declare global {
 
 
 import {
+  WrstsTabControlContent as WrstsTabControlContent
+} from './components/wrsts-tab-control-content/wrsts-tab-control-content';
+
+declare global {
+  interface HTMLWrstsTabControlContentElement extends WrstsTabControlContent, HTMLStencilElement {
+  }
+  var HTMLWrstsTabControlContentElement: {
+    prototype: HTMLWrstsTabControlContentElement;
+    new (): HTMLWrstsTabControlContentElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-tab-control-content": HTMLWrstsTabControlContentElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-tab-control-content": HTMLWrstsTabControlContentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-tab-control-content": JSXElements.WrstsTabControlContentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsTabControlContentAttributes extends HTMLAttributes {
+      active?: boolean;
+    }
+  }
+}
+
+
+import {
+  WrstsTabControlContents as WrstsTabControlContents
+} from './components/wrsts-tab-control-contents/wrsts-tab-control-contents';
+
+declare global {
+  interface HTMLWrstsTabControlContentsElement extends WrstsTabControlContents, HTMLStencilElement {
+  }
+  var HTMLWrstsTabControlContentsElement: {
+    prototype: HTMLWrstsTabControlContentsElement;
+    new (): HTMLWrstsTabControlContentsElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-tab-control-contents": HTMLWrstsTabControlContentsElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-tab-control-contents": HTMLWrstsTabControlContentsElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-tab-control-contents": JSXElements.WrstsTabControlContentsAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsTabControlContentsAttributes extends HTMLAttributes {
+      
+    }
+  }
+}
+
+
+import {
+  WrstsTabControlTab as WrstsTabControlTab
+} from './components/wrsts-tab-control-tab/wrsts-tab-control-tab';
+
+declare global {
+  interface HTMLWrstsTabControlTabElement extends WrstsTabControlTab, HTMLStencilElement {
+  }
+  var HTMLWrstsTabControlTabElement: {
+    prototype: HTMLWrstsTabControlTabElement;
+    new (): HTMLWrstsTabControlTabElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-tab-control-tab": HTMLWrstsTabControlTabElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-tab-control-tab": HTMLWrstsTabControlTabElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-tab-control-tab": JSXElements.WrstsTabControlTabAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsTabControlTabAttributes extends HTMLAttributes {
+      active?: boolean;
+    }
+  }
+}
+
+
+import {
+  WrstsTabControlTabs as WrstsTabControlTabs
+} from './components/wrsts-tab-control-tabs/wrsts-tab-control-tabs';
+
+declare global {
+  interface HTMLWrstsTabControlTabsElement extends WrstsTabControlTabs, HTMLStencilElement {
+  }
+  var HTMLWrstsTabControlTabsElement: {
+    prototype: HTMLWrstsTabControlTabsElement;
+    new (): HTMLWrstsTabControlTabsElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-tab-control-tabs": HTMLWrstsTabControlTabsElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-tab-control-tabs": HTMLWrstsTabControlTabsElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-tab-control-tabs": JSXElements.WrstsTabControlTabsAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsTabControlTabsAttributes extends HTMLAttributes {
+      
+    }
+  }
+}
+
+
+import {
+  WrstsTabControl as WrstsTabControl
+} from './components/wrsts-tab-control/wrsts-tab-control';
+
+declare global {
+  interface HTMLWrstsTabControlElement extends WrstsTabControl, HTMLStencilElement {
+  }
+  var HTMLWrstsTabControlElement: {
+    prototype: HTMLWrstsTabControlElement;
+    new (): HTMLWrstsTabControlElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-tab-control": HTMLWrstsTabControlElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-tab-control": HTMLWrstsTabControlElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-tab-control": JSXElements.WrstsTabControlAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsTabControlAttributes extends HTMLAttributes {
+      
+    }
+  }
+}
+
+
+import {
   WrstsTinymce as WrstsTinymce
 } from './components/wrsts-tinymce/wrsts-tinymce';
 
@@ -76,8 +226,12 @@ declare global {
   }
   namespace JSXElements {
     export interface WrstsTinymceAttributes extends HTMLAttributes {
+      baseUrl?: string;
+      height?: string;
       id?: string;
       name?: string;
+      value?: string;
+      width?: string;
     }
   }
 }
