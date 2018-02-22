@@ -2,7 +2,9 @@ export class WrstsTabControlTab {
     setActive() {
         if (!this.active) {
             this.wrstsTabControlTab.setAttribute('active', 'true');
-            window.history.pushState(null, this.historyTitle, `#/${this.route}`);
+            if (this.route !== undefined && this.route !== null) {
+                window.history.pushState(null, this.historyTitle, `#/${this.route}`);
+            }
         }
     }
     unsetActive() {

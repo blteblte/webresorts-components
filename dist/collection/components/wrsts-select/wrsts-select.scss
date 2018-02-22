@@ -1,0 +1,28 @@
+$lbl-font-color: #595959;
+$lbl-bg-color: #f1f1f1;
+
+wrsts-select {
+  select { display: none; }
+  color: $lbl-font-color;
+  display: inline-block;
+  position: relative;
+
+  .wrsts-select-select{
+    cursor: pointer;
+    user-select: none;
+    padding: 6px 30px 6px 10px;
+    background-color: $lbl-bg-color;
+    border: 1px solid $lbl-font-color;
+  }
+
+  .wrsts-select-options {
+    &.hidden { display: none; }
+    &.visible { display: block; }
+    position: absolute;
+    width: 100%;
+    user-select: none;
+    border: 1px solid lighten($lbl-font-color, 50%);
+  }
+}
+
+

@@ -39,11 +39,14 @@ export class WrstsTabControl {
                 c.setActive();
             }
         });
+        // todo: this is not really what we want
+        this.change.emit(index);
     }
     render() {
         return (h("slot", null));
     }
     static get is() { return "wrsts-tab-control"; }
     static get properties() { return { "activateTab": { "method": true }, "wrstsTabControl": { "elementRef": true } }; }
+    static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-tab-control:**/"; }
 }

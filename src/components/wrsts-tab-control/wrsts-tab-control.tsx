@@ -1,4 +1,4 @@
-import { Component, Element, Method, Listen } from '@stencil/core';
+import { Component, Element, Method, Listen, Event, EventEmitter } from '@stencil/core';
 import { WrstsTabControlTab } from '../wrsts-tab-control-tab/wrsts-tab-control-tab';
 import { WrstsTabControlContent } from '../wrsts-tab-control-content/wrsts-tab-control-content';
 
@@ -13,6 +13,8 @@ export class WrstsTabControl {
   contents: (WrstsTabControlContent & HTMLElement)[]
   locationHash: string
   tabUrl: string
+
+  @Event() change: EventEmitter
 
   componentDidLoad() {
     this.rebindTabsControll()
@@ -57,6 +59,9 @@ export class WrstsTabControl {
         c.setActive()
       }
     })
+
+    // todo: this is not really what we want
+    this.change.emit(index)
   }
 
   render() {

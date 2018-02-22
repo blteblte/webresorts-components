@@ -1,2 +1,0 @@
-/*! Built with http://stenciljs.com */
-const{h:t}=window.WrstsComponents;class e{render(){return t("select",{name:this.name,id:this.id})}static get is(){return"wrsts-select"}static get properties(){return{id:{type:String,attr:"id"},name:{type:String,attr:"name"}}}static get style(){return""}}export{e as WrstsSelect};

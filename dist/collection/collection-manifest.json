@@ -114,6 +114,65 @@
         {
           "name": "name",
           "type": "String"
+        },
+        {
+          "name": "search",
+          "type": "Boolean"
+        }
+      ],
+      "states": [
+        {
+          "name": "showDropdown"
+        },
+        {
+          "name": "wrstsSelectOptions"
+        }
+      ],
+      "listeners": [
+        {
+          "event": "document:click",
+          "method": "onDocumentClick",
+          "passive": false,
+          "capture": false
+        }
+      ],
+      "hostElement": {
+        "name": "wrstsSelect"
+      }
+    },
+    {
+      "tag": "wrsts-select-option",
+      "dependencies": [],
+      "componentClass": "WrstsSelectOption",
+      "componentPath": "components/wrsts-select-option/wrsts-select-option.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/wrsts-select-option/wrsts-select-option.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "selected",
+          "type": "Boolean"
+        },
+        {
+          "name": "value",
+          "type": "String"
+        }
+      ],
+      "methods": [
+        {
+          "name": "getSlot"
+        }
+      ],
+      "hostElement": {
+        "name": "wrstsSelectOption"
+      },
+      "events": [
+        {
+          "event": "clicked"
         }
       ]
     },
@@ -144,7 +203,12 @@
       ],
       "hostElement": {
         "name": "wrstsTabControl"
-      }
+      },
+      "events": [
+        {
+          "event": "change"
+        }
+      ]
     },
     {
       "tag": "wrsts-tab-control-content",

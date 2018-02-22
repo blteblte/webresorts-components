@@ -53,6 +53,37 @@ declare global {
 
 
 import {
+  WrstsSelectOption as WrstsSelectOption
+} from './components/wrsts-select-option/wrsts-select-option';
+
+declare global {
+  interface HTMLWrstsSelectOptionElement extends WrstsSelectOption, HTMLStencilElement {
+  }
+  var HTMLWrstsSelectOptionElement: {
+    prototype: HTMLWrstsSelectOptionElement;
+    new (): HTMLWrstsSelectOptionElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-select-option": HTMLWrstsSelectOptionElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-select-option": HTMLWrstsSelectOptionElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-select-option": JSXElements.WrstsSelectOptionAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsSelectOptionAttributes extends HTMLAttributes {
+      selected?: boolean;
+      value?: string;
+    }
+  }
+}
+
+
+import {
   WrstsSelect as WrstsSelect
 } from './components/wrsts-select/wrsts-select';
 
@@ -78,6 +109,7 @@ declare global {
     export interface WrstsSelectAttributes extends HTMLAttributes {
       id?: string;
       name?: string;
+      search?: boolean;
     }
   }
 }

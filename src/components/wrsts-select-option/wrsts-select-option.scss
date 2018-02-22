@@ -1,0 +1,16 @@
+$option-bg-color: #d3d3d3;
+
+wrsts-select-option {
+  display: block;
+  padding: 4px 6px;
+  background-color: $option-bg-color;
+  cursor: default;
+  user-select: none;
+  transition: background-color.2s ease-in-out;
+  &[selected] {
+    background-color: lighten($option-bg-color, 5%);
+  }
+  &:hover {
+    background-color: lighten($option-bg-color, 10%);
+  }
+}
