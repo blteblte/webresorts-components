@@ -109,7 +109,10 @@ declare global {
     export interface WrstsSelectAttributes extends HTMLAttributes {
       id?: string;
       name?: string;
+      placeholder?: string;
       search?: boolean;
+      selectedIndex?: string;
+      selectedValue?: string;
     }
   }
 }

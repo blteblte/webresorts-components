@@ -10,7 +10,7 @@ export class WrstsSelectOption {
   slotElement: HTMLElement
 
   @Prop() value: string
-  @Prop() selected: boolean
+  @Prop({ mutable: true }) selected: boolean
   @Event() clicked: EventEmitter
 
   componentDidLoad() {
@@ -20,6 +20,14 @@ export class WrstsSelectOption {
 
   @Method() getSlot() {
     return this.slotElement
+  }
+
+  @Method() select() {
+    if (!this.selected) this.wrstsSelectOption.setAttribute('selected', 'true')
+  }
+
+  @Method() unselect() {
+    if (this.selected) this.wrstsSelectOption.removeAttribute('selected')
   }
 
   render() {

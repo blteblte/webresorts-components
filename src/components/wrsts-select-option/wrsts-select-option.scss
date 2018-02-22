@@ -1,4 +1,4 @@
-$option-bg-color: #d3d3d3;
+$option-bg-color: #f7f7f7;
 
 wrsts-select-option {
   display: block;
@@ -11,6 +11,6 @@ wrsts-select-option {
     background-color: lighten($option-bg-color, 5%);
   }
   &:hover {
-    background-color: lighten($option-bg-color, 10%);
+    background-color: lighten($option-bg-color, 2.5%);
   }
 }

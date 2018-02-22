@@ -1,17 +1,30 @@
+import { EventEmitter } from '@stencil/core';
 import { WrstsSelectOption } from '../wrsts-select-option/wrsts-select-option';
 export declare class WrstsSelect {
     wrstsSelect: WrstsSelect & HTMLElement;
-    select: HTMLElement;
+    select: HTMLSelectElement;
     wrstsSelectSelect: HTMLElement;
+    change: EventEmitter;
     id: string;
     name: string;
+    placeholder: string;
     search: boolean;
+    selectedIndex: string;
+    onSelectedIndexChanged(newValue: any, oldValue: any): void;
+    selectedValue: string;
+    onSelectedValueChanged(newValue: any, oldValue: any): void;
     wrstsSelectOptions: WrstsSelectOption[];
     showDropdown: boolean;
     onDocumentClick(e: any): void;
     readonly selectedOption: WrstsSelectOption;
     readonly selectedText: string;
     componentDidLoad(): void;
+    selectIndex(index: number): void;
+    selectValue(value: string): void;
+    selectOptionByIndex(index: number): void;
+    selectOptionByValue(value: string): void;
+    unselectAllOptions(): void;
     onSelectClicked(): void;
+    getOptionsVisibilityClass(): "hidden" | "visible";
     render(): JSX.Element;
 }

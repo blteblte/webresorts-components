@@ -116,8 +116,26 @@
           "type": "String"
         },
         {
+          "name": "placeholder",
+          "type": "String"
+        },
+        {
           "name": "search",
           "type": "Boolean"
+        },
+        {
+          "name": "selectedIndex",
+          "type": "String",
+          "watch": [
+            "onSelectedIndexChanged"
+          ]
+        },
+        {
+          "name": "selectedValue",
+          "type": "String",
+          "watch": [
+            "onSelectedValueChanged"
+          ]
         }
       ],
       "states": [
@@ -136,9 +154,22 @@
           "capture": false
         }
       ],
+      "methods": [
+        {
+          "name": "selectIndex"
+        },
+        {
+          "name": "selectValue"
+        }
+      ],
       "hostElement": {
         "name": "wrstsSelect"
-      }
+      },
+      "events": [
+        {
+          "event": "change"
+        }
+      ]
     },
     {
       "tag": "wrsts-select-option",
@@ -155,7 +186,8 @@
       "props": [
         {
           "name": "selected",
-          "type": "Boolean"
+          "type": "Boolean",
+          "mutable": true
         },
         {
           "name": "value",
@@ -165,6 +197,12 @@
       "methods": [
         {
           "name": "getSlot"
+        },
+        {
+          "name": "select"
+        },
+        {
+          "name": "unselect"
         }
       ],
       "hostElement": {

@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, Listen } from '@stencil/core';
+import { Component, Prop, State, Element, Listen, Method, Watch, Event, EventEmitter } from '@stencil/core';
 import { WrstsSelectOption } from '../wrsts-select-option/wrsts-select-option';
 
 @Component({
@@ -8,12 +8,34 @@ import { WrstsSelectOption } from '../wrsts-select-option/wrsts-select-option';
 export class WrstsSelect {
 
   @Element() wrstsSelect: WrstsSelect & HTMLElement
-  select: HTMLElement
+  select: HTMLSelectElement
   wrstsSelectSelect: HTMLElement
+
+  @Event() change: EventEmitter
 
   @Prop() id: string
   @Prop() name: string
+  @Prop() placeholder: string
   @Prop() search: boolean
+
+  @Prop() selectedIndex: string
+  @Watch('selectedIndex') onSelectedIndexChanged(newValue, oldValue) {
+    if (newValue !== undefined && newValue !== null && parseInt(newValue, 10) !== NaN) {
+      if (newValue !== oldValue) this.selectOptionByIndex(parseInt(newValue, 10))
+    } else {
+      this.unselectAllOptions()
+    }
+  }
+
+  @Prop() selectedValue: string
+  @Watch('selectedValue') onSelectedValueChanged(newValue, oldValue) {
+    if (newValue !== undefined && newValue !== null && newValue !== '') {
+      if (newValue !== oldValue) this.selectOptionByValue(newValue)
+    } else {
+      this.unselectAllOptions()
+    }
+  }
+
 
   @State() wrstsSelectOptions: WrstsSelectOption[] = []
   @State() showDropdown: boolean
@@ -31,19 +53,70 @@ export class WrstsSelect {
   get selectedText() {
     return this.selectedOption
       ? this.selectedOption.getSlot().innerText
-      : '--'
+      : this.placeholder || ''
   }
 
   componentDidLoad() {
+    this.select = this.wrstsSelect.querySelector('select')
+
     this.wrstsSelectOptions = Array.prototype.slice.call(
       this.wrstsSelect.querySelectorAll('wrsts-select-option')
     )
     this.wrstsSelectSelect = this.wrstsSelect.querySelector('.wrsts-select-select')
+
+    this.wrstsSelectOptions.forEach((wrstsSelectOption, index) => {
+      (wrstsSelectOption as any).addEventListener('clicked', () => {
+        this.selectIndex(index)
+      })
+    })
+  }
+
+  @Method() selectIndex(index: number) {
+    this.wrstsSelect.setAttribute('selected-index', index.toString())
+  }
+
+  @Method() selectValue(value: string) {
+    this.wrstsSelect.setAttribute('selected-value', value)
+  }
+
+  selectOptionByIndex(index: number) {
+    this.wrstsSelectOptions.forEach((option, i) => {
+      if (i !== index) {
+        option.unselect()
+      } else {
+        option.select()
+      }
+    })
+
+    this.select.selectedIndex = index
+    this.change.emit()
+  }
+
+  selectOptionByValue(value: string) {
+    this.wrstsSelectOptions.forEach((option, i) => {
+      if (option.value !== value) {
+        option.unselect()
+      } else {
+        option.select()
+        this.select.selectedIndex = i
+      }
+    })
+
+    this.change.emit()
+  }
+
+  unselectAllOptions() {
+    this.wrstsSelectOptions.forEach(o => o.unselect())
   }
 
   onSelectClicked() {
-    console.log('select:clicked')
     this.showDropdown = !this.showDropdown
+  }
+
+  getOptionsVisibilityClass() {
+    return this.showDropdown
+      ? 'visible'
+      : 'hidden'
   }
 
   render() {
@@ -56,8 +129,11 @@ export class WrstsSelect {
           )}
         </select>
 
-        <div onClick={this.onSelectClicked.bind(this)} class="wrsts-select-select">{this.selectedText}</div>
-        <div class={'wrsts-select-options ' + (this.showDropdown ? 'visible' : 'hidden')}>
+        <div onClick={this.onSelectClicked.bind(this)}
+          class={'wrsts-select-select ' + this.getOptionsVisibilityClass()}>
+            {this.selectedText}
+        </div>
+        <div class={'wrsts-select-options ' + this.getOptionsVisibilityClass()}>
           <slot />
         </div>
       </div>

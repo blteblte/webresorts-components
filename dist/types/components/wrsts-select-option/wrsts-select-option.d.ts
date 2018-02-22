@@ -7,5 +7,7 @@ export declare class WrstsSelectOption {
     clicked: EventEmitter;
     componentDidLoad(): void;
     getSlot(): HTMLElement;
+    select(): void;
+    unselect(): void;
     render(): JSX.Element;
 }
