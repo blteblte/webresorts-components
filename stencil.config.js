@@ -14,6 +14,7 @@ exports.config = {
       , 'wrsts-tab-control-tab'
       , 'wrsts-tab-control-tabs'
     ] },
+    { components: ['wrsts-select'] }
   ],
 
   plugins: [

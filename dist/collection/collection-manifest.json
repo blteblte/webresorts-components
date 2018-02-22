@@ -95,6 +95,29 @@
       ]
     },
     {
+      "tag": "wrsts-select",
+      "dependencies": [],
+      "componentClass": "WrstsSelect",
+      "componentPath": "components/wrsts-select/wrsts-select.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/wrsts-select/wrsts-select.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "id",
+          "type": "String"
+        },
+        {
+          "name": "name",
+          "type": "String"
+        }
+      ]
+    },
+    {
       "tag": "wrsts-tab-control",
       "dependencies": [],
       "componentClass": "WrstsTabControl",
@@ -106,6 +129,19 @@
           ]
         }
       },
+      "listeners": [
+        {
+          "event": "window:hashchange",
+          "method": "navigateByHash",
+          "passive": false,
+          "capture": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "activateTab"
+        }
+      ],
       "hostElement": {
         "name": "wrstsTabControl"
       }
@@ -171,6 +207,14 @@
           "name": "active",
           "type": "Boolean",
           "mutable": true
+        },
+        {
+          "name": "historyTitle",
+          "type": "String"
+        },
+        {
+          "name": "route",
+          "type": "String"
         }
       ],
       "methods": [

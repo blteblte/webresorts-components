@@ -9,10 +9,13 @@ export class WrstsTabControlTab {
   @Element() wrstsTabControlTab: WrstsTabControlTab & HTMLElement
   @Event() clicked: EventEmitter
   @Prop({ mutable: true }) active: boolean
+  @Prop() route: string
+  @Prop() historyTitle: string
 
   @Method() setActive() {
     if (!this.active) {
       this.wrstsTabControlTab.setAttribute('active', 'true')
+      window.history.pushState(null, this.historyTitle, `#/${this.route}`)
     }
   }
 

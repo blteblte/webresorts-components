@@ -99,24 +99,14 @@
   </div>
 
   <div>
-    <h1>wrsts-tinymce</h1>
-    <div>
-
-      <wrsts-tinymce name="tinymce1" value="<strong>default</strong> text"></wrsts-tinymce>
-      <wrsts-tinymce name="tinymce2"></wrsts-tinymce>
-
-    </div>
-  </div>
-
-  <div>
     <h1>wrsts-tab-control</h1>
     <div>
 
       <wrsts-tab-control>
         <wrsts-tab-control-tabs>
-          <wrsts-tab-control-tab active>Tab 1</wrsts-tab-control-tab>
-          <wrsts-tab-control-tab>Tab 2</wrsts-tab-control-tab>
-          <wrsts-tab-control-tab>Tab 3</wrsts-tab-control-tab>
+          <wrsts-tab-control-tab route="tab1" history-title="tab1" active>Tab 1</wrsts-tab-control-tab>
+          <wrsts-tab-control-tab route="tab2" history-title="tab2">Tab 2</wrsts-tab-control-tab>
+          <wrsts-tab-control-tab route="tab3" history-title="tab3">Tab 3</wrsts-tab-control-tab>
         </wrsts-tab-control-tabs>
         <wrsts-tab-control-contents>
           <wrsts-tab-control-content active>
@@ -133,6 +123,18 @@
 
     </div>
   </div>
+
+  <div>
+    <h1>wrsts-tinymce</h1>
+    <div>
+
+      <wrsts-tinymce name="tinymce1" value="<strong>default</strong> text"></wrsts-tinymce>
+      <wrsts-tinymce name="tinymce2"></wrsts-tinymce>
+
+    </div>
+  </div>
+
+
 
 </body>
 </html>

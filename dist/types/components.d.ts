@@ -53,6 +53,37 @@ declare global {
 
 
 import {
+  WrstsSelect as WrstsSelect
+} from './components/wrsts-select/wrsts-select';
+
+declare global {
+  interface HTMLWrstsSelectElement extends WrstsSelect, HTMLStencilElement {
+  }
+  var HTMLWrstsSelectElement: {
+    prototype: HTMLWrstsSelectElement;
+    new (): HTMLWrstsSelectElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-select": HTMLWrstsSelectElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-select": HTMLWrstsSelectElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-select": JSXElements.WrstsSelectAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsSelectAttributes extends HTMLAttributes {
+      id?: string;
+      name?: string;
+    }
+  }
+}
+
+
+import {
   WrstsTabControlContent as WrstsTabControlContent
 } from './components/wrsts-tab-control-content/wrsts-tab-control-content';
 
@@ -137,6 +168,8 @@ declare global {
   namespace JSXElements {
     export interface WrstsTabControlTabAttributes extends HTMLAttributes {
       active?: boolean;
+      historyTitle?: string;
+      route?: string;
     }
   }
 }

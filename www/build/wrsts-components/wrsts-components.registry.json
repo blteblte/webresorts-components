@@ -2,26 +2,29 @@
   "namespace": "WrstsComponents",
   "fsNamespace": "wrsts-components",
   "loader": "../wrsts-components.js",
-  "core": "wrsts-components.7m4ivvt1.js",
-  "corePolyfilled": "wrsts-components.doomxah3.js",
+  "core": "wrsts-components.albmbvgo.js",
+  "corePolyfilled": "wrsts-components.bnko3vxb.js",
   "components": {
     "wrsts-checkbox": {
       "$": "u1pzieir"
     },
+    "wrsts-select": {
+      "$": "zqew1bgw"
+    },
     "wrsts-tab-control": {
-      "$": "tygjgyqn"
+      "$": "rduyzux1"
     },
     "wrsts-tab-control-content": {
-      "$": "tygjgyqn"
+      "$": "rduyzux1"
     },
     "wrsts-tab-control-contents": {
-      "$": "tygjgyqn"
+      "$": "rduyzux1"
     },
     "wrsts-tab-control-tab": {
-      "$": "tygjgyqn"
+      "$": "rduyzux1"
     },
     "wrsts-tab-control-tabs": {
-      "$": "tygjgyqn"
+      "$": "rduyzux1"
     },
     "wrsts-tinymce": {
       "$": "mlzab888"
