@@ -99,15 +99,7 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components.js",
-    "revision": "00aee2d0ef485b3a83bb7ca298517fc7"
-  },
-  {
-    "url": "build/wrsts-components/bmfqhlx4.es5.js",
-    "revision": "411b333bea0769314bf16918aa761047"
-  },
-  {
-    "url": "build/wrsts-components/bmfqhlx4.js",
-    "revision": "53086d53aa071b6cfad43508834f2cf6"
+    "revision": "32d70e68e65e37f57965585012121bc7"
   },
   {
     "url": "build/wrsts-components/chunk1.es5.js",
@@ -124,6 +116,14 @@ self.__precacheManifest = [
   {
     "url": "build/wrsts-components/mlzab888.js",
     "revision": "57f655f6530e8874ea37431b2b89c12a"
+  },
+  {
+    "url": "build/wrsts-components/n6vitwtt.es5.js",
+    "revision": "03a68e7ff7eb0cf33c597a0262486d5e"
+  },
+  {
+    "url": "build/wrsts-components/n6vitwtt.js",
+    "revision": "a787d280d6ba01639bdcd98944aedf01"
   },
   {
     "url": "build/wrsts-components/qm6k1qno.es5.js",
@@ -151,7 +151,7 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components/wrsts-components.registry.json",
-    "revision": "b1954fd2654447aed26f245d65a7b4bb"
+    "revision": "cd7bd436680257d7e3b2f65e0d167fe5"
   },
   {
     "url": "host.config.json",
@@ -159,7 +159,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "89b429e80854739307ca8675a5d11caf"
+    "revision": "955424671afcfa3747a0a705de9f191d"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();

@@ -10,6 +10,7 @@ export class WrstsSelect {
   @Element() wrstsSelect: WrstsSelect & HTMLElement
   select: HTMLSelectElement
   wrstsSelectSelect: HTMLElement
+  input: HTMLInputElement
 
   @Event() change: EventEmitter
 
@@ -42,11 +43,10 @@ export class WrstsSelect {
   @State() wrstsSelectOptions: WrstsSelectOption[] = []
   @State() showDropdown: boolean
 
-  // todo: celan up
   @Listen('document:click') onDocumentClick(e) {
-    if (e.target !== this.wrstsSelectSelect) {
+    if (e.target !== this.wrstsSelectSelect && e.target !== this.input) {
       if (this.showDropdown) {
-        this.showDropdown = false
+        this.toggleDropdown(false)
       }
       if (this.focused) {
         this.wrstsSelect.removeAttribute('focused')
@@ -56,6 +56,7 @@ export class WrstsSelect {
     }
   }
 
+  // todo: celan up
   @Listen('document:keydown.up') handleUp(e) {
     if (!this.showDropdown) { return }
     e.preventDefault()
@@ -69,8 +70,19 @@ export class WrstsSelect {
     const prevOption = this.wrstsSelectOptions[prevIndex]
     if (!prevOption.hidden) {  prevOption.focus() }
     else {
-      const prevVisibleOption = this.wrstsSelectOptions.find((x, i) => !x.hidden && i <= prevIndex)
-      if (prevVisibleOption) { prevVisibleOption.focus() }
+      let elFound = false
+      let loop = false
+      let i = prevIndex
+      while(!loop) {
+        if (!this.wrstsSelectOptions[i].hidden) {
+          this.wrstsSelectOptions[i].focus()
+          loop = true
+          elFound = true
+        }
+        if (i === 0) { loop = true }
+        i--
+      }
+      if (!elFound) { this.wrstsSelectOptions[focusedIndex].focus() }
     }
   }
 
@@ -93,21 +105,35 @@ export class WrstsSelect {
     const nextOption = this.wrstsSelectOptions[nextIndex]
     if (!nextOption.hidden) { nextOption.focus() }
     else {
-      const nextVisibleOption = this.wrstsSelectOptions.find((x, i) => !x.hidden && i >= nextIndex)
-      if (nextVisibleOption) { nextVisibleOption.focus() }
+      // let nextVisibleOption = this.wrstsSelectOptions.find((x, i) => !x.hidden && i >= nextIndex)
+      // if (!nextVisibleOption) { nextVisibleOption = this.wrstsSelectOptions.reverse().find(x => !x.hidden) }
+      // if (nextVisibleOption) { nextVisibleOption.focus() }
+      let elFound = false
+      let loop = false
+      let i = nextIndex
+      while(!loop) {
+        if (!this.wrstsSelectOptions[i].hidden) {
+          this.wrstsSelectOptions[i].focus()
+          loop = true
+          elFound = true
+        }
+        if (i === this.wrstsSelectOptions.length - 1) { loop = true }
+        i++
+      }
+      if (!elFound) { this.wrstsSelectOptions[focusedIndex].focus() }
     }
   }
 
   @Listen('document:keydown.enter') handleEnter(e) {
     if (!this.showDropdown) {
-      if (this.focused) { this.showDropdown = true; return; }
+      if (this.focused) { this.toggleDropdown(true); return; }
       else { return }
     }
     e.preventDefault()
 
     const focusedIndex = this.wrstsSelectOptions.findIndex(x => x.focused)
     this.selectIndex(focusedIndex)
-    this.showDropdown = false
+    this.toggleDropdown(false)
   }
 
   get selectedOption() {
@@ -136,6 +162,8 @@ export class WrstsSelect {
         this.selectIndex(index)
       }
     })
+
+    this.input = this.wrstsSelect.querySelector('input')
   }
 
   @Method() selectIndex(index: number) {
@@ -184,13 +212,44 @@ export class WrstsSelect {
   }
 
   onSelectClicked() {
-    this.showDropdown = !this.showDropdown
+    this.toggleDropdown()
+  }
+
+  toggleDropdown(forceState: boolean = null) {
+    if (forceState === null) {
+      this.showDropdown = !this.showDropdown
+    }
+    else {
+      this.showDropdown = forceState
+    }
+    if (this.showDropdown && this.search) {
+      setTimeout(() => { this.input.focus() }, 100)
+    }
   }
 
   getOptionsVisibilityClass() {
     return this.showDropdown
       ? 'visible'
       : 'hidden'
+  }
+
+  handleSearch(e) {
+    const value = e.target.value
+    this.wrstsSelectOptions.forEach((option) => {
+      var isMatch = false
+      if (option.getSlot().innerText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+        isMatch = true
+      }
+      if (option.value.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+        isMatch = true
+      }
+
+      if (isMatch) {
+        option.unhide()
+      } else {
+        option.hide()
+      }
+    })
   }
 
   render() {
@@ -208,6 +267,9 @@ export class WrstsSelect {
             {this.selectedText}
         </div>
         <div class={'wrsts-select-options ' + this.getOptionsVisibilityClass()}>
+          {this.search
+            ? <div><input onKeyUp={this.handleSearch.bind(this)} type="text"/></div>
+            : null}
           <slot />
         </div>
       </div>

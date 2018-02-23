@@ -4,6 +4,7 @@ export declare class WrstsSelect {
     wrstsSelect: WrstsSelect & HTMLElement;
     select: HTMLSelectElement;
     wrstsSelectSelect: HTMLElement;
+    input: HTMLInputElement;
     change: EventEmitter;
     id: string;
     name: string;
@@ -29,6 +30,8 @@ export declare class WrstsSelect {
     private selectOptionByValue(value);
     private unselectAllOptions();
     onSelectClicked(): void;
+    toggleDropdown(forceState?: boolean): void;
     getOptionsVisibilityClass(): "hidden" | "visible";
+    handleSearch(e: any): void;
     render(): JSX.Element;
 }

@@ -16,6 +16,14 @@ wrsts-select {
     box-shadow: 0 0 4px rgba(150, 150, 150, .8);
   }
 
+  input {
+    border: 1px solid lighten($lbl-font-color, 50%);
+    color: $lbl-font-color;
+    outline: none;
+    padding: 4px 8px;
+    width: 93%;
+  }
+
   .wrsts-select-select {
     &:after {
       content: '▾';
@@ -38,10 +46,11 @@ wrsts-select {
     &.hidden { display: none; }
     &.visible { display: block; }
     position: absolute;
-    width: 99.9%;
+    width: 99%;
     user-select: none;
     border: 1px solid lighten($lbl-font-color, 50%);
     animation: wrsts-select-in .2s ease-in-out;
+    background-color: $lbl-bg-color;
   }
 }
 

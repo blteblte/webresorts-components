@@ -20,11 +20,10 @@ export class WrstsSelect {
             this.unselectAllOptions();
         }
     }
-    // todo: celan up
     onDocumentClick(e) {
-        if (e.target !== this.wrstsSelectSelect) {
+        if (e.target !== this.wrstsSelectSelect && e.target !== this.input) {
             if (this.showDropdown) {
-                this.showDropdown = false;
+                this.toggleDropdown(false);
             }
             if (this.focused) {
                 this.wrstsSelect.removeAttribute('focused');
@@ -34,6 +33,7 @@ export class WrstsSelect {
             this.wrstsSelect.setAttribute('focused', 'true');
         }
     }
+    // todo: celan up
     handleUp(e) {
         if (!this.showDropdown) {
             return;
@@ -51,9 +51,22 @@ export class WrstsSelect {
             prevOption.focus();
         }
         else {
-            const prevVisibleOption = this.wrstsSelectOptions.find((x, i) => !x.hidden && i <= prevIndex);
-            if (prevVisibleOption) {
-                prevVisibleOption.focus();
+            let elFound = false;
+            let loop = false;
+            let i = prevIndex;
+            while (!loop) {
+                if (!this.wrstsSelectOptions[i].hidden) {
+                    this.wrstsSelectOptions[i].focus();
+                    loop = true;
+                    elFound = true;
+                }
+                if (i === 0) {
+                    loop = true;
+                }
+                i--;
+            }
+            if (!elFound) {
+                this.wrstsSelectOptions[focusedIndex].focus();
             }
         }
     }
@@ -79,16 +92,32 @@ export class WrstsSelect {
             nextOption.focus();
         }
         else {
-            const nextVisibleOption = this.wrstsSelectOptions.find((x, i) => !x.hidden && i >= nextIndex);
-            if (nextVisibleOption) {
-                nextVisibleOption.focus();
+            // let nextVisibleOption = this.wrstsSelectOptions.find((x, i) => !x.hidden && i >= nextIndex)
+            // if (!nextVisibleOption) { nextVisibleOption = this.wrstsSelectOptions.reverse().find(x => !x.hidden) }
+            // if (nextVisibleOption) { nextVisibleOption.focus() }
+            let elFound = false;
+            let loop = false;
+            let i = nextIndex;
+            while (!loop) {
+                if (!this.wrstsSelectOptions[i].hidden) {
+                    this.wrstsSelectOptions[i].focus();
+                    loop = true;
+                    elFound = true;
+                }
+                if (i === this.wrstsSelectOptions.length - 1) {
+                    loop = true;
+                }
+                i++;
+            }
+            if (!elFound) {
+                this.wrstsSelectOptions[focusedIndex].focus();
             }
         }
     }
     handleEnter(e) {
         if (!this.showDropdown) {
             if (this.focused) {
-                this.showDropdown = true;
+                this.toggleDropdown(true);
                 return;
             }
             else {
@@ -98,7 +127,7 @@ export class WrstsSelect {
         e.preventDefault();
         const focusedIndex = this.wrstsSelectOptions.findIndex(x => x.focused);
         this.selectIndex(focusedIndex);
-        this.showDropdown = false;
+        this.toggleDropdown(false);
     }
     get selectedOption() {
         return this.wrstsSelectOptions.find(x => x.selected);
@@ -120,6 +149,7 @@ export class WrstsSelect {
                 this.selectIndex(index);
             }
         });
+        this.input = this.wrstsSelect.querySelector('input');
     }
     selectIndex(index) {
         this.wrstsSelect.setAttribute('selected-index', index.toString());
@@ -162,18 +192,51 @@ export class WrstsSelect {
         });
     }
     onSelectClicked() {
-        this.showDropdown = !this.showDropdown;
+        this.toggleDropdown();
+    }
+    toggleDropdown(forceState = null) {
+        if (forceState === null) {
+            this.showDropdown = !this.showDropdown;
+        }
+        else {
+            this.showDropdown = forceState;
+        }
+        if (this.showDropdown && this.search) {
+            setTimeout(() => { this.input.focus(); }, 100);
+        }
     }
     getOptionsVisibilityClass() {
         return this.showDropdown
             ? 'visible'
             : 'hidden';
     }
+    handleSearch(e) {
+        const value = e.target.value;
+        this.wrstsSelectOptions.forEach((option) => {
+            var isMatch = false;
+            if (option.getSlot().innerText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+                isMatch = true;
+            }
+            if (option.value.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+                isMatch = true;
+            }
+            if (isMatch) {
+                option.unhide();
+            }
+            else {
+                option.hide();
+            }
+        });
+    }
     render() {
         return (h("div", null,
             h("select", { name: this.name, id: this.id }, this.wrstsSelectOptions.map((wrstsOption) => h("option", { value: wrstsOption.value }, wrstsOption.getSlot().innerText))),
             h("div", { onClick: this.onSelectClicked.bind(this), class: 'wrsts-select-select ' + this.getOptionsVisibilityClass() }, this.selectedText),
             h("div", { class: 'wrsts-select-options ' + this.getOptionsVisibilityClass() },
+                this.search
+                    ? h("div", null,
+                        h("input", { onKeyUp: this.handleSearch.bind(this), type: "text" }))
+                    : null,
                 h("slot", null))));
     }
     static get is() { return "wrsts-select"; }
