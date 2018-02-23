@@ -108,6 +108,10 @@
       },
       "props": [
         {
+          "name": "focused",
+          "type": "Boolean"
+        },
+        {
           "name": "id",
           "type": "String"
         },
@@ -152,6 +156,24 @@
           "method": "onDocumentClick",
           "passive": false,
           "capture": false
+        },
+        {
+          "event": "document:keydown.down",
+          "method": "handleDown",
+          "passive": false,
+          "capture": false
+        },
+        {
+          "event": "document:keydown.enter",
+          "method": "handleEnter",
+          "passive": false,
+          "capture": false
+        },
+        {
+          "event": "document:keydown.up",
+          "method": "handleUp",
+          "passive": false,
+          "capture": false
         }
       ],
       "methods": [
@@ -185,6 +207,16 @@
       },
       "props": [
         {
+          "name": "focused",
+          "type": "Boolean",
+          "mutable": true
+        },
+        {
+          "name": "hidden",
+          "type": "Boolean",
+          "mutable": true
+        },
+        {
           "name": "selected",
           "type": "Boolean",
           "mutable": true
@@ -196,10 +228,22 @@
       ],
       "methods": [
         {
+          "name": "focus"
+        },
+        {
           "name": "getSlot"
         },
         {
+          "name": "hide"
+        },
+        {
           "name": "select"
+        },
+        {
+          "name": "unfocus"
+        },
+        {
+          "name": "unhide"
         },
         {
           "name": "unselect"

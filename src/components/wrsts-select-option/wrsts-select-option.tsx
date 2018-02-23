@@ -11,6 +11,8 @@ export class WrstsSelectOption {
 
   @Prop() value: string
   @Prop({ mutable: true }) selected: boolean
+  @Prop({ mutable: true }) focused: boolean
+  @Prop({ mutable: true }) hidden: boolean
   @Event() clicked: EventEmitter
 
   componentDidLoad() {
@@ -28,6 +30,22 @@ export class WrstsSelectOption {
 
   @Method() unselect() {
     if (this.selected) this.wrstsSelectOption.removeAttribute('selected')
+  }
+
+  @Method() focus() {
+    if (!this.focused) this.wrstsSelectOption.setAttribute('focused', 'true')
+  }
+
+  @Method() unfocus() {
+    if (this.focused) this.wrstsSelectOption.removeAttribute('focused')
+  }
+
+  @Method() hide() {
+    if (!this.hidden) this.wrstsSelectOption.setAttribute('hidden', 'true')
+  }
+
+  @Method() unhide() {
+    if (this.hidden) this.wrstsSelectOption.removeAttribute('hidden')
   }
 
   render() {

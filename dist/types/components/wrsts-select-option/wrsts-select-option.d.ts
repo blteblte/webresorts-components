@@ -4,10 +4,16 @@ export declare class WrstsSelectOption {
     slotElement: HTMLElement;
     value: string;
     selected: boolean;
+    focused: boolean;
+    hidden: boolean;
     clicked: EventEmitter;
     componentDidLoad(): void;
     getSlot(): HTMLElement;
     select(): void;
     unselect(): void;
+    focus(): void;
+    unfocus(): void;
+    hide(): void;
+    unhide(): void;
     render(): JSX.Element;
 }

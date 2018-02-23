@@ -11,6 +11,10 @@ wrsts-select {
   color: $lbl-font-color;
   display: inline-block;
   position: relative;
+  transition: box-shadow .2s ease-in-out;
+  &[focused] {
+    box-shadow: 0 0 4px rgba(150, 150, 150, .8);
+  }
 
   .wrsts-select-select {
     &:after {
@@ -27,6 +31,7 @@ wrsts-select {
     background-color: $lbl-bg-color;
     border: 1px solid $lbl-font-color;
     min-width: 200px;
+    min-height: 20px;
   }
 
   .wrsts-select-options {

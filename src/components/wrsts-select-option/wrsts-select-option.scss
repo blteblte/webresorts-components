@@ -11,6 +11,12 @@ wrsts-select-option {
     background-color: lighten($option-bg-color, 5%);
   }
   &:hover {
-    background-color: lighten($option-bg-color, 2.5%);
+    background-color: lighten($option-bg-color, 10%);
+  }
+  &[focused] {
+    background-color: darken($option-bg-color, 10%);
+  }
+  &[hidden] {
+    display: none;
   }
 }

@@ -76,6 +76,8 @@ declare global {
   }
   namespace JSXElements {
     export interface WrstsSelectOptionAttributes extends HTMLAttributes {
+      focused?: boolean;
+      hidden?: boolean;
       selected?: boolean;
       value?: string;
     }
@@ -107,6 +109,7 @@ declare global {
   }
   namespace JSXElements {
     export interface WrstsSelectAttributes extends HTMLAttributes {
+      focused?: boolean;
       id?: string;
       name?: string;
       placeholder?: string;

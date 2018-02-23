@@ -20,11 +20,85 @@ export class WrstsSelect {
             this.unselectAllOptions();
         }
     }
+    // todo: celan up
     onDocumentClick(e) {
         if (e.target !== this.wrstsSelectSelect) {
-            if (this.showDropdown)
+            if (this.showDropdown) {
                 this.showDropdown = false;
+            }
+            if (this.focused) {
+                this.wrstsSelect.removeAttribute('focused');
+            }
         }
+        else {
+            this.wrstsSelect.setAttribute('focused', 'true');
+        }
+    }
+    handleUp(e) {
+        if (!this.showDropdown) {
+            return;
+        }
+        e.preventDefault();
+        let prevIndex = 0;
+        const focusedIndex = this.wrstsSelectOptions.findIndex(x => x.focused);
+        if (focusedIndex > 0) {
+            prevIndex = focusedIndex - 1;
+        }
+        if (focusedIndex > -1)
+            this.wrstsSelectOptions[focusedIndex].unfocus();
+        const prevOption = this.wrstsSelectOptions[prevIndex];
+        if (!prevOption.hidden) {
+            prevOption.focus();
+        }
+        else {
+            const prevVisibleOption = this.wrstsSelectOptions.find((x, i) => !x.hidden && i <= prevIndex);
+            if (prevVisibleOption) {
+                prevVisibleOption.focus();
+            }
+        }
+    }
+    // todo: celan up
+    handleDown(e) {
+        if (!this.showDropdown) {
+            return;
+        }
+        e.preventDefault();
+        let nextIndex = 0;
+        const len = this.wrstsSelectOptions.length;
+        const focusedIndex = this.wrstsSelectOptions.findIndex(x => x.focused);
+        if (focusedIndex > -1) {
+            nextIndex = focusedIndex + 1;
+        }
+        if (nextIndex > len - 1) {
+            nextIndex = len - 1;
+        }
+        if (focusedIndex > -1)
+            this.wrstsSelectOptions[focusedIndex].unfocus();
+        const nextOption = this.wrstsSelectOptions[nextIndex];
+        if (!nextOption.hidden) {
+            nextOption.focus();
+        }
+        else {
+            const nextVisibleOption = this.wrstsSelectOptions.find((x, i) => !x.hidden && i >= nextIndex);
+            if (nextVisibleOption) {
+                nextVisibleOption.focus();
+            }
+        }
+    }
+    handleEnter(e) {
+        if (!this.showDropdown) {
+            if (this.focused) {
+                this.showDropdown = true;
+                return;
+            }
+            else {
+                return;
+            }
+        }
+        e.preventDefault();
+        const focusedIndex = this.wrstsSelectOptions.findIndex(x => x.focused);
+        this.selectIndex(focusedIndex);
+        this.showDropdown = false;
     }
     get selectedOption() {
         return this.wrstsSelectOptions.find(x => x.selected);
@@ -42,6 +116,9 @@ export class WrstsSelect {
             wrstsSelectOption.addEventListener('clicked', () => {
                 this.selectIndex(index);
             });
+            if (wrstsSelectOption.selected) {
+                this.selectIndex(index);
+            }
         });
     }
     selectIndex(index) {
@@ -54,9 +131,11 @@ export class WrstsSelect {
         this.wrstsSelectOptions.forEach((option, i) => {
             if (i !== index) {
                 option.unselect();
+                option.unfocus();
             }
             else {
                 option.select();
+                option.focus();
             }
         });
         this.select.selectedIndex = index;
@@ -66,16 +145,21 @@ export class WrstsSelect {
         this.wrstsSelectOptions.forEach((option, i) => {
             if (option.value !== value) {
                 option.unselect();
+                option.unfocus();
             }
             else {
                 option.select();
+                option.focus();
                 this.select.selectedIndex = i;
             }
         });
         this.change.emit();
     }
     unselectAllOptions() {
-        this.wrstsSelectOptions.forEach(o => o.unselect());
+        this.wrstsSelectOptions.forEach(o => {
+            o.unselect();
+            o.unfocus();
+        });
     }
     onSelectClicked() {
         this.showDropdown = !this.showDropdown;
@@ -93,7 +177,7 @@ export class WrstsSelect {
                 h("slot", null))));
     }
     static get is() { return "wrsts-select"; }
-    static get properties() { return { "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "showDropdown": { "state": true }, "wrstsSelect": { "elementRef": true }, "wrstsSelectOptions": { "state": true } }; }
+    static get properties() { return { "focused": { "type": Boolean, "attr": "focused" }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "showDropdown": { "state": true }, "wrstsSelect": { "elementRef": true }, "wrstsSelectOptions": { "state": true } }; }
     static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-select:**/"; }
 }
