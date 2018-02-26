@@ -61,6 +61,7 @@ wrsts-select {
     border: 1px solid lighten($lbl-font-color, 50%);
     animation: wrsts-select-in .2s ease-in-out;
     background-color: $lbl-bg-color;
+    z-index: 1;
   }
 }
 

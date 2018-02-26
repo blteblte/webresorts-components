@@ -17,6 +17,7 @@ export declare class WrstsTinymce {
     readonly h: number;
     readonly w: number;
     componentDidLoad(): void;
+    save(e: any, editor: any): void;
     getNativeElement(): HTMLElement;
     getTinyMce(): any;
     getEditor(): any;

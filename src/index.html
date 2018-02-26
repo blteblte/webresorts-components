@@ -172,11 +172,46 @@
     <div>
 
       <wrsts-tinymce name="tinymce1" value="<strong>default</strong> text"></wrsts-tinymce>
-      <wrsts-tinymce name="tinymce2"></wrsts-tinymce>
 
     </div>
   </div>
 
+  <!-- wrsts-json-form -->
+  <div>
+    <h1>wrsts-json-form</h1>
+    <div>
+        <wrsts-json-form id="wrsts-form" action="/" method="post" ajax>
+          <div>
+            <wrsts-checkbox name="form-checkbox">Check me</wrsts-checkbox>
+          </div>
+          <div>
+            <wrsts-select placeholder="Select me..." name="form-select">
+              <wrsts-select-option value="1">1</wrsts-select-option>
+              <wrsts-select-option value="2">2</wrsts-select-option>
+            </wrsts-select>
+          </div>
+          <div>
+            <wrsts-tinymce name="form-textarea"></wrsts-tinymce>
+          </div>
+
+          <div>
+            <wrsts-button id="wrsts-submit">Submit</wrsts-button>
+          </div>
+        </wrsts-json-form>
+    </div>
+
+    <script>
+      !(function() {
+        var $form = document.getElementById('wrsts-form')
+        var $submitBtn = document.getElementById('wrsts-submit')
+
+        $submitBtn.addEventListener('click', function(e) {
+          e.preventDefault()
+          $form.submit(function(e) { console.log(e) })
+        })
+      })()
+    </script>
+  </div>
 
 
 

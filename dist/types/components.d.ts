@@ -15,6 +15,36 @@ declare global {
 
 
 import {
+  WrstsButton as WrstsButton
+} from './components/wrsts-button/wrsts-button';
+
+declare global {
+  interface HTMLWrstsButtonElement extends WrstsButton, HTMLStencilElement {
+  }
+  var HTMLWrstsButtonElement: {
+    prototype: HTMLWrstsButtonElement;
+    new (): HTMLWrstsButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-button": HTMLWrstsButtonElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-button": HTMLWrstsButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-button": JSXElements.WrstsButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsButtonAttributes extends HTMLAttributes {
+      
+    }
+  }
+}
+
+
+import {
   WrstsCheckbox as WrstsCheckbox
 } from './components/wrsts-checkbox/wrsts-checkbox';
 
@@ -47,6 +77,39 @@ declare global {
       indeterminate?: boolean;
       name?: string;
       value?: string;
+    }
+  }
+}
+
+
+import {
+  WrstsJsonForm as WrstsJsonForm
+} from './components/wrsts-json-form/wrsts-json-form';
+
+declare global {
+  interface HTMLWrstsJsonFormElement extends WrstsJsonForm, HTMLStencilElement {
+  }
+  var HTMLWrstsJsonFormElement: {
+    prototype: HTMLWrstsJsonFormElement;
+    new (): HTMLWrstsJsonFormElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-json-form": HTMLWrstsJsonFormElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-json-form": HTMLWrstsJsonFormElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-json-form": JSXElements.WrstsJsonFormAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsJsonFormAttributes extends HTMLAttributes {
+      action?: string;
+      ajax?: boolean;
+      method?: string;
+      target?: string;
     }
   }
 }

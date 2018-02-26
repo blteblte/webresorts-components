@@ -19,7 +19,9 @@ export class WrstsTinymce {
     componentDidLoad() {
         this.tinymce = tinymce;
         this.textarea = this.wrstsTinymce.querySelector('textarea');
-        this.textarea.addEventListener('change', (e) => this.change.emit(e));
+        this.textarea.addEventListener('change', (e) => {
+            e.stopPropagation();
+        });
         this.tinymce.init({
             target: this.textarea,
             width: this.w,
@@ -29,8 +31,17 @@ export class WrstsTinymce {
             init_instance_callback: (editor) => {
                 this.editor = editor;
                 editor.on('init', (e) => { this.load.emit(e); });
+                editor.on('keyup', (e) => { this.save(e, editor); });
+                editor.on('paste', (e) => { this.save(e, editor); });
+                editor.on('cut', (e) => { this.save(e, editor); });
+                editor.on('change', (e) => { this.save(e, editor); });
             }
         });
+    }
+    save(e, editor) {
+        this.value = editor.getContent();
+        editor.save();
+        this.change.emit(e);
     }
     getNativeElement() { return this.textarea; }
     getTinyMce() { return this.tinymce; }
@@ -42,7 +53,7 @@ export class WrstsTinymce {
         return (h("textarea", { id: this.id, name: this.name, value: this.value }));
     }
     static get is() { return "wrsts-tinymce"; }
-    static get properties() { return { "baseUrl": { "type": String, "attr": "base-url" }, "getEditor": { "method": true }, "getNativeElement": { "method": true }, "getTinyMce": { "method": true }, "height": { "type": String, "attr": "height" }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "toJson": { "method": true }, "value": { "type": String, "attr": "value" }, "width": { "type": String, "attr": "width" }, "wrstsTinymce": { "elementRef": true } }; }
+    static get properties() { return { "baseUrl": { "type": String, "attr": "base-url" }, "getEditor": { "method": true }, "getNativeElement": { "method": true }, "getTinyMce": { "method": true }, "height": { "type": String, "attr": "height" }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "toJson": { "method": true }, "value": { "type": String, "attr": "value", "mutable": true }, "width": { "type": String, "attr": "width" }, "wrstsTinymce": { "elementRef": true } }; }
     static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }, { "name": "load", "method": "load", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-tinymce:**/"; }
 }

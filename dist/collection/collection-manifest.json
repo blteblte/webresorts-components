@@ -1,6 +1,19 @@
 {
   "components": [
     {
+      "tag": "wrsts-button",
+      "dependencies": [],
+      "componentClass": "WrstsButton",
+      "componentPath": "components/wrsts-button/wrsts-button.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/wrsts-button/wrsts-button.scss"
+          ]
+        }
+      }
+    },
+    {
       "tag": "wrsts-checkbox",
       "dependencies": [],
       "componentClass": "WrstsCheckbox",
@@ -93,6 +106,45 @@
           "event": "change"
         }
       ]
+    },
+    {
+      "tag": "wrsts-json-form",
+      "dependencies": [],
+      "componentClass": "WrstsJsonForm",
+      "componentPath": "components/wrsts-json-form/wrsts-json-form.js",
+      "styles": {},
+      "props": [
+        {
+          "name": "action",
+          "type": "String"
+        },
+        {
+          "name": "ajax",
+          "type": "Boolean"
+        },
+        {
+          "name": "method",
+          "type": "String"
+        },
+        {
+          "name": "target",
+          "type": "String"
+        }
+      ],
+      "methods": [
+        {
+          "name": "rebind"
+        },
+        {
+          "name": "submit"
+        },
+        {
+          "name": "toJson"
+        }
+      ],
+      "hostElement": {
+        "name": "wrstsJsonForm"
+      }
     },
     {
       "tag": "wrsts-select",
@@ -442,7 +494,8 @@
         },
         {
           "name": "value",
-          "type": "String"
+          "type": "String",
+          "mutable": true
         },
         {
           "name": "width",

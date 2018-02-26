@@ -27,7 +27,7 @@ export class WrstsTinymce {
 
   @Prop() id: string
   @Prop() name: string
-  @Prop() value: string
+  @Prop({ mutable: true }) value: string
   @Prop() width: string
   @Prop() height: string
 
@@ -47,7 +47,9 @@ export class WrstsTinymce {
   componentDidLoad() {
     this.tinymce = tinymce
     this.textarea = this.wrstsTinymce.querySelector('textarea')
-    this.textarea.addEventListener('change', (e) => this.change.emit(e))
+    this.textarea.addEventListener('change', (e) => {
+      e.stopPropagation()
+    })
 
     this.tinymce.init({
       target: this.textarea,
@@ -58,8 +60,18 @@ export class WrstsTinymce {
       init_instance_callback: (editor) => {
         this.editor = editor;
         editor.on('init', (e) => { this.load.emit(e) })
+        editor.on('keyup', (e) => { this.save(e, editor) })
+        editor.on('paste', (e) => { this.save(e, editor) })
+        editor.on('cut', (e) => { this.save(e, editor) })
+        editor.on('change', (e) => { this.save(e, editor) })
       }
     })
+  }
+
+  save(e, editor) {
+    this.value = editor.getContent()
+    editor.save()
+    this.change.emit(e)
   }
 
   @Method() getNativeElement() { return this.textarea }

@@ -5,14 +5,20 @@
   "core": "wrsts-components.albmbvgo.js",
   "corePolyfilled": "wrsts-components.bnko3vxb.js",
   "components": {
+    "wrsts-button": {
+      "$": "bwlny67v"
+    },
     "wrsts-checkbox": {
       "$": "u1pzieir"
     },
+    "wrsts-json-form": {
+      "$": "55kidbto"
+    },
     "wrsts-select": {
-      "$": "q8262o1m"
+      "$": "bvvbkqv5"
     },
     "wrsts-select-option": {
-      "$": "q8262o1m"
+      "$": "bvvbkqv5"
     },
     "wrsts-tab-control": {
       "$": "qm6k1qno"
@@ -30,7 +36,7 @@
       "$": "qm6k1qno"
     },
     "wrsts-tinymce": {
-      "$": "mlzab888"
+      "$": "hbzsuy1d"
     }
   }
 }
