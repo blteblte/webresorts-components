@@ -1,22 +1,29 @@
+import { ComponentSerializer, ComponentSerializerResolver } from '../../lib/component-serialization';
+// TODO: huge cleanup needed
 export class WrstsSelect {
     constructor() {
+        this.setProp = 0; // hax
         this.wrstsSelectOptions = [];
     }
     onSelectedIndexChanged(newValue, oldValue) {
         if (newValue !== undefined && newValue !== null && parseInt(newValue, 10) !== NaN) {
-            if (newValue !== oldValue)
+            if (newValue !== oldValue) {
                 this.selectOptionByIndex(parseInt(newValue, 10));
+            }
         }
         else {
+            this.selectedValue = null;
             this.unselectAllOptions();
         }
     }
     onSelectedValueChanged(newValue, oldValue) {
         if (newValue !== undefined && newValue !== null && newValue !== '') {
-            if (newValue !== oldValue)
+            if (newValue !== oldValue) {
                 this.selectOptionByValue(newValue);
+            }
         }
         else {
+            this.selectedIndex = null;
             this.unselectAllOptions();
         }
     }
@@ -65,7 +72,7 @@ export class WrstsSelect {
                 }
                 i--;
             }
-            if (!elFound) {
+            if (!elFound && focusedIndex > -1) {
                 this.wrstsSelectOptions[focusedIndex].focus();
             }
         }
@@ -92,9 +99,6 @@ export class WrstsSelect {
             nextOption.focus();
         }
         else {
-            // let nextVisibleOption = this.wrstsSelectOptions.find((x, i) => !x.hidden && i >= nextIndex)
-            // if (!nextVisibleOption) { nextVisibleOption = this.wrstsSelectOptions.reverse().find(x => !x.hidden) }
-            // if (nextVisibleOption) { nextVisibleOption.focus() }
             let elFound = false;
             let loop = false;
             let i = nextIndex;
@@ -109,7 +113,7 @@ export class WrstsSelect {
                 }
                 i++;
             }
-            if (!elFound) {
+            if (!elFound && focusedIndex > -1) {
                 this.wrstsSelectOptions[focusedIndex].focus();
             }
         }
@@ -126,7 +130,16 @@ export class WrstsSelect {
         }
         e.preventDefault();
         const focusedIndex = this.wrstsSelectOptions.findIndex(x => x.focused);
-        this.selectIndex(focusedIndex);
+        if (focusedIndex > -1) {
+            this.selectIndex(focusedIndex);
+            this.toggleDropdown(false);
+        }
+    }
+    handleEsc(e) {
+        if (!this.showDropdown) {
+            return;
+        }
+        e.preventDefault();
         this.toggleDropdown(false);
     }
     get selectedOption() {
@@ -138,10 +151,18 @@ export class WrstsSelect {
             : this.placeholder || '';
     }
     componentDidLoad() {
+        this.rebind();
+    }
+    /**
+     * this should occur automatically - if <slot /> get's changed
+     *  ... how do we look for a <slot /> changes?
+     */
+    rebind() {
         this.select = this.wrstsSelect.querySelector('select');
         this.wrstsSelectOptions = Array.prototype.slice.call(this.wrstsSelect.querySelectorAll('wrsts-select-option'));
         this.wrstsSelectSelect = this.wrstsSelect.querySelector('.wrsts-select-select');
         this.wrstsSelectOptions.forEach((wrstsSelectOption, index) => {
+            wrstsSelectOption.index = index.toString();
             wrstsSelectOption.addEventListener('clicked', () => {
                 this.selectIndex(index);
             });
@@ -149,7 +170,10 @@ export class WrstsSelect {
                 this.selectIndex(index);
             }
         });
-        this.input = this.wrstsSelect.querySelector('input');
+        if (this.search) {
+            this.input = this.wrstsSelect.querySelector('input');
+            this.input.addEventListener('change', e => e.stopPropagation());
+        }
     }
     selectIndex(index) {
         this.wrstsSelect.setAttribute('selected-index', index.toString());
@@ -158,32 +182,46 @@ export class WrstsSelect {
         this.wrstsSelect.setAttribute('selected-value', value);
     }
     selectOptionByIndex(index) {
+        this.setProp++; // this should we redone totally...
+        let selectedOption;
         this.wrstsSelectOptions.forEach((option, i) => {
             if (i !== index) {
                 option.unselect();
                 option.unfocus();
             }
             else {
+                selectedOption = option;
                 option.select();
                 option.focus();
             }
         });
         this.select.selectedIndex = index;
-        this.change.emit();
+        this.selectedValue = selectedOption.value;
+        if (this.setProp === 1) {
+            this.change.emit();
+        }
+        this.setProp--;
     }
     selectOptionByValue(value) {
+        this.setProp++; // this should we redone totally...
+        let selectedOption;
         this.wrstsSelectOptions.forEach((option, i) => {
             if (option.value !== value) {
                 option.unselect();
                 option.unfocus();
             }
             else {
+                selectedOption = option;
                 option.select();
                 option.focus();
                 this.select.selectedIndex = i;
             }
         });
-        this.change.emit();
+        this.selectedIndex = selectedOption.index;
+        if (this.setProp === 1) {
+            this.change.emit();
+        }
+        this.setProp--;
     }
     unselectAllOptions() {
         this.wrstsSelectOptions.forEach(o => {
@@ -228,19 +266,21 @@ export class WrstsSelect {
             }
         });
     }
+    toJson(type = 0) {
+        return ComponentSerializer.Serialize(this.wrstsSelect, type, { valueResolver: ComponentSerializerResolver.ResolveSelectValue });
+    }
     render() {
         return (h("div", null,
             h("select", { name: this.name, id: this.id }, this.wrstsSelectOptions.map((wrstsOption) => h("option", { value: wrstsOption.value }, wrstsOption.getSlot().innerText))),
             h("div", { onClick: this.onSelectClicked.bind(this), class: 'wrsts-select-select ' + this.getOptionsVisibilityClass() }, this.selectedText),
             h("div", { class: 'wrsts-select-options ' + this.getOptionsVisibilityClass() },
                 this.search
-                    ? h("div", null,
-                        h("input", { onKeyUp: this.handleSearch.bind(this), type: "text" }))
+                    ? h("input", { onKeyUp: this.handleSearch.bind(this), type: "text" })
                     : null,
                 h("slot", null))));
     }
     static get is() { return "wrsts-select"; }
-    static get properties() { return { "focused": { "type": Boolean, "attr": "focused" }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "showDropdown": { "state": true }, "wrstsSelect": { "elementRef": true }, "wrstsSelectOptions": { "state": true } }; }
+    static get properties() { return { "focused": { "type": Boolean, "attr": "focused" }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "rebind": { "method": true }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "mutable": true, "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "mutable": true, "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "showDropdown": { "state": true }, "toJson": { "method": true }, "wrstsSelect": { "elementRef": true }, "wrstsSelectOptions": { "state": true } }; }
     static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-select:**/"; }
 }

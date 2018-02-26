@@ -10,6 +10,7 @@ export class WrstsSelectOption {
   slotElement: HTMLElement
 
   @Prop() value: string
+  @Prop() index:  string
   @Prop({ mutable: true }) selected: boolean
   @Prop({ mutable: true }) focused: boolean
   @Prop({ mutable: true }) hidden: boolean

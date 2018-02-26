@@ -8,6 +8,7 @@
 </head>
 <body>
 
+  <!-- wrsts-checkbox -->
   <div>
     <h1>wrsts-checkbox</h1>
     <div>
@@ -63,6 +64,22 @@
       <wrsts-checkbox disabled>I am disabled</wrsts-checkbox>
     </div>
 
+    <style>
+      wrsts-checkbox {
+        color: #036403;
+        font-weight: bold;
+      }
+      wrsts-checkbox label {
+        transition: color .3s ease-in-out;
+      }
+      wrsts-checkbox:not([disabled]) label:hover {
+        cursor: pointer;
+        color: #038803;
+      }
+      wrsts-checkbox:not([disabled]) i:hover {
+        cursor: pointer;
+      }
+    </style>
     <script>
       document.getElementById('showJson').addEventListener('click', function() {
         this.innerText = 'refresh json'
@@ -77,20 +94,34 @@
     </script>
   </div>
 
+  <!-- wrsts-select -->
   <div>
     <h1>wrsts-select</h1>
     <div>
 
-      <wrsts-select placeholder="Please select your player:" search>
+      <wrsts-select id="wrsts-select" placeholder="Please select your player:">
         <wrsts-select-option value="1">Lionel Messi</wrsts-select-option>
         <wrsts-select-option value="2">Cristiano Ronaldo</wrsts-select-option>
         <wrsts-select-option value="3">Neymar Jr.</wrsts-select-option>
         <wrsts-select-option value="4">Zinedine Zidane</wrsts-select-option>
       </wrsts-select>
 
+      <script>
+        !(function() {
+          var select = document.getElementById('wrsts-select')
+          select.addEventListener('change', function(e) {
+            console.log(
+              'selectedIndex:', e.target.selectedIndex
+            , ', selectedValue:', e.target.selectedValue
+            , ', json:', e.target.toJson())
+          })
+        })()
+      </script>
+
     </div>
   </div>
 
+  <!-- wrsts-tab-control -->
   <div>
     <h1>wrsts-tab-control</h1>
     <div>
@@ -135,6 +166,7 @@
     </div>
   </div>
 
+  <!-- wrsts-tinymce -->
   <div>
     <h1>wrsts-tinymce</h1>
     <div>
@@ -145,24 +177,13 @@
     </div>
   </div>
 
+
+
+
   <style>
     body {
       background-color: #ebebeb;
       line-height: 20px;
-    }
-    wrsts-checkbox {
-      color: #036403;
-      font-weight: bold;
-    }
-    wrsts-checkbox label {
-      transition: color .3s ease-in-out;
-    }
-    wrsts-checkbox:not([disabled]) label:hover {
-      cursor: pointer;
-      color: #038803;
-    }
-    wrsts-checkbox:not([disabled]) i:hover {
-      cursor: pointer;
     }
   </style>
 

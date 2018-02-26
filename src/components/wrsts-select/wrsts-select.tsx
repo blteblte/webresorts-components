@@ -1,5 +1,10 @@
 import { Component, Prop, State, Element, Listen, Method, Watch, Event, EventEmitter } from '@stencil/core';
 import { WrstsSelectOption } from '../wrsts-select-option/wrsts-select-option';
+import { SerializationType, ComponentSerializer, ComponentSerializerResolver } from '../../lib/component-serialization';
+
+type WrstsSelectOptionType = WrstsSelectOption & HTMLElement
+
+// TODO: huge cleanup needed
 
 @Component({
   tag: 'wrsts-select',
@@ -12,6 +17,8 @@ export class WrstsSelect {
   wrstsSelectSelect: HTMLElement
   input: HTMLInputElement
 
+  setProp = 0 // hax
+
   @Event() change: EventEmitter
 
   @Prop() id: string
@@ -19,28 +26,33 @@ export class WrstsSelect {
   @Prop() placeholder: string
   @Prop() search: boolean
 
-  @Prop() selectedIndex: string
+  @Prop({ mutable: true }) selectedIndex: string
   @Watch('selectedIndex') onSelectedIndexChanged(newValue, oldValue) {
     if (newValue !== undefined && newValue !== null && parseInt(newValue, 10) !== NaN) {
-      if (newValue !== oldValue) this.selectOptionByIndex(parseInt(newValue, 10))
+      if (newValue !== oldValue) {
+        this.selectOptionByIndex(parseInt(newValue, 10))
+      }
     } else {
+      this.selectedValue = null
       this.unselectAllOptions()
     }
   }
 
-  @Prop() selectedValue: string
+  @Prop({ mutable: true }) selectedValue: string
   @Watch('selectedValue') onSelectedValueChanged(newValue, oldValue) {
     if (newValue !== undefined && newValue !== null && newValue !== '') {
-      if (newValue !== oldValue) this.selectOptionByValue(newValue)
+      if (newValue !== oldValue) {
+        this.selectOptionByValue(newValue)
+      }
     } else {
+      this.selectedIndex = null
       this.unselectAllOptions()
     }
   }
 
   @Prop() focused: boolean
 
-
-  @State() wrstsSelectOptions: WrstsSelectOption[] = []
+  @State() wrstsSelectOptions: WrstsSelectOptionType[] = []
   @State() showDropdown: boolean
 
   @Listen('document:click') onDocumentClick(e) {
@@ -82,7 +94,7 @@ export class WrstsSelect {
         if (i === 0) { loop = true }
         i--
       }
-      if (!elFound) { this.wrstsSelectOptions[focusedIndex].focus() }
+      if (!elFound && focusedIndex > -1) { this.wrstsSelectOptions[focusedIndex].focus() }
     }
   }
 
@@ -105,9 +117,6 @@ export class WrstsSelect {
     const nextOption = this.wrstsSelectOptions[nextIndex]
     if (!nextOption.hidden) { nextOption.focus() }
     else {
-      // let nextVisibleOption = this.wrstsSelectOptions.find((x, i) => !x.hidden && i >= nextIndex)
-      // if (!nextVisibleOption) { nextVisibleOption = this.wrstsSelectOptions.reverse().find(x => !x.hidden) }
-      // if (nextVisibleOption) { nextVisibleOption.focus() }
       let elFound = false
       let loop = false
       let i = nextIndex
@@ -120,7 +129,7 @@ export class WrstsSelect {
         if (i === this.wrstsSelectOptions.length - 1) { loop = true }
         i++
       }
-      if (!elFound) { this.wrstsSelectOptions[focusedIndex].focus() }
+      if (!elFound && focusedIndex > -1) { this.wrstsSelectOptions[focusedIndex].focus() }
     }
   }
 
@@ -132,7 +141,15 @@ export class WrstsSelect {
     e.preventDefault()
 
     const focusedIndex = this.wrstsSelectOptions.findIndex(x => x.focused)
-    this.selectIndex(focusedIndex)
+    if (focusedIndex > -1) {
+      this.selectIndex(focusedIndex)
+      this.toggleDropdown(false)
+    }
+  }
+
+  @Listen('document:keydown.escape') handleEsc(e) {
+    if (!this.showDropdown) { return }
+    e.preventDefault()
     this.toggleDropdown(false)
   }
 
@@ -147,6 +164,14 @@ export class WrstsSelect {
   }
 
   componentDidLoad() {
+    this.rebind()
+  }
+
+  /**
+   * this should occur automatically - if <slot /> get's changed
+   *  ... how do we look for a <slot /> changes?
+   */
+  @Method() rebind() {
     this.select = this.wrstsSelect.querySelector('select')
 
     this.wrstsSelectOptions = Array.prototype.slice.call(
@@ -155,7 +180,8 @@ export class WrstsSelect {
     this.wrstsSelectSelect = this.wrstsSelect.querySelector('.wrsts-select-select')
 
     this.wrstsSelectOptions.forEach((wrstsSelectOption, index) => {
-      (wrstsSelectOption as any).addEventListener('clicked', () => {
+      wrstsSelectOption.index = index.toString()
+      wrstsSelectOption.addEventListener('clicked', () => {
         this.selectIndex(index)
       })
       if (wrstsSelectOption.selected) {
@@ -163,7 +189,10 @@ export class WrstsSelect {
       }
     })
 
-    this.input = this.wrstsSelect.querySelector('input')
+    if (this.search) {
+      this.input = this.wrstsSelect.querySelector('input')
+      this.input.addEventListener('change', e => e.stopPropagation())
+    }
   }
 
   @Method() selectIndex(index: number) {
@@ -175,33 +204,49 @@ export class WrstsSelect {
   }
 
   private selectOptionByIndex(index: number) {
+    this.setProp++ // this should we redone totally...
+    let selectedOption: WrstsSelectOption
     this.wrstsSelectOptions.forEach((option, i) => {
       if (i !== index) {
         option.unselect()
         option.unfocus()
       } else {
+        selectedOption = option
         option.select()
         option.focus()
       }
     })
 
     this.select.selectedIndex = index
-    this.change.emit()
+    this.selectedValue = selectedOption.value
+
+    if (this.setProp === 1) {
+      this.change.emit()
+    }
+    this.setProp--
   }
 
   private selectOptionByValue(value: string) {
+    this.setProp++ // this should we redone totally...
+    let selectedOption: WrstsSelectOption
     this.wrstsSelectOptions.forEach((option, i) => {
       if (option.value !== value) {
         option.unselect()
         option.unfocus()
       } else {
+        selectedOption = option
         option.select()
         option.focus()
         this.select.selectedIndex = i
       }
     })
 
-    this.change.emit()
+    this.selectedIndex = selectedOption.index
+
+    if (this.setProp === 1) {
+      this.change.emit()
+    }
+    this.setProp--
   }
 
   private unselectAllOptions() {
@@ -252,6 +297,14 @@ export class WrstsSelect {
     })
   }
 
+  @Method() toJson(type: SerializationType = 0) {
+    return ComponentSerializer.Serialize(
+        this.wrstsSelect
+      , type
+      , { valueResolver: ComponentSerializerResolver.ResolveSelectValue }
+    )
+  }
+
   render() {
     return (
       <div>
@@ -268,7 +321,7 @@ export class WrstsSelect {
         </div>
         <div class={'wrsts-select-options ' + this.getOptionsVisibilityClass()}>
           {this.search
-            ? <div><input onKeyUp={this.handleSearch.bind(this)} type="text"/></div>
+            ? <input onKeyUp={this.handleSearch.bind(this)} type="text"/>
             : null}
           <slot />
         </div>

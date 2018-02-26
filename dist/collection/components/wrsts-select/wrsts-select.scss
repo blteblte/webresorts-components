@@ -1,3 +1,8 @@
+@keyframes wrsts-select-appear {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 $lbl-font-color: #595959;
 $lbl-bg-color: #f1f1f1;
 
@@ -7,7 +12,7 @@ $lbl-bg-color: #f1f1f1;
 }
 
 wrsts-select {
-  select { display: none; }
+  animation: wrsts-select-appear .2s ease-in;
   color: $lbl-font-color;
   display: inline-block;
   position: relative;
@@ -16,12 +21,16 @@ wrsts-select {
     box-shadow: 0 0 4px rgba(150, 150, 150, .8);
   }
 
+  select { display: none; }
+
   input {
     border: 1px solid lighten($lbl-font-color, 50%);
     color: $lbl-font-color;
     outline: none;
     padding: 4px 8px;
-    width: 93%;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .wrsts-select-select {
@@ -45,8 +54,9 @@ wrsts-select {
   .wrsts-select-options {
     &.hidden { display: none; }
     &.visible { display: block; }
+    box-sizing: border-box;
     position: absolute;
-    width: 99%;
+    width: 100%;
     user-select: none;
     border: 1px solid lighten($lbl-font-color, 50%);
     animation: wrsts-select-in .2s ease-in-out;

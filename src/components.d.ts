@@ -78,6 +78,7 @@ declare global {
     export interface WrstsSelectOptionAttributes extends HTMLAttributes {
       focused?: boolean;
       hidden?: boolean;
+      index?: string;
       selected?: boolean;
       value?: string;
     }

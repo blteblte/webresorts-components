@@ -4,7 +4,7 @@ WrstsComponents.loadBundle("./chunk1.js", ["exports"], function (e) { var t; win
         function r() {
         }
         return r;
-    }());  function a(e) { return [].filter.call(e.attributes, function (e) { return /^data-/.test(e.name); }).map(function (e) { return { name: e.name.substr(5).replace(/-(.)/g, function (e, t) { return t.toUpperCase(); }), value: e.value }; }); } r.ResolveKey = function (e, t) { return e.name || e.id || t; }, r.ResolveCheckboxValue = function (e) { return e.checked; }, r.ResolveTextareaValue = function (e) { return e.value; }, r.ResolveDataAttributes = (function (e, r) { return r === t.Object ? function (e) { var t = {}; return a(e).forEach(function (e) { t[e.name] = e.value; }), t; }(e) : a(e); }), e.ComponentSerializer = /** @class */ (function () {
+    }());  function a(e) { return [].filter.call(e.attributes, function (e) { return /^data-/.test(e.name); }).map(function (e) { return { name: e.name.substr(5).replace(/-(.)/g, function (e, t) { return t.toUpperCase(); }), value: e.value }; }); } r.ResolveKey = function (e, t) { return e.name || e.id || t; }, r.ResolveCheckboxValue = function (e) { return e.checked; }, r.ResolveTextareaValue = function (e) { return e.value; }, r.ResolveSelectValue = function (e) { return e.selectedValue; }, r.ResolveDataAttributes = (function (e, r) { return r === t.Object ? function (e) { var t = {}; return a(e).forEach(function (e) { t[e.name] = e.value; }), t; }(e) : a(e); }), e.ComponentSerializer = /** @class */ (function () {
     function class_1() {
     }
     class_1.SerializeData = function (e, a, n) { var u = n.valueResolver; var l = n.keyResolver, s = n.dataResolver; switch ((n.keyResolver || (l = r.ResolveKey), n.dataResolver || (s = r.ResolveDataAttributes), a)) {

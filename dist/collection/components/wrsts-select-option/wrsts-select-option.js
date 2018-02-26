@@ -35,7 +35,7 @@ export class WrstsSelectOption {
             h("slot", null)));
     }
     static get is() { return "wrsts-select-option"; }
-    static get properties() { return { "focus": { "method": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "getSlot": { "method": true }, "hidden": { "type": Boolean, "attr": "hidden", "mutable": true }, "hide": { "method": true }, "select": { "method": true }, "selected": { "type": Boolean, "attr": "selected", "mutable": true }, "unfocus": { "method": true }, "unhide": { "method": true }, "unselect": { "method": true }, "value": { "type": String, "attr": "value" }, "wrstsSelectOption": { "elementRef": true } }; }
+    static get properties() { return { "focus": { "method": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "getSlot": { "method": true }, "hidden": { "type": Boolean, "attr": "hidden", "mutable": true }, "hide": { "method": true }, "index": { "type": String, "attr": "index" }, "select": { "method": true }, "selected": { "type": Boolean, "attr": "selected", "mutable": true }, "unfocus": { "method": true }, "unhide": { "method": true }, "unselect": { "method": true }, "value": { "type": String, "attr": "value" }, "wrstsSelectOption": { "elementRef": true } }; }
     static get events() { return [{ "name": "clicked", "method": "clicked", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-select-option:**/"; }
 }

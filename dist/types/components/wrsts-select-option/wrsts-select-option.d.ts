@@ -3,6 +3,7 @@ export declare class WrstsSelectOption {
     wrstsSelectOption: WrstsSelectOption & HTMLElement;
     slotElement: HTMLElement;
     value: string;
+    index: string;
     selected: boolean;
     focused: boolean;
     hidden: boolean;

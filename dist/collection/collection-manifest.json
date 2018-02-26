@@ -130,6 +130,7 @@
         {
           "name": "selectedIndex",
           "type": "String",
+          "mutable": true,
           "watch": [
             "onSelectedIndexChanged"
           ]
@@ -137,6 +138,7 @@
         {
           "name": "selectedValue",
           "type": "String",
+          "mutable": true,
           "watch": [
             "onSelectedValueChanged"
           ]
@@ -170,6 +172,12 @@
           "capture": false
         },
         {
+          "event": "document:keydown.escape",
+          "method": "handleEsc",
+          "passive": false,
+          "capture": false
+        },
+        {
           "event": "document:keydown.up",
           "method": "handleUp",
           "passive": false,
@@ -178,10 +186,16 @@
       ],
       "methods": [
         {
+          "name": "rebind"
+        },
+        {
           "name": "selectIndex"
         },
         {
           "name": "selectValue"
+        },
+        {
+          "name": "toJson"
         }
       ],
       "hostElement": {
@@ -215,6 +229,10 @@
           "name": "hidden",
           "type": "Boolean",
           "mutable": true
+        },
+        {
+          "name": "index",
+          "type": "String"
         },
         {
           "name": "selected",
