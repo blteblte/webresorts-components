@@ -1,6 +1,7 @@
-import { Component, Element, Method, Prop } from '@stencil/core';
+import { Component, Element, Method, Prop, Event, EventEmitter } from '@stencil/core';
 import { SerializationType } from '../../lib/component-serialization';
 import { httpAsync } from '../../lib/http/http';
+import { isFunction } from '../../lib/js-helpers/js-helpers';
 
 const FORM_ELEMENTS_QUERY_SELECTOR =
     'wrsts-checkbox'
@@ -15,6 +16,8 @@ export class WrstsJsonForm {
   @Element() wrstsJsonForm: WrstsJsonForm & HTMLElement
   formElements: any[]
   form: HTMLFormElement
+
+  @Event() submitted: EventEmitter
 
   @Prop() action: string
   @Prop() method: string
@@ -42,11 +45,12 @@ export class WrstsJsonForm {
   @Method() submit(callback?, type: SerializationType = 0) {
     if (!this.ajax && this.form) {
       this.form.submit()
+      this.submitted.emit()
     } else {
       const data = this.toJson(type)
       httpAsync(this.action, this.method, JSON.stringify(data))
-        .then(callback)
-        .catch(callback)
+        .then((e) => { isFunction(callback) && callback(e); this.submitted.emit(e) })
+        .catch((e) => { isFunction(callback) && callback(e); this.submitted.emit(e) })
     }
   }
 

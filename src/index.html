@@ -195,7 +195,7 @@
           </div>
 
           <div>
-            <wrsts-button id="wrsts-submit">Submit</wrsts-button>
+            <wrsts-button form-id="wrsts-form">Submit</wrsts-button>
           </div>
         </wrsts-json-form>
     </div>
@@ -203,11 +203,15 @@
     <script>
       !(function() {
         var $form = document.getElementById('wrsts-form')
-        var $submitBtn = document.getElementById('wrsts-submit')
+        // var $submitBtn = document.getElementById('wrsts-submit')
 
-        $submitBtn.addEventListener('click', function(e) {
-          e.preventDefault()
-          $form.submit(function(e) { console.log(e) })
+        // $submitBtn.addEventListener('click', function(e) {
+        //   e.preventDefault()
+        //   $form.submit(function(e) { console.log(e) })
+        // })
+
+        $form.addEventListener('submitted', function(e) {
+          console.log(e)
         })
       })()
     </script>

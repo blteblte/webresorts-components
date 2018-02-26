@@ -38,7 +38,7 @@ declare global {
   }
   namespace JSXElements {
     export interface WrstsButtonAttributes extends HTMLAttributes {
-      
+      formId?: string;
     }
   }
 }

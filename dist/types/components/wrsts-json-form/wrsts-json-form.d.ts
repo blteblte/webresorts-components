@@ -1,8 +1,10 @@
+import { EventEmitter } from '@stencil/core';
 import { SerializationType } from '../../lib/component-serialization';
 export declare class WrstsJsonForm {
     wrstsJsonForm: WrstsJsonForm & HTMLElement;
     formElements: any[];
     form: HTMLFormElement;
+    submitted: EventEmitter;
     action: string;
     method: string;
     target: string;

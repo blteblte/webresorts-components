@@ -99,15 +99,7 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components.js",
-    "revision": "33868931d4a393c9c2f871222e1f56b9"
-  },
-  {
-    "url": "build/wrsts-components/55kidbto.es5.js",
-    "revision": "c88520feead7d8a134847021732c7ac6"
-  },
-  {
-    "url": "build/wrsts-components/55kidbto.js",
-    "revision": "a18436511b24a5a825005fdfb063dfab"
+    "revision": "8961f72852b7a20ce02ca426e177cb70"
   },
   {
     "url": "build/wrsts-components/bvvbkqv5.es5.js",
@@ -116,14 +108,6 @@ self.__precacheManifest = [
   {
     "url": "build/wrsts-components/bvvbkqv5.js",
     "revision": "d0668ef790f8c6df8f59327b4e3271d5"
-  },
-  {
-    "url": "build/wrsts-components/bwlny67v.es5.js",
-    "revision": "bd5a02855571ec001c395c4c6c2fd5f1"
-  },
-  {
-    "url": "build/wrsts-components/bwlny67v.js",
-    "revision": "d4df9cabdd9a88cd8e97604b0b63f537"
   },
   {
     "url": "build/wrsts-components/chunk1.es5.js",
@@ -140,6 +124,22 @@ self.__precacheManifest = [
   {
     "url": "build/wrsts-components/hbzsuy1d.js",
     "revision": "1c38a7df32932f0719fe3518163b8530"
+  },
+  {
+    "url": "build/wrsts-components/i1gznagr.es5.js",
+    "revision": "dd51e4411cce423b43f884afc5ddadf8"
+  },
+  {
+    "url": "build/wrsts-components/i1gznagr.js",
+    "revision": "57f0441313f050bc4491e5c9990e9f60"
+  },
+  {
+    "url": "build/wrsts-components/jthvcsl4.es5.js",
+    "revision": "3981acb54b1906edc27a68bb582554c4"
+  },
+  {
+    "url": "build/wrsts-components/jthvcsl4.js",
+    "revision": "b1f95f81c91483d0fa2f54db73f1069e"
   },
   {
     "url": "build/wrsts-components/qm6k1qno.es5.js",
@@ -167,7 +167,7 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components/wrsts-components.registry.json",
-    "revision": "39df64439e16f05670dcb32c3f2c62dd"
+    "revision": "6d4a8363d6fb7db8adfad916b882dc0c"
   },
   {
     "url": "host.config.json",
@@ -175,7 +175,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "c55a719c746bff833c898ae885366917"
+    "revision": "49487b334b60bd4cf78311ff8c5a0a50"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();

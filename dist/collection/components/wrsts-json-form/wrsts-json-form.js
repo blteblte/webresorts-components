@@ -1,4 +1,5 @@
 import { httpAsync } from '../../lib/http/http';
+import { isFunction } from '../../lib/js-helpers/js-helpers';
 const FORM_ELEMENTS_QUERY_SELECTOR = 'wrsts-checkbox'
     + ', wrsts-select'
     + ', wrsts-tinymce';
@@ -19,12 +20,13 @@ export class WrstsJsonForm {
     submit(callback, type = 0) {
         if (!this.ajax && this.form) {
             this.form.submit();
+            this.submitted.emit();
         }
         else {
             const data = this.toJson(type);
             httpAsync(this.action, this.method, JSON.stringify(data))
-                .then(callback)
-                .catch(callback);
+                .then((e) => { isFunction(callback) && callback(e); this.submitted.emit(e); })
+                .catch((e) => { isFunction(callback) && callback(e); this.submitted.emit(e); });
         }
     }
     render() {
@@ -35,4 +37,5 @@ export class WrstsJsonForm {
     }
     static get is() { return "wrsts-json-form"; }
     static get properties() { return { "action": { "type": String, "attr": "action" }, "ajax": { "type": Boolean, "attr": "ajax" }, "method": { "type": String, "attr": "method" }, "rebind": { "method": true }, "submit": { "method": true }, "target": { "type": String, "attr": "target" }, "toJson": { "method": true }, "wrstsJsonForm": { "elementRef": true } }; }
+    static get events() { return [{ "name": "submitted", "method": "submitted", "bubbles": true, "cancelable": true, "composed": true }]; }
 }

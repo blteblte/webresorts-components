@@ -11,7 +11,13 @@
             "components/wrsts-button/wrsts-button.scss"
           ]
         }
-      }
+      },
+      "props": [
+        {
+          "name": "formId",
+          "type": "String"
+        }
+      ]
     },
     {
       "tag": "wrsts-checkbox",
@@ -144,7 +150,12 @@
       ],
       "hostElement": {
         "name": "wrstsJsonForm"
-      }
+      },
+      "events": [
+        {
+          "event": "submitted"
+        }
+      ]
     },
     {
       "tag": "wrsts-select",
