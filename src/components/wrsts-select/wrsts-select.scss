@@ -1,10 +1,9 @@
+@import '../../scss/colors.scss';
+
 @keyframes wrsts-select-appear {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
-
-$lbl-font-color: #595959;
-$lbl-bg-color: #f1f1f1;
 
 @keyframes wrsts-select-in {
   0% { opacity: 0; transform: translateY(-2%); }
@@ -13,7 +12,7 @@ $lbl-bg-color: #f1f1f1;
 
 wrsts-select {
   animation: wrsts-select-appear .2s ease-in;
-  color: $lbl-font-color;
+  color: $color-font-dark;
   display: inline-block;
   position: relative;
   transition: box-shadow .2s ease-in-out;
@@ -24,8 +23,8 @@ wrsts-select {
   select { display: none; }
 
   input {
-    border: 1px solid lighten($lbl-font-color, 50%);
-    color: $lbl-font-color;
+    border: 1px solid $color-form-border;
+    color: $color-font-dark;
     outline: none;
     padding: 4px 8px;
     display: block;
@@ -45,8 +44,8 @@ wrsts-select {
     cursor: pointer;
     user-select: none;
     padding: 6px 30px 6px 10px;
-    background-color: $lbl-bg-color;
-    border: 1px solid $lbl-font-color;
+    background-color: $color-form-bg;
+    border: 1px solid $color-form-border;
     min-width: 200px;
     min-height: 20px;
   }
@@ -58,9 +57,9 @@ wrsts-select {
     position: absolute;
     width: 100%;
     user-select: none;
-    border: 1px solid lighten($lbl-font-color, 50%);
+    border: 1px solid lighten($color-form-border, 20%);
     animation: wrsts-select-in .2s ease-in-out;
-    background-color: $lbl-bg-color;
+    background-color: $color-form-bg;
     z-index: 1;
   }
 }

@@ -25,10 +25,10 @@ export class WrstsJsonForm {
   @Prop() ajax: boolean
 
   componentDidLoad() {
-    this.rebind()
+    this.bind()
   }
 
-  @Method() rebind() {
+  @Method() bind() {
     this.formElements = Array.prototype.slice.call(
       this.wrstsJsonForm.querySelectorAll(FORM_ELEMENTS_QUERY_SELECTOR)
     )
@@ -43,15 +43,20 @@ export class WrstsJsonForm {
   }
 
   @Method() submit(callback?, type: SerializationType = 0) {
-    if (!this.ajax && this.form) {
-      this.form.submit()
-      this.submitted.emit()
-    } else {
-      const data = this.toJson(type)
-      httpAsync(this.action, this.method, JSON.stringify(data))
-        .then((e) => { isFunction(callback) && callback(e); this.submitted.emit(e) })
-        .catch((e) => { isFunction(callback) && callback(e); this.submitted.emit(e) })
-    }
+    if (!this.ajax && this.form) this.submiSync()
+    else this.submitAsyncJson(callback, type)
+  }
+
+  private submiSync() {
+    this.form.submit()
+    this.submitted.emit()
+  }
+
+  private submitAsyncJson(callback?, type: SerializationType = 0) {
+    const data = this.toJson(type)
+    httpAsync(this.action, this.method, JSON.stringify(data))
+      .then((e) => { isFunction(callback) && callback(e); this.submitted.emit(e) })
+      .catch((e) => { isFunction(callback) && callback(e); this.submitted.emit(e) })
   }
 
   render() {

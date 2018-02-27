@@ -1,5 +1,4 @@
-$lbl-bg-color: #f1f1f1;
-$lbl-font-color: #595959;
+@import '../../scss/colors.scss';
 
 @keyframes wrsts-tab-control-content-in {
   0% { opacity: 0; transform: scale(.99, .99); }
@@ -9,8 +8,8 @@ $lbl-font-color: #595959;
 wrsts-tab-control-content {
   display: none;
   padding: 10px 8px;
-  background-color: lighten($lbl-bg-color, 5%);
-  color: darken($lbl-font-color, 10%);
+  background-color: $color-light-bg;
+  color: $color-font-dark;
 
   &[active] {
     display: block;

@@ -1,0 +1,10 @@
+@import '../../scss/colors.scss';
+
+wrsts-input {
+  display: inline-block;
+  outline: none;
+  border: 1px solid $color-form-border;
+  &.error {
+    border: 1px solid $color-form-border-error;
+  }
+}

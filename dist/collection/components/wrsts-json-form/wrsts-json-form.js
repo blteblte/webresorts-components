@@ -5,9 +5,9 @@ const FORM_ELEMENTS_QUERY_SELECTOR = 'wrsts-checkbox'
     + ', wrsts-tinymce';
 export class WrstsJsonForm {
     componentDidLoad() {
-        this.rebind();
+        this.bind();
     }
-    rebind() {
+    bind() {
         this.formElements = Array.prototype.slice.call(this.wrstsJsonForm.querySelectorAll(FORM_ELEMENTS_QUERY_SELECTOR));
         this.form = this.wrstsJsonForm.querySelector('form');
     }
@@ -18,16 +18,20 @@ export class WrstsJsonForm {
         }, []);
     }
     submit(callback, type = 0) {
-        if (!this.ajax && this.form) {
-            this.form.submit();
-            this.submitted.emit();
-        }
-        else {
-            const data = this.toJson(type);
-            httpAsync(this.action, this.method, JSON.stringify(data))
-                .then((e) => { isFunction(callback) && callback(e); this.submitted.emit(e); })
-                .catch((e) => { isFunction(callback) && callback(e); this.submitted.emit(e); });
-        }
+        if (!this.ajax && this.form)
+            this.submiSync();
+        else
+            this.submitAsyncJson(callback, type);
+    }
+    submiSync() {
+        this.form.submit();
+        this.submitted.emit();
+    }
+    submitAsyncJson(callback, type = 0) {
+        const data = this.toJson(type);
+        httpAsync(this.action, this.method, JSON.stringify(data))
+            .then((e) => { isFunction(callback) && callback(e); this.submitted.emit(e); })
+            .catch((e) => { isFunction(callback) && callback(e); this.submitted.emit(e); });
     }
     render() {
         return (h("div", null, this.ajax
@@ -36,6 +40,6 @@ export class WrstsJsonForm {
                 h("slot", null))));
     }
     static get is() { return "wrsts-json-form"; }
-    static get properties() { return { "action": { "type": String, "attr": "action" }, "ajax": { "type": Boolean, "attr": "ajax" }, "method": { "type": String, "attr": "method" }, "rebind": { "method": true }, "submit": { "method": true }, "target": { "type": String, "attr": "target" }, "toJson": { "method": true }, "wrstsJsonForm": { "elementRef": true } }; }
+    static get properties() { return { "action": { "type": String, "attr": "action" }, "ajax": { "type": Boolean, "attr": "ajax" }, "bind": { "method": true }, "method": { "type": String, "attr": "method" }, "submit": { "method": true }, "target": { "type": String, "attr": "target" }, "toJson": { "method": true }, "wrstsJsonForm": { "elementRef": true } }; }
     static get events() { return [{ "name": "submitted", "method": "submitted", "bubbles": true, "cancelable": true, "composed": true }]; }
 }

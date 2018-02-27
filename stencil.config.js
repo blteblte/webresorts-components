@@ -1,4 +1,6 @@
 const sass = require('@stencil/sass');
+const postcss = require('@stencil/postcss');
+const autoprefixer = require('autoprefixer');
 
 exports.config = {
 
@@ -16,11 +18,15 @@ exports.config = {
     ] },
     { components: ['wrsts-select', 'wrsts-select-option'] },
     { components: ['wrsts-json-form'] },
-    { components: ['wrsts-button'] }
+    { components: ['wrsts-button'] },
+    { components: ['wrsts-input'] }
   ],
 
   plugins: [
-    sass()
+    sass(),
+    postcss({
+      plugins: [autoprefixer()]
+    })
   ],
 
   // copy: [

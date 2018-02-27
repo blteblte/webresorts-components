@@ -1,3 +1,5 @@
+@import '../../scss/colors.scss';
+
 @keyframes wrsts-checkbox-appear {
   0% { opacity: 0; }
   100% { opacity: 1; }
@@ -12,7 +14,7 @@ wrsts-checkbox {
     display: none;
   }
   &[disabled] {
-    color: gray;
+    color: $color-form-disabled;
   }
 
   input[type="checkbox"] {

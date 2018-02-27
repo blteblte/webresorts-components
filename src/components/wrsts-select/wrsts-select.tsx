@@ -164,14 +164,14 @@ export class WrstsSelect {
   }
 
   componentDidLoad() {
-    this.rebind()
+    this.bind()
   }
 
   /**
    * this should occur automatically - if <slot /> get's changed
    *  ... how do we look for a <slot /> changes?
    */
-  @Method() rebind() {
+  @Method() bind() {
     this.select = this.wrstsSelect.querySelector('select')
 
     this.wrstsSelectOptions = Array.prototype.slice.call(

@@ -95,7 +95,7 @@ export class WrstsCheckbox {
     if (!(newValue !== null && newValue !== undefined && newValue !== '')) {
       this.releaseGroupBindings()
     } else {
-      this.rebindGroup()
+      this.bind()
     }
   }
 
@@ -157,7 +157,7 @@ export class WrstsCheckbox {
   /**
    * Rebind group elements for toggler checkbox
    */
-  @Method() rebindGroup() {
+  @Method() bind() {
     if (!this.isToggler) { return }
     this.releaseGroupBindings()
 
@@ -214,7 +214,7 @@ export class WrstsCheckbox {
   componentDidLoad() {
     this.checkbox = this.wrstsCheckBox.querySelector('input[type="checkbox"]')
     this.checkbox.checked = this.checked
-    this.rebindGroup()
+    this.bind()
   }
 
   get totalGroupBoxesCount() {

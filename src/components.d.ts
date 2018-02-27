@@ -83,6 +83,62 @@ declare global {
 
 
 import {
+  WrstsInput as WrstsInput
+} from './components/wrsts-input/wrsts-input';
+
+declare global {
+  interface HTMLWrstsInputElement extends WrstsInput, HTMLStencilElement {
+  }
+  var HTMLWrstsInputElement: {
+    prototype: HTMLWrstsInputElement;
+    new (): HTMLWrstsInputElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-input": HTMLWrstsInputElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-input": HTMLWrstsInputElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-input": JSXElements.WrstsInputAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsInputAttributes extends HTMLAttributes {
+      autocomplete?: 'on' | 'off';
+      autofocus?: boolean;
+      disabled?: boolean;
+      formaction?: string;
+      formenctype?: string;
+      formmethod?: string;
+      formnovalidate?: boolean;
+      formtarget?: string;
+      height?: number;
+      id?: string;
+      list?: string;
+      max?: number;
+      maxlength?: number;
+      min?: number;
+      minlength?: number;
+      multiple?: boolean;
+      name?: string;
+      patern?: string;
+      placeholder?: string;
+      readonly?: boolean;
+      required?: boolean;
+      size?: number;
+      step?: number;
+      title?: string;
+      type?: string;
+      value?: string;
+      width?: number;
+    }
+  }
+}
+
+
+import {
   WrstsJsonForm as WrstsJsonForm
 } from './components/wrsts-json-form/wrsts-json-form';
 

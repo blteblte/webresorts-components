@@ -10,8 +10,10 @@ export declare class WrstsJsonForm {
     target: string;
     ajax: boolean;
     componentDidLoad(): void;
-    rebind(): void;
+    bind(): void;
     toJson(type?: SerializationType): any;
     submit(callback?: any, type?: SerializationType): void;
+    private submiSync();
+    private submitAsyncJson(callback?, type?);
     render(): JSX.Element;
 }

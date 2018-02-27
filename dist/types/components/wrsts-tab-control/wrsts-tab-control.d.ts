@@ -9,8 +9,8 @@ export declare class WrstsTabControl {
     tabUrl: string;
     change: EventEmitter;
     componentDidLoad(): void;
-    rebindTabsControll(): void;
+    bind(): void;
     navigateByHash(): void;
-    activateTab(index: number): void;
+    setTab(index: number): void;
     render(): JSX.Element;
 }

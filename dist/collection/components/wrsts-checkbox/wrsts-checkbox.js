@@ -20,7 +20,7 @@ export class WrstsCheckbox {
             this.releaseGroupBindings();
         }
         else {
-            this.rebindGroup();
+            this.bind();
         }
     }
     /**
@@ -77,7 +77,7 @@ export class WrstsCheckbox {
     /**
      * Rebind group elements for toggler checkbox
      */
-    rebindGroup() {
+    bind() {
         if (!this.isToggler) {
             return;
         }
@@ -121,7 +121,7 @@ export class WrstsCheckbox {
     componentDidLoad() {
         this.checkbox = this.wrstsCheckBox.querySelector('input[type="checkbox"]');
         this.checkbox.checked = this.checked;
-        this.rebindGroup();
+        this.bind();
     }
     get totalGroupBoxesCount() {
         return this.groupBoxesBindings
@@ -219,7 +219,7 @@ export class WrstsCheckbox {
                 h("slot", null))));
     }
     static get is() { return "wrsts-checkbox"; }
-    static get properties() { return { "check": { "method": true }, "checked": { "type": Boolean, "attr": "checked", "mutable": true }, "disabled": { "type": Boolean, "attr": "disabled" }, "getData": { "method": true }, "getGroupBoxesBindings": { "method": true }, "getNativeElement": { "method": true }, "group": { "type": String, "attr": "group" }, "groupToggler": { "type": String, "attr": "group-toggler", "watchCallbacks": ["onGroupTogglerChanged"] }, "hidden": { "type": Boolean, "attr": "hidden" }, "id": { "type": String, "attr": "id" }, "indeterminate": { "type": Boolean, "attr": "indeterminate" }, "indeterminateState": { "state": true }, "name": { "type": String, "attr": "name" }, "rebindGroup": { "method": true }, "setIndeterminate": { "method": true }, "toJson": { "method": true }, "uncheck": { "method": true }, "value": { "type": String, "attr": "value" }, "wrstsCheckBox": { "elementRef": true } }; }
+    static get properties() { return { "bind": { "method": true }, "check": { "method": true }, "checked": { "type": Boolean, "attr": "checked", "mutable": true }, "disabled": { "type": Boolean, "attr": "disabled" }, "getData": { "method": true }, "getGroupBoxesBindings": { "method": true }, "getNativeElement": { "method": true }, "group": { "type": String, "attr": "group" }, "groupToggler": { "type": String, "attr": "group-toggler", "watchCallbacks": ["onGroupTogglerChanged"] }, "hidden": { "type": Boolean, "attr": "hidden" }, "id": { "type": String, "attr": "id" }, "indeterminate": { "type": Boolean, "attr": "indeterminate" }, "indeterminateState": { "state": true }, "name": { "type": String, "attr": "name" }, "setIndeterminate": { "method": true }, "toJson": { "method": true }, "uncheck": { "method": true }, "value": { "type": String, "attr": "value" }, "wrstsCheckBox": { "elementRef": true } }; }
     static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-checkbox:**/"; }
 }

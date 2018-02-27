@@ -1,0 +1,30 @@
+export declare class WrstsInput {
+    type: string;
+    id: string;
+    name: string;
+    value: string;
+    title: string;
+    placeholder: string;
+    maxlength: number;
+    minlength: number;
+    size: number;
+    autocomplete: 'on' | 'off';
+    formaction: string;
+    formenctype: string;
+    formmethod: string;
+    formtarget: string;
+    width: number;
+    height: number;
+    list: string;
+    min: number;
+    max: number;
+    step: number;
+    patern: string;
+    readonly: boolean;
+    disabled: boolean;
+    autofocus: boolean;
+    formnovalidate: boolean;
+    multiple: boolean;
+    required: boolean;
+    render(): JSX.Element;
+}

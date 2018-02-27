@@ -1,6 +1,4 @@
-
-$lbl-font-color: #595959;
-$lbl-bg-color: #f1f1f1;
+@import '../../scss/colors.scss';
 
 wrsts-button {
   display: inline-block;
@@ -10,11 +8,11 @@ wrsts-button {
     border: none;
     outline: none;
     padding: 8px 12px;
-    background-color: $lbl-bg-color;
-    color: $lbl-font-color;
+    background-color: $color-form-bg;
+    color: $color-font-dark;
     transition: background-color .2s ease-in-out;
     &:hover {
-      background-color: darken($lbl-bg-color, 10%)
+      background-color: darken($color-form-bg, 10%)
     }
   }
 }

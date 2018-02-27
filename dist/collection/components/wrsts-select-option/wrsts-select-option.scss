@@ -1,20 +1,20 @@
-$option-bg-color: #f7f7f7;
+@import '../../scss/colors.scss';
 
 wrsts-select-option {
   display: block;
   padding: 4px 6px;
-  background-color: $option-bg-color;
+  background-color: $color-form-bg;
   cursor: default;
   user-select: none;
   transition: background-color.2s ease-in-out;
   &[selected] {
-    background-color: lighten($option-bg-color, 5%);
+    background-color: lighten($color-form-bg, 5%);
   }
   &:hover {
-    background-color: lighten($option-bg-color, 10%);
+    background-color: lighten($color-form-bg, 10%);
   }
   &[focused] {
-    background-color: darken($option-bg-color, 10%);
+    background-color: darken($color-form-bg, 10%);
   }
   &[hidden] {
     display: none;

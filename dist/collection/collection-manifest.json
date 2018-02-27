@@ -80,6 +80,9 @@
       ],
       "methods": [
         {
+          "name": "bind"
+        },
+        {
           "name": "check"
         },
         {
@@ -90,9 +93,6 @@
         },
         {
           "name": "getNativeElement"
-        },
-        {
-          "name": "rebindGroup"
         },
         {
           "name": "setIndeterminate"
@@ -110,6 +110,128 @@
       "events": [
         {
           "event": "change"
+        }
+      ]
+    },
+    {
+      "tag": "wrsts-input",
+      "dependencies": [],
+      "componentClass": "WrstsInput",
+      "componentPath": "components/wrsts-input/wrsts-input.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/wrsts-input/wrsts-input.scss"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "autocomplete"
+        },
+        {
+          "name": "autofocus",
+          "type": "Boolean"
+        },
+        {
+          "name": "disabled",
+          "type": "Boolean"
+        },
+        {
+          "name": "formaction",
+          "type": "String"
+        },
+        {
+          "name": "formenctype",
+          "type": "String"
+        },
+        {
+          "name": "formmethod",
+          "type": "String"
+        },
+        {
+          "name": "formnovalidate",
+          "type": "Boolean"
+        },
+        {
+          "name": "formtarget",
+          "type": "String"
+        },
+        {
+          "name": "height",
+          "type": "Number"
+        },
+        {
+          "name": "id",
+          "type": "String"
+        },
+        {
+          "name": "list",
+          "type": "String"
+        },
+        {
+          "name": "max",
+          "type": "Number"
+        },
+        {
+          "name": "maxlength",
+          "type": "Number"
+        },
+        {
+          "name": "min",
+          "type": "Number"
+        },
+        {
+          "name": "minlength",
+          "type": "Number"
+        },
+        {
+          "name": "multiple",
+          "type": "Boolean"
+        },
+        {
+          "name": "name",
+          "type": "String"
+        },
+        {
+          "name": "patern",
+          "type": "String"
+        },
+        {
+          "name": "placeholder",
+          "type": "String"
+        },
+        {
+          "name": "readonly",
+          "type": "Boolean"
+        },
+        {
+          "name": "required",
+          "type": "Boolean"
+        },
+        {
+          "name": "size",
+          "type": "Number"
+        },
+        {
+          "name": "step",
+          "type": "Number"
+        },
+        {
+          "name": "title",
+          "type": "String"
+        },
+        {
+          "name": "type",
+          "type": "String"
+        },
+        {
+          "name": "value",
+          "type": "String"
+        },
+        {
+          "name": "width",
+          "type": "Number"
         }
       ]
     },
@@ -139,7 +261,7 @@
       ],
       "methods": [
         {
-          "name": "rebind"
+          "name": "bind"
         },
         {
           "name": "submit"
@@ -249,7 +371,7 @@
       ],
       "methods": [
         {
-          "name": "rebind"
+          "name": "bind"
         },
         {
           "name": "selectIndex"
@@ -361,7 +483,10 @@
       ],
       "methods": [
         {
-          "name": "activateTab"
+          "name": "bind"
+        },
+        {
+          "name": "setTab"
         }
       ],
       "hostElement": {

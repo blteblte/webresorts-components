@@ -17,17 +17,18 @@ export class WrstsTabControl {
   @Event() change: EventEmitter
 
   componentDidLoad() {
-    this.rebindTabsControll()
+    this.bind()
     this.navigateByHash()
   }
 
-  rebindTabsControll() {
+  @Method() bind() {
     this.tabs = Array.prototype.slice.call(this.wrstsTabControl.children[0].children)
     this.contents = Array.prototype.slice.call(this.wrstsTabControl.children[1].children)
 
+    // todo: test rebinding and what happens with event listeners
     this.tabs.forEach((tab, index) => {
       tab.addEventListener('clicked', () => {
-        this.activateTab(index)
+        this.setTab(index)
       })
     })
   }
@@ -38,12 +39,12 @@ export class WrstsTabControl {
     if (this.tabUrl !== undefined && this.tabUrl !== null) {
       var urlIndex = this.tabs.findIndex(x => x.route === this.tabUrl)
       if (urlIndex > -1) {
-        this.activateTab(urlIndex)
+        this.setTab(urlIndex)
       }
     }
   }
 
-  @Method() activateTab(index: number) {
+  @Method() setTab(index: number) {
     this.tabs.forEach((t, tabIndex) => {
       if (index !== tabIndex) {
         t.unsetActive()

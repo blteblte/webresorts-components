@@ -9,34 +9,37 @@
       "$": "jthvcsl4"
     },
     "wrsts-checkbox": {
-      "$": "u1pzieir"
+      "$": "xifbkfbv"
+    },
+    "wrsts-input": {
+      "$": "gct0s9dr"
     },
     "wrsts-json-form": {
-      "$": "i1gznagr"
+      "$": "91ta4mqu"
     },
     "wrsts-select": {
-      "$": "bvvbkqv5"
+      "$": "u0frvya5"
     },
     "wrsts-select-option": {
-      "$": "bvvbkqv5"
+      "$": "u0frvya5"
     },
     "wrsts-tab-control": {
-      "$": "qm6k1qno"
+      "$": "dlouhmjl"
     },
     "wrsts-tab-control-content": {
-      "$": "qm6k1qno"
+      "$": "dlouhmjl"
     },
     "wrsts-tab-control-contents": {
-      "$": "qm6k1qno"
+      "$": "dlouhmjl"
     },
     "wrsts-tab-control-tab": {
-      "$": "qm6k1qno"
+      "$": "dlouhmjl"
     },
     "wrsts-tab-control-tabs": {
-      "$": "qm6k1qno"
+      "$": "dlouhmjl"
     },
     "wrsts-tinymce": {
-      "$": "hbzsuy1d"
+      "$": "0saldvcd"
     }
   }
 }

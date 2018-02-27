@@ -181,22 +181,25 @@
     <h1>wrsts-json-form</h1>
     <div>
         <wrsts-json-form id="wrsts-form" action="/" method="post" ajax>
-          <div>
+          <p>
             <wrsts-checkbox name="form-checkbox">Check me</wrsts-checkbox>
-          </div>
-          <div>
+          </p>
+          <p>
             <wrsts-select placeholder="Select me..." name="form-select">
               <wrsts-select-option value="1">1</wrsts-select-option>
               <wrsts-select-option value="2">2</wrsts-select-option>
             </wrsts-select>
-          </div>
-          <div>
+          </p>
+          <p>
             <wrsts-tinymce name="form-textarea"></wrsts-tinymce>
-          </div>
+          </p>
+          <p>
+            <wrsts-input name="form-input" type="text" placeholder="input something..." />
+          </p>
 
-          <div>
+          <p>
             <wrsts-button form-id="wrsts-form">Submit</wrsts-button>
-          </div>
+          </p>
         </wrsts-json-form>
     </div>
 

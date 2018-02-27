@@ -25,9 +25,11 @@
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
+    "@stencil/postcss": "0.0.2",
     "@stencil/utils": "latest",
     "@types/jest": "^21.1.1",
     "@types/node": "^9.4.6",
+    "autoprefixer": "^8.0.0",
     "express": "^4.16.2",
     "jest": "^21.2.1"
   },
