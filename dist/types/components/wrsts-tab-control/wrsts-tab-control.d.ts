@@ -1,4 +1,5 @@
-import { EventEmitter } from '@stencil/core';
+import '../../stencil.core';
+import { EventEmitter } from '../../stencil.core';
 import { WrstsTabControlTab } from '../wrsts-tab-control-tab/wrsts-tab-control-tab';
 import { WrstsTabControlContent } from '../wrsts-tab-control-content/wrsts-tab-control-content';
 export declare class WrstsTabControl {

@@ -12,19 +12,19 @@ export class WrstsTabControlContent {
 
   @Method() setActive() {
     if (!this.active) {
-      this.wrstsTabControlContent.setAttribute('active', 'true')
+      this.active = true
     }
   }
 
   @Method() unsetActive() {
     if (this.active) {
-      this.wrstsTabControlContent.removeAttribute('active')
+      this.active = false
     }
   }
 
   render() {
     return (
-      <div>
+      <div class={this.active ? 'active' : ''}>
         <slot />
       </div>
     )

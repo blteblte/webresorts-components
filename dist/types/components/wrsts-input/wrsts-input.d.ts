@@ -1,3 +1,4 @@
+import '../../stencil.core';
 import { SerializationType } from '../../lib/component-serialization';
 export declare class WrstsInput {
     wrstsInput: WrstsInput & HTMLElement;

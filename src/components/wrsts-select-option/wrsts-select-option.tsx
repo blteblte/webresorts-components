@@ -26,32 +26,40 @@ export class WrstsSelectOption {
   }
 
   @Method() select() {
-    if (!this.selected) this.wrstsSelectOption.setAttribute('selected', 'true')
+    if (!this.selected) this.selected = true
   }
 
   @Method() unselect() {
-    if (this.selected) this.wrstsSelectOption.removeAttribute('selected')
+    if (this.selected) this.selected = false
   }
 
   @Method() focus() {
-    if (!this.focused) this.wrstsSelectOption.setAttribute('focused', 'true')
+    if (!this.focused) this.focused = true
   }
 
   @Method() unfocus() {
-    if (this.focused) this.wrstsSelectOption.removeAttribute('focused')
+    if (this.focused) this.focused = false
   }
 
   @Method() hide() {
-    if (!this.hidden) this.wrstsSelectOption.setAttribute('hidden', 'true')
+    if (!this.hidden) this.hidden = true
   }
 
   @Method() unhide() {
-    if (this.hidden) this.wrstsSelectOption.removeAttribute('hidden')
+    if (this.hidden) this.hidden = false
+  }
+
+  getClass() {
+    let className = ''
+    if (this.selected) className += 'selected'
+    if (this.focused) className += ' focused'
+    if (this.hidden) className += ' hidden'
+    return className
   }
 
   render() {
     return (
-      <div onClick={(e) => this.clicked.emit(e)}><slot /></div>
+      <div class={this.getClass()} onClick={(e) => this.clicked.emit(e)}><slot /></div>
     )
   }
 }

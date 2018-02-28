@@ -1,16 +1,16 @@
 export class WrstsTabControlContent {
     setActive() {
         if (!this.active) {
-            this.wrstsTabControlContent.setAttribute('active', 'true');
+            this.active = true;
         }
     }
     unsetActive() {
         if (this.active) {
-            this.wrstsTabControlContent.removeAttribute('active');
+            this.active = false;
         }
     }
     render() {
-        return (h("div", null,
+        return (h("div", { class: this.active ? 'active' : '' },
             h("slot", null)));
     }
     static get is() { return "wrsts-tab-control-content"; }

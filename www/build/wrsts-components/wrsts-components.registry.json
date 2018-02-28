@@ -2,44 +2,44 @@
   "namespace": "WrstsComponents",
   "fsNamespace": "wrsts-components",
   "loader": "../wrsts-components.js",
-  "core": "wrsts-components.core.js",
-  "corePolyfilled": "es5-build-disabled.js",
+  "core": "wrsts-components.doc8pxrp.js",
+  "corePolyfilled": "wrsts-components.y5pk41hx.js",
   "components": {
     "wrsts-button": {
-      "$": "wrsts-button"
+      "$": "dd3od4cn"
     },
     "wrsts-checkbox": {
-      "$": "wrsts-checkbox"
+      "$": "8yu7fu5p"
     },
     "wrsts-input": {
-      "$": "wrsts-input"
+      "$": "mgmahbxv"
     },
     "wrsts-json-form": {
-      "$": "wrsts-json-form"
+      "$": "91ta4mqu"
     },
     "wrsts-select": {
-      "$": "wrsts-select"
+      "$": "2v5acpjt"
     },
     "wrsts-select-option": {
-      "$": "wrsts-select"
+      "$": "2v5acpjt"
     },
     "wrsts-tab-control": {
-      "$": "wrsts-tab-control"
+      "$": "jsstsz1c"
     },
     "wrsts-tab-control-content": {
-      "$": "wrsts-tab-control"
+      "$": "jsstsz1c"
     },
     "wrsts-tab-control-contents": {
-      "$": "wrsts-tab-control"
+      "$": "jsstsz1c"
     },
     "wrsts-tab-control-tab": {
-      "$": "wrsts-tab-control"
+      "$": "jsstsz1c"
     },
     "wrsts-tab-control-tabs": {
-      "$": "wrsts-tab-control"
+      "$": "jsstsz1c"
     },
     "wrsts-tinymce": {
-      "$": "wrsts-tinymce"
+      "$": "0saldvcd"
     }
   }
 }

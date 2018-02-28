@@ -1,0 +1,20 @@
+/* form elements */
+/* tabs */
+/* button */
+wrsts-button {
+  display: inline-block;
+  cursor: pointer;
+}
+
+wrsts-button button {
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  background-color: #f3f3f3;
+  color: #595959;
+  transition: background-color .2s ease-in-out;
+}
+
+wrsts-button button:hover {
+  background-color: #dadada;
+}

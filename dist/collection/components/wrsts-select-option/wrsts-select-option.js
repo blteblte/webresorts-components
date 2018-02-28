@@ -8,30 +8,40 @@ export class WrstsSelectOption {
     }
     select() {
         if (!this.selected)
-            this.wrstsSelectOption.setAttribute('selected', 'true');
+            this.selected = true;
     }
     unselect() {
         if (this.selected)
-            this.wrstsSelectOption.removeAttribute('selected');
+            this.selected = false;
     }
     focus() {
         if (!this.focused)
-            this.wrstsSelectOption.setAttribute('focused', 'true');
+            this.focused = true;
     }
     unfocus() {
         if (this.focused)
-            this.wrstsSelectOption.removeAttribute('focused');
+            this.focused = false;
     }
     hide() {
         if (!this.hidden)
-            this.wrstsSelectOption.setAttribute('hidden', 'true');
+            this.hidden = true;
     }
     unhide() {
         if (this.hidden)
-            this.wrstsSelectOption.removeAttribute('hidden');
+            this.hidden = false;
+    }
+    getClass() {
+        let className = '';
+        if (this.selected)
+            className += 'selected';
+        if (this.focused)
+            className += ' focused';
+        if (this.hidden)
+            className += ' hidden';
+        return className;
     }
     render() {
-        return (h("div", { onClick: (e) => this.clicked.emit(e) },
+        return (h("div", { class: this.getClass(), onClick: (e) => this.clicked.emit(e) },
             h("slot", null)));
     }
     static get is() { return "wrsts-select-option"; }

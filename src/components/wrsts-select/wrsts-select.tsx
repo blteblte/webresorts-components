@@ -28,6 +28,7 @@ export class WrstsSelect {
 
   @Prop({ mutable: true }) selectedIndex: string
   @Watch('selectedIndex') onSelectedIndexChanged(newValue, oldValue) {
+    console.log('watch selected index')
     if (newValue !== undefined && newValue !== null && parseInt(newValue, 10) !== NaN) {
       if (newValue !== oldValue) {
         this.selectOptionByIndex(parseInt(newValue, 10))
@@ -178,6 +179,8 @@ export class WrstsSelect {
       this.wrstsSelect.querySelectorAll('wrsts-select-option')
     )
     this.wrstsSelectSelect = this.wrstsSelect.querySelector('.wrsts-select-select')
+
+    console.log(this.wrstsSelectOptions)
 
     this.wrstsSelectOptions.forEach((wrstsSelectOption, index) => {
       wrstsSelectOption.index = index.toString()

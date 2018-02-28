@@ -1,4 +1,5 @@
-import { EventEmitter } from '@stencil/core';
+import '../../stencil.core';
+import { EventEmitter } from '../../stencil.core';
 export declare class WrstsSelectOption {
     wrstsSelectOption: WrstsSelectOption & HTMLElement;
     slotElement: HTMLElement;
@@ -16,5 +17,6 @@ export declare class WrstsSelectOption {
     unfocus(): void;
     hide(): void;
     unhide(): void;
+    getClass(): string;
     render(): JSX.Element;
 }

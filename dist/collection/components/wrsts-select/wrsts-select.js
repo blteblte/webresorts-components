@@ -6,6 +6,7 @@ export class WrstsSelect {
         this.wrstsSelectOptions = [];
     }
     onSelectedIndexChanged(newValue, oldValue) {
+        console.log('watch selected index');
         if (newValue !== undefined && newValue !== null && parseInt(newValue, 10) !== NaN) {
             if (newValue !== oldValue) {
                 this.selectOptionByIndex(parseInt(newValue, 10));
@@ -161,6 +162,7 @@ export class WrstsSelect {
         this.select = this.wrstsSelect.querySelector('select');
         this.wrstsSelectOptions = Array.prototype.slice.call(this.wrstsSelect.querySelectorAll('wrsts-select-option'));
         this.wrstsSelectSelect = this.wrstsSelect.querySelector('.wrsts-select-select');
+        console.log(this.wrstsSelectOptions);
         this.wrstsSelectOptions.forEach((wrstsSelectOption, index) => {
             wrstsSelectOption.index = index.toString();
             wrstsSelectOption.addEventListener('clicked', () => {

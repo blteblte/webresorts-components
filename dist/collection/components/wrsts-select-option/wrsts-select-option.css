@@ -1,0 +1,34 @@
+/* form elements */
+/* tabs */
+/* button */
+wrsts-select-option {
+  display: block;
+}
+
+wrsts-select-option > div {
+  display: block;
+  padding: 4px 6px;
+  background-color: #ffffff;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+wrsts-select-option > div.selected {
+  background-color: #e6e6e6;
+}
+
+wrsts-select-option > div:hover {
+  background-color: #f2f2f2;
+}
+
+wrsts-select-option > div.focused {
+  background-color: #e6e6e6;
+}
+
+wrsts-select-option > div.hidden {
+  display: none;
+}

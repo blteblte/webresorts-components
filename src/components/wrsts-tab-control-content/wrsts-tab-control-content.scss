@@ -5,14 +5,14 @@
   100% { opacity: 1; transform: scale(1, 1); }
 }
 
-wrsts-tab-control-content {
+wrsts-tab-control-content > div {
   display: none;
   padding: 10px 8px;
   background-color: $color-tabs-bg-active;
   color: $color-tabs-font;
   box-shadow: $box-shadow-form;
 
-  &[active] {
+  &.active {
     display: block;
   }
 }

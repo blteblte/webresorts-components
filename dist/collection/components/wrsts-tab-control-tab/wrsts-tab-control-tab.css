@@ -1,0 +1,29 @@
+/* form elements */
+/* tabs */
+/* button */
+wrsts-tab-control-tab {
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+wrsts-tab-control-tab label {
+  display: inline-block;
+  background-color: #f3f3f3;
+  color: #595959;
+  padding: 10px 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color .2s ease-in-out;
+  box-shadow: 0 -0.5px 2px rgba(0, 0, 0, 0.2);
+}
+
+wrsts-tab-control-tab label:hover {
+  background-color: #e6e6e6;
+}
+
+wrsts-tab-control-tab label.active {
+  background-color: #ffffff;
+}

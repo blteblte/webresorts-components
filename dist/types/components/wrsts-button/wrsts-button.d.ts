@@ -1,3 +1,4 @@
+import '../../stencil.core';
 import { WrstsJsonForm } from '../wrsts-json-form/wrsts-json-form';
 export declare class WrstsButton {
     formId: string;
