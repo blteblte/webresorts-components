@@ -1,4 +1,4 @@
-@import '../../scss/colors.scss';
+@import '../../scss/variables.scss';
 
 wrsts-button {
   display: inline-block;
@@ -8,11 +8,11 @@ wrsts-button {
     border: none;
     outline: none;
     padding: 8px 12px;
-    background-color: $color-form-bg;
-    color: $color-font-dark;
+    background-color: $color-btn-bg;
+    color: $color-btn-font;
     transition: background-color .2s ease-in-out;
     &:hover {
-      background-color: darken($color-form-bg, 10%)
+      background-color: darken($color-btn-bg, 10%)
     }
   }
 }

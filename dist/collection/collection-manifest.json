@@ -233,7 +233,15 @@
           "name": "width",
           "type": "Number"
         }
-      ]
+      ],
+      "methods": [
+        {
+          "name": "toJson"
+        }
+      ],
+      "hostElement": {
+        "name": "wrstsInput"
+      }
     },
     {
       "tag": "wrsts-json-form",

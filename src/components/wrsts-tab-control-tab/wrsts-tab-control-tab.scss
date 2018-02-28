@@ -1,21 +1,22 @@
-@import '../../scss/colors.scss';
+@import '../../scss/variables.scss';
 
 wrsts-tab-control-tab {
   display: inline-block;
   user-select: none;
   label {
     display: inline-block;
-    background-color: $color-form-bg;
-    color: $color-font-dark;
+    background-color: $color-tabs-bg-pasive;
+    color: $color-tabs-font;
     padding: 10px 8px;
     font-weight: bold;
     cursor: pointer;
     transition: background-color .2s ease-in-out;
+    box-shadow: $box-shadow-tabs-tab;
   }
   label:hover {
-    background-color: darken($color-form-bg, 5%);
+    background-color: darken($color-tabs-bg-pasive, 5%);
   }
   &[active] label {
-    background-color: $color-light-bg;
+    background-color: $color-tabs-bg-active;
   }
 }

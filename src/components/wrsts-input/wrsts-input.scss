@@ -1,10 +1,18 @@
-@import '../../scss/colors.scss';
+@import '../../scss/variables.scss';
 
 wrsts-input {
   display: inline-block;
-  outline: none;
-  border: 1px solid $color-form-border;
-  &.error {
+  input {
+    padding: 8.5px 6px;
+    outline: none;
+    border: 1px solid $color-form-border;
+    box-shadow: $box-shadow-form;
+    transition: $box-shadow-transition;
+  }
+  input:focus {
+    box-shadow: $box-shadow-form-active;
+  }
+  input.error {
     border: 1px solid $color-form-border-error;
   }
 }

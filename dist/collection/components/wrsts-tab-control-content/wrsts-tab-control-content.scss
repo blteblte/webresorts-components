@@ -1,4 +1,4 @@
-@import '../../scss/colors.scss';
+@import '../../scss/variables.scss';
 
 @keyframes wrsts-tab-control-content-in {
   0% { opacity: 0; transform: scale(.99, .99); }
@@ -8,8 +8,9 @@
 wrsts-tab-control-content {
   display: none;
   padding: 10px 8px;
-  background-color: $color-light-bg;
-  color: $color-font-dark;
+  background-color: $color-tabs-bg-active;
+  color: $color-tabs-font;
+  box-shadow: $box-shadow-form;
 
   &[active] {
     display: block;

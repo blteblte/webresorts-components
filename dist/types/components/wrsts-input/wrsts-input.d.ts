@@ -1,4 +1,7 @@
+import { SerializationType } from '../../lib/component-serialization';
 export declare class WrstsInput {
+    wrstsInput: WrstsInput & HTMLElement;
+    input: HTMLInputElement;
     type: string;
     id: string;
     name: string;
@@ -26,5 +29,7 @@ export declare class WrstsInput {
     formnovalidate: boolean;
     multiple: boolean;
     required: boolean;
+    toJson(type?: SerializationType): {};
+    componentDidLoad(): void;
     render(): JSX.Element;
 }

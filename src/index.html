@@ -64,22 +64,6 @@
       <wrsts-checkbox disabled>I am disabled</wrsts-checkbox>
     </div>
 
-    <style>
-      wrsts-checkbox {
-        color: #036403;
-        font-weight: bold;
-      }
-      wrsts-checkbox label {
-        transition: color .3s ease-in-out;
-      }
-      wrsts-checkbox:not([disabled]) label:hover {
-        cursor: pointer;
-        color: #038803;
-      }
-      wrsts-checkbox:not([disabled]) i:hover {
-        cursor: pointer;
-      }
-    </style>
     <script>
       document.getElementById('showJson').addEventListener('click', function() {
         this.innerText = 'refresh json'
@@ -224,10 +208,17 @@
 
   <style>
     body {
+      font-family: Verdana,Arial,Helvetica,sans-serif;
       background-color: #ebebeb;
       line-height: 20px;
+      font-size: 12px;
     }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(e) {
+      //alert('loaded')
+    })
+  </script>
 
 
 </body>

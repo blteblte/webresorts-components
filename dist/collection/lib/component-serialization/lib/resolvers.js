@@ -7,6 +7,7 @@ ComponentSerializerResolver.ResolveKey = resolveKey;
 ComponentSerializerResolver.ResolveCheckboxValue = resolveCheckboxValue;
 ComponentSerializerResolver.ResolveTextareaValue = resolveTextareaValue;
 ComponentSerializerResolver.ResolveSelectValue = resolveSelectValue;
+ComponentSerializerResolver.ResolveInputValue = resolveInputValue;
 /* data attributes */
 ComponentSerializerResolver.ResolveDataAttributes = (obj, type) => type === SerializationType.Object
     ? resolveDataAttributesToObj(obj)
@@ -22,6 +23,9 @@ function resolveTextareaValue(obj) {
 }
 function resolveSelectValue(obj) {
     return obj.selectedValue;
+}
+function resolveInputValue(obj) {
+    return obj.input.value;
 }
 function resolveDataAttributesToObj(obj) {
     const rArr = resolveDataAttributesToArr(obj);

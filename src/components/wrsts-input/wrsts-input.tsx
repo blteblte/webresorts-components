@@ -1,10 +1,14 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, Method, Element } from '@stencil/core';
+import { ComponentSerializer, SerializationType, ComponentSerializerResolver } from '../../lib/component-serialization';
 
 @Component({
   tag: 'wrsts-input',
   styleUrl: 'wrsts-input.scss'
 })
 export class WrstsInput {
+
+  @Element() wrstsInput: WrstsInput & HTMLElement
+  input: HTMLInputElement
 
   @Prop() type: string
   @Prop() id: string
@@ -35,6 +39,18 @@ export class WrstsInput {
   @Prop() formnovalidate: boolean
   @Prop() multiple: boolean
   @Prop() required: boolean
+
+  @Method() toJson(type: SerializationType = 0) {
+    return ComponentSerializer.Serialize(
+        this.wrstsInput
+      , type
+      , { valueResolver: ComponentSerializerResolver.ResolveInputValue }
+    )
+  }
+
+  componentDidLoad() {
+    this.input = this.wrstsInput.querySelector('inpout')
+  }
 
   render() {
     return (

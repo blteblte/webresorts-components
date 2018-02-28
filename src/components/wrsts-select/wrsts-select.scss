@@ -1,4 +1,4 @@
-@import '../../scss/colors.scss';
+@import '../../scss/variables.scss';
 
 @keyframes wrsts-select-appear {
   0% { opacity: 0; }
@@ -12,19 +12,19 @@
 
 wrsts-select {
   animation: wrsts-select-appear .2s ease-in;
-  color: $color-font-dark;
+  color: $color-form-font;
   display: inline-block;
   position: relative;
-  transition: box-shadow .2s ease-in-out;
+  transition: $box-shadow-transition;
   &[focused] {
-    box-shadow: 0 0 4px rgba(150, 150, 150, .8);
+    box-shadow: $box-shadow-form-active
   }
 
   select { display: none; }
 
   input {
     border: 1px solid $color-form-border;
-    color: $color-font-dark;
+    color: $color-form-font;
     outline: none;
     padding: 4px 8px;
     display: block;
@@ -48,6 +48,7 @@ wrsts-select {
     border: 1px solid $color-form-border;
     min-width: 200px;
     min-height: 20px;
+    box-shadow: $box-shadow-form;
   }
 
   .wrsts-select-options {
