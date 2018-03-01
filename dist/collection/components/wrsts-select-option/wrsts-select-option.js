@@ -1,11 +1,5 @@
-export class WrstsSelectOption {
-    componentDidLoad() {
-        this.slotElement = this.wrstsSelectOption
-            .children[0] /* div */;
-    }
-    getSlot() {
-        return this.slotElement;
-    }
+import { BaseShadowComponent } from '../../lib/base-shadow-component';
+export class WrstsSelectOption extends BaseShadowComponent {
     select() {
         if (!this.selected)
             this.selected = true;
@@ -45,7 +39,8 @@ export class WrstsSelectOption {
             h("slot", null)));
     }
     static get is() { return "wrsts-select-option"; }
-    static get properties() { return { "focus": { "method": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "getSlot": { "method": true }, "hidden": { "type": Boolean, "attr": "hidden", "mutable": true }, "hide": { "method": true }, "index": { "type": String, "attr": "index" }, "select": { "method": true }, "selected": { "type": Boolean, "attr": "selected", "mutable": true }, "unfocus": { "method": true }, "unhide": { "method": true }, "unselect": { "method": true }, "value": { "type": String, "attr": "value" }, "wrstsSelectOption": { "elementRef": true } }; }
+    static get encapsulation() { return "shadow"; }
+    static get properties() { return { "elementRef": { "elementRef": true }, "focus": { "method": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "hidden": { "type": Boolean, "attr": "hidden", "mutable": true }, "hide": { "method": true }, "index": { "type": String, "attr": "index" }, "select": { "method": true }, "selected": { "type": Boolean, "attr": "selected", "mutable": true }, "unfocus": { "method": true }, "unhide": { "method": true }, "unselect": { "method": true }, "value": { "type": String, "attr": "value" } }; }
     static get events() { return [{ "name": "clicked", "method": "clicked", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-select-option:**/"; }
 }

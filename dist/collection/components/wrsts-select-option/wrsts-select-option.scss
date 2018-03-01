@@ -1,7 +1,7 @@
 @import '../../scss/variables.scss';
 
-wrsts-select-option { display: block; }
-wrsts-select-option > div  {
+:host { display: block; }
+:host > div  {
   display: block;
   padding: 4px 6px;
   background-color: $color-form-bg;

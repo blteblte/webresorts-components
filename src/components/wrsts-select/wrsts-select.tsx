@@ -1,18 +1,20 @@
 import { Component, Prop, State, Element, Listen, Method, Watch, Event, EventEmitter } from '@stencil/core';
-import { WrstsSelectOption } from '../wrsts-select-option/wrsts-select-option';
+import { WrstsSelectOption, WrstsSelectOptionType } from '../wrsts-select-option/wrsts-select-option';
 import { SerializationType, ComponentSerializer, ComponentSerializerResolver } from '../../lib/component-serialization';
-
-type WrstsSelectOptionType = WrstsSelectOption & HTMLElement
+import { BaseShadowComponent } from '../../lib/base-shadow-component';
 
 // TODO: huge cleanup needed
 
+export type WrstsSelectType = WrstsSelect & HTMLElement
+
 @Component({
   tag: 'wrsts-select',
-  styleUrl: 'wrsts-select.scss'
+  styleUrl: 'wrsts-select.scss',
+  shadow: true
 })
-export class WrstsSelect {
+export class WrstsSelect extends BaseShadowComponent<WrstsSelectType> {
 
-  @Element() wrstsSelect: WrstsSelect & HTMLElement
+  @Element() elementRef: WrstsSelectType
   select: HTMLSelectElement
   wrstsSelectSelect: HTMLElement
   input: HTMLInputElement
@@ -57,7 +59,7 @@ export class WrstsSelect {
   @State() showDropdown: boolean
 
   @Listen('document:click') onDocumentClick(e) {
-    if (e.target !== this.wrstsSelectSelect && e.target !== this.input) {
+    if (e.target !== this.elementRef && e.target !== this.input) {
       if (this.showDropdown) {
         this.toggleDropdown(false)
       }
@@ -103,6 +105,8 @@ export class WrstsSelect {
   @Listen('document:keydown.down') handleDown(e) {
     if (!this.showDropdown) { return }
     e.preventDefault()
+
+    console.log(this.wrstsSelectOptions)
 
     let nextIndex = 0
     const len = this.wrstsSelectOptions.length
@@ -160,7 +164,7 @@ export class WrstsSelect {
 
   get selectedText() {
     return this.selectedOption
-      ? this.selectedOption.getSlot().innerText
+      ? this.selectedOption.getSlotNodes()
       : this.placeholder || ''
   }
 
@@ -173,15 +177,11 @@ export class WrstsSelect {
    *  ... how do we look for a <slot /> changes?
    */
   @Method() bind() {
-    this.select = this.wrstsSelect.querySelector('select')
+    this.select = this.shadowQuerySelector('select')
+    this.wrstsSelectSelect = this.shadowQuerySelector('.wrsts-select-select')
 
-    this.wrstsSelectOptions = Array.prototype.slice.call(
-      this.wrstsSelect.querySelectorAll('wrsts-select-option')
-    )
-    this.wrstsSelectSelect = this.wrstsSelect.querySelector('.wrsts-select-select')
-
+    this.wrstsSelectOptions = this.getSlotElementsByTagName<WrstsSelectOptionType>('wrsts-select-option')
     console.log(this.wrstsSelectOptions)
-
     this.wrstsSelectOptions.forEach((wrstsSelectOption, index) => {
       wrstsSelectOption.index = index.toString()
       wrstsSelectOption.addEventListener('clicked', () => {
@@ -193,7 +193,7 @@ export class WrstsSelect {
     })
 
     if (this.search) {
-      this.input = this.wrstsSelect.querySelector('input')
+      this.input = this.shadowQuerySelector('input')
       this.input.addEventListener('change', e => e.stopPropagation())
     }
   }
@@ -285,7 +285,7 @@ export class WrstsSelect {
     const value = e.target.value
     this.wrstsSelectOptions.forEach((option) => {
       var isMatch = false
-      if (option.getSlot().innerText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+      if (option.getSlotNodes().filter(o => o.innerText.toLowerCase().indexOf(value.toLowerCase()) > -1)) {
         isMatch = true
       }
       if (option.value.toLowerCase().indexOf(value.toLowerCase()) > -1) {
@@ -302,7 +302,7 @@ export class WrstsSelect {
 
   @Method() toJson(type: SerializationType = 0) {
     return ComponentSerializer.Serialize(
-        this.wrstsSelect
+        this.elementRef
       , type
       , { valueResolver: ComponentSerializerResolver.ResolveSelectValue }
     )
@@ -314,7 +314,7 @@ export class WrstsSelect {
 
         <select name={this.name} id={this.id}>
           {this.wrstsSelectOptions.map((wrstsOption) =>
-            <option value={wrstsOption.value}>{wrstsOption.getSlot().innerText}</option>
+            <option value={wrstsOption.value}>{wrstsOption.getSlotNodes().reduce((p, n) => p += n.innerText, '')}</option>
           )}
         </select>
 

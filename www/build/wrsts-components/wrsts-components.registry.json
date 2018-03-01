@@ -2,8 +2,8 @@
   "namespace": "WrstsComponents",
   "fsNamespace": "wrsts-components",
   "loader": "../wrsts-components.js",
-  "core": "wrsts-components.doc8pxrp.js",
-  "corePolyfilled": "wrsts-components.y5pk41hx.js",
+  "core": "wrsts-components.prjcmmi2.js",
+  "corePolyfilled": "wrsts-components.axjdwg3u.js",
   "components": {
     "wrsts-button": {
       "$": "dd3od4cn"
@@ -18,10 +18,10 @@
       "$": "fobjhhdz"
     },
     "wrsts-select": {
-      "$": "zsoe5occ"
+      "$": "lxewzkqw"
     },
     "wrsts-select-option": {
-      "$": "zsoe5occ"
+      "$": "lxewzkqw"
     },
     "wrsts-tab-control": {
       "$": "kk0zvoai"

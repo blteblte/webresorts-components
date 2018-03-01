@@ -393,13 +393,14 @@
         }
       ],
       "hostElement": {
-        "name": "wrstsSelect"
+        "name": "elementRef"
       },
       "events": [
         {
           "event": "change"
         }
-      ]
+      ],
+      "shadow": true
     },
     {
       "tag": "wrsts-select-option",
@@ -443,9 +444,6 @@
           "name": "focus"
         },
         {
-          "name": "getSlot"
-        },
-        {
           "name": "hide"
         },
         {
@@ -462,13 +460,14 @@
         }
       ],
       "hostElement": {
-        "name": "wrstsSelectOption"
+        "name": "elementRef"
       },
       "events": [
         {
           "event": "clicked"
         }
-      ]
+      ],
+      "shadow": true
     },
     {
       "tag": "wrsts-tab-control",

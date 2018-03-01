@@ -1,13 +1,16 @@
 import { Component, Prop, Event, EventEmitter, Element, Method } from '@stencil/core';
+import { BaseShadowComponent } from '../../lib/base-shadow-component';
+
+export type WrstsSelectOptionType = WrstsSelectOption & HTMLElement
 
 @Component({
   tag: 'wrsts-select-option',
-  styleUrl: 'wrsts-select-option.scss'
+  styleUrl: 'wrsts-select-option.scss',
+  shadow: true
 })
-export class WrstsSelectOption {
+export class WrstsSelectOption extends BaseShadowComponent<WrstsSelectOptionType> {
 
-  @Element() wrstsSelectOption: WrstsSelectOption & HTMLElement
-  slotElement: HTMLElement
+  @Element() elementRef: WrstsSelectOptionType
 
   @Prop() value: string
   @Prop() index:  string
@@ -15,15 +18,6 @@ export class WrstsSelectOption {
   @Prop({ mutable: true }) focused: boolean
   @Prop({ mutable: true }) hidden: boolean
   @Event() clicked: EventEmitter
-
-  componentDidLoad() {
-    this.slotElement = this.wrstsSelectOption
-      .children[0] /* div */ as any
-  }
-
-  @Method() getSlot() {
-    return this.slotElement
-  }
 
   @Method() select() {
     if (!this.selected) this.selected = true

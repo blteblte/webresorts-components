@@ -1,7 +1,8 @@
 import { ComponentSerializer, ComponentSerializerResolver } from '../../lib/component-serialization';
-// TODO: huge cleanup needed
-export class WrstsSelect {
+import { BaseShadowComponent } from '../../lib/base-shadow-component';
+export class WrstsSelect extends BaseShadowComponent {
     constructor() {
+        super(...arguments);
         this.setProp = 0; // hax
         this.wrstsSelectOptions = [];
     }
@@ -29,7 +30,7 @@ export class WrstsSelect {
         }
     }
     onDocumentClick(e) {
-        if (e.target !== this.wrstsSelectSelect && e.target !== this.input) {
+        if (e.target !== this.elementRef && e.target !== this.input) {
             if (this.showDropdown) {
                 this.toggleDropdown(false);
             }
@@ -84,6 +85,7 @@ export class WrstsSelect {
             return;
         }
         e.preventDefault();
+        console.log(this.wrstsSelectOptions);
         let nextIndex = 0;
         const len = this.wrstsSelectOptions.length;
         const focusedIndex = this.wrstsSelectOptions.findIndex(x => x.focused);
@@ -148,7 +150,7 @@ export class WrstsSelect {
     }
     get selectedText() {
         return this.selectedOption
-            ? this.selectedOption.getSlot().innerText
+            ? this.selectedOption.getSlotNodes()
             : this.placeholder || '';
     }
     componentDidLoad() {
@@ -159,9 +161,9 @@ export class WrstsSelect {
      *  ... how do we look for a <slot /> changes?
      */
     bind() {
-        this.select = this.wrstsSelect.querySelector('select');
-        this.wrstsSelectOptions = Array.prototype.slice.call(this.wrstsSelect.querySelectorAll('wrsts-select-option'));
-        this.wrstsSelectSelect = this.wrstsSelect.querySelector('.wrsts-select-select');
+        this.select = this.shadowQuerySelector('select');
+        this.wrstsSelectSelect = this.shadowQuerySelector('.wrsts-select-select');
+        this.wrstsSelectOptions = this.getSlotElementsByTagName('wrsts-select-option');
         console.log(this.wrstsSelectOptions);
         this.wrstsSelectOptions.forEach((wrstsSelectOption, index) => {
             wrstsSelectOption.index = index.toString();
@@ -173,7 +175,7 @@ export class WrstsSelect {
             }
         });
         if (this.search) {
-            this.input = this.wrstsSelect.querySelector('input');
+            this.input = this.shadowQuerySelector('input');
             this.input.addEventListener('change', e => e.stopPropagation());
         }
     }
@@ -254,7 +256,7 @@ export class WrstsSelect {
         const value = e.target.value;
         this.wrstsSelectOptions.forEach((option) => {
             var isMatch = false;
-            if (option.getSlot().innerText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+            if (option.getSlotNodes().filter(o => o.innerText.toLowerCase().indexOf(value.toLowerCase()) > -1)) {
                 isMatch = true;
             }
             if (option.value.toLowerCase().indexOf(value.toLowerCase()) > -1) {
@@ -269,11 +271,11 @@ export class WrstsSelect {
         });
     }
     toJson(type = 0) {
-        return ComponentSerializer.Serialize(this.wrstsSelect, type, { valueResolver: ComponentSerializerResolver.ResolveSelectValue });
+        return ComponentSerializer.Serialize(this.elementRef, type, { valueResolver: ComponentSerializerResolver.ResolveSelectValue });
     }
     render() {
         return (h("div", { class: this.focused ? 'focused' : null },
-            h("select", { name: this.name, id: this.id }, this.wrstsSelectOptions.map((wrstsOption) => h("option", { value: wrstsOption.value }, wrstsOption.getSlot().innerText))),
+            h("select", { name: this.name, id: this.id }, this.wrstsSelectOptions.map((wrstsOption) => h("option", { value: wrstsOption.value }, wrstsOption.getSlotNodes().reduce((p, n) => p += n.innerText, '')))),
             h("div", { onClick: this.onSelectClicked.bind(this), class: 'wrsts-select-select ' + this.getOptionsVisibilityClass() }, this.selectedText),
             h("div", { class: 'wrsts-select-options ' + this.getOptionsVisibilityClass() },
                 this.search
@@ -282,7 +284,8 @@ export class WrstsSelect {
                 h("slot", null))));
     }
     static get is() { return "wrsts-select"; }
-    static get properties() { return { "bind": { "method": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "mutable": true, "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "mutable": true, "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "showDropdown": { "state": true }, "toJson": { "method": true }, "wrstsSelect": { "elementRef": true }, "wrstsSelectOptions": { "state": true } }; }
+    static get encapsulation() { return "shadow"; }
+    static get properties() { return { "bind": { "method": true }, "elementRef": { "elementRef": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "mutable": true, "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "mutable": true, "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "showDropdown": { "state": true }, "toJson": { "method": true }, "wrstsSelectOptions": { "state": true } }; }
     static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-select:**/"; }
 }
