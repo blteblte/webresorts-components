@@ -10,13 +10,15 @@
   100% { opacity: 1; transform: translateY(0%); }
 }
 
-wrsts-select {
+wrsts-select { display: inline-block; }
+
+wrsts-select > div {
   animation: wrsts-select-appear .2s ease-in;
   color: $color-form-font;
   display: inline-block;
   position: relative;
   transition: $box-shadow-transition;
-  &[focused] {
+  &.focused {
     box-shadow: $box-shadow-form-active
   }
 

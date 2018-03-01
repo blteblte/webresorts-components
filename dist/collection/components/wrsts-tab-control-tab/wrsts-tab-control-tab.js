@@ -3,7 +3,7 @@ export class WrstsTabControlTab {
         if (!this.active) {
             this.active = true;
             if (this.route !== undefined && this.route !== null) {
-                window.history.pushState(null, this.historyTitle, `#/${this.route}`);
+                window.location.href = `#/${this.route}`;
             }
         }
     }

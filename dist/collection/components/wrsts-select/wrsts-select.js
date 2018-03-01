@@ -34,11 +34,11 @@ export class WrstsSelect {
                 this.toggleDropdown(false);
             }
             if (this.focused) {
-                this.wrstsSelect.removeAttribute('focused');
+                this.focused = false;
             }
         }
         else {
-            this.wrstsSelect.setAttribute('focused', 'true');
+            this.focused = true;
         }
     }
     // todo: celan up
@@ -178,10 +178,10 @@ export class WrstsSelect {
         }
     }
     selectIndex(index) {
-        this.wrstsSelect.setAttribute('selected-index', index.toString());
+        this.selectedIndex = index.toString();
     }
     selectValue(value) {
-        this.wrstsSelect.setAttribute('selected-value', value);
+        this.selectedValue = value;
     }
     selectOptionByIndex(index) {
         this.setProp++; // this should we redone totally...
@@ -272,7 +272,7 @@ export class WrstsSelect {
         return ComponentSerializer.Serialize(this.wrstsSelect, type, { valueResolver: ComponentSerializerResolver.ResolveSelectValue });
     }
     render() {
-        return (h("div", null,
+        return (h("div", { class: this.focused ? 'focused' : null },
             h("select", { name: this.name, id: this.id }, this.wrstsSelectOptions.map((wrstsOption) => h("option", { value: wrstsOption.value }, wrstsOption.getSlot().innerText))),
             h("div", { onClick: this.onSelectClicked.bind(this), class: 'wrsts-select-select ' + this.getOptionsVisibilityClass() }, this.selectedText),
             h("div", { class: 'wrsts-select-options ' + this.getOptionsVisibilityClass() },
@@ -282,7 +282,7 @@ export class WrstsSelect {
                 h("slot", null))));
     }
     static get is() { return "wrsts-select"; }
-    static get properties() { return { "bind": { "method": true }, "focused": { "type": Boolean, "attr": "focused" }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "mutable": true, "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "mutable": true, "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "showDropdown": { "state": true }, "toJson": { "method": true }, "wrstsSelect": { "elementRef": true }, "wrstsSelectOptions": { "state": true } }; }
+    static get properties() { return { "bind": { "method": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "mutable": true, "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "mutable": true, "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "showDropdown": { "state": true }, "toJson": { "method": true }, "wrstsSelect": { "elementRef": true }, "wrstsSelectOptions": { "state": true } }; }
     static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-select:**/"; }
 }

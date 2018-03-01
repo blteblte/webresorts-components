@@ -51,7 +51,7 @@ export class WrstsSelect {
     }
   }
 
-  @Prop() focused: boolean
+  @Prop({ mutable: true }) focused: boolean
 
   @State() wrstsSelectOptions: WrstsSelectOptionType[] = []
   @State() showDropdown: boolean
@@ -62,10 +62,10 @@ export class WrstsSelect {
         this.toggleDropdown(false)
       }
       if (this.focused) {
-        this.wrstsSelect.removeAttribute('focused')
+        this.focused = false
       }
     } else {
-      this.wrstsSelect.setAttribute('focused', 'true')
+      this.focused = true
     }
   }
 
@@ -199,11 +199,11 @@ export class WrstsSelect {
   }
 
   @Method() selectIndex(index: number) {
-    this.wrstsSelect.setAttribute('selected-index', index.toString())
+    this.selectedIndex = index.toString()
   }
 
   @Method() selectValue(value: string) {
-    this.wrstsSelect.setAttribute('selected-value', value)
+    this.selectedValue = value
   }
 
   private selectOptionByIndex(index: number) {
@@ -310,7 +310,7 @@ export class WrstsSelect {
 
   render() {
     return (
-      <div>
+      <div class={this.focused ? 'focused' : null}>
 
         <select name={this.name} id={this.id}>
           {this.wrstsSelectOptions.map((wrstsOption) =>

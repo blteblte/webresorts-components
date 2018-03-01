@@ -17,7 +17,14 @@ export class WrstsTabControl {
         this.locationHash = window.location.hash;
         this.tabUrl = this.locationHash.replace('#/', '');
         if (this.tabUrl !== undefined && this.tabUrl !== null) {
-            var urlIndex = this.tabs.findIndex(x => x.route === this.tabUrl);
+            /* does not work on IE11 !!??!! */
+            //var urlIndex = this.tabs.findIndex(x => x.route === this.tabUrl)
+            /* workararound: */
+            let urlIndex = 0;
+            this.tabs.forEach((x, i) => {
+                if (x.route === this.tabUrl)
+                    urlIndex = i;
+            });
             if (urlIndex > -1) {
                 this.setTab(urlIndex);
             }

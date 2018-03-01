@@ -302,7 +302,8 @@
       "props": [
         {
           "name": "focused",
-          "type": "Boolean"
+          "type": "Boolean",
+          "mutable": true
         },
         {
           "name": "id",
