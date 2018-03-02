@@ -26,6 +26,10 @@
   }
 }
 
+:host {
+  display: block;
+}
+
 :host > div {
   display: none;
   padding: 10px 8px;

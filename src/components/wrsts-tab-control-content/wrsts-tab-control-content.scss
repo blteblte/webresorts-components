@@ -5,6 +5,10 @@
   100% { opacity: 1; transform: scale(1, 1); }
 }
 
+:host {
+  display: block;
+}
+
 :host > div {
   display: none;
   padding: 10px 8px;

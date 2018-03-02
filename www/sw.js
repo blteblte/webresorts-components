@@ -99,7 +99,7 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components.js",
-    "revision": "da268a22b37c644f516394c88b307010"
+    "revision": "21ccc6aaa0fff97e600f81c117a10d01"
   },
   {
     "url": "build/wrsts-components/0saldvcd.es5.js",
@@ -116,22 +116,6 @@ self.__precacheManifest = [
   {
     "url": "build/wrsts-components/8yu7fu5p.js",
     "revision": "09a59d5ad58734bb75403b6a8c611cf0"
-  },
-  {
-    "url": "build/wrsts-components/blce1xh5.es5.js",
-    "revision": "5a98a780de06a045eed33ae8866116fd"
-  },
-  {
-    "url": "build/wrsts-components/blce1xh5.js",
-    "revision": "4b01c5cde57a721aca85c706c96ecaf3"
-  },
-  {
-    "url": "build/wrsts-components/blce1xh5.sc.es5.js",
-    "revision": "f59eceab428b7454614d436455597a3d"
-  },
-  {
-    "url": "build/wrsts-components/blce1xh5.sc.js",
-    "revision": "ed005e4a51af7cbd2c2b874812842d86"
   },
   {
     "url": "build/wrsts-components/chunk1.es5.js",
@@ -156,6 +140,22 @@ self.__precacheManifest = [
   {
     "url": "build/wrsts-components/fobjhhdz.js",
     "revision": "0ef7439e61c68d89a4d1d0152d8aadae"
+  },
+  {
+    "url": "build/wrsts-components/i3b10upc.es5.js",
+    "revision": "a7da5d5d124d185961da1d8bffa279f5"
+  },
+  {
+    "url": "build/wrsts-components/i3b10upc.js",
+    "revision": "1a8c03a53691fe0fde44c56a26a46c27"
+  },
+  {
+    "url": "build/wrsts-components/i3b10upc.sc.es5.js",
+    "revision": "fae597762367a0458f33e6f1d12168db"
+  },
+  {
+    "url": "build/wrsts-components/i3b10upc.sc.js",
+    "revision": "4114739623dd8040b740aa237a45921b"
   },
   {
     "url": "build/wrsts-components/mgmahbxv.es5.js",
@@ -191,7 +191,7 @@ self.__precacheManifest = [
   },
   {
     "url": "build/wrsts-components/wrsts-components.registry.json",
-    "revision": "63304ac80ccca652d9bab6eea43b0749"
+    "revision": "c2b4cb6b4d5df8a693aa3f7ab1a78b3f"
   },
   {
     "url": "host.config.json",
@@ -199,7 +199,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "f67e0cbd9a4cd9fb06055c6b3647fbb9"
+    "revision": "895470b7f156b4270946a9d902458ac0"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
