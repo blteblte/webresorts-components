@@ -1,12 +1,11 @@
-import { Component, Prop, Method, Element } from '@stencil/core';
+import { Component, Prop, Method } from '@stencil/core';
 
 @Component({
   tag: 'wrsts-tab-control-content',
-  styleUrl: 'wrsts-tab-control-content.scss'
+  styleUrl: 'wrsts-tab-control-content.scss',
+  shadow: true
 })
 export class WrstsTabControlContent {
-
-  @Element() wrstsTabControlContent: WrstsTabControlContent & HTMLElement
 
   @Prop({ mutable: true }) active: boolean
 

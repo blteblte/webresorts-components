@@ -5,18 +5,15 @@
   100% { opacity: 1; transform: scale(1, 1); }
 }
 
-wrsts-tab-control-content > div {
+:host > div {
   display: none;
   padding: 10px 8px;
   background-color: $color-tabs-bg-active;
   color: $color-tabs-font;
   box-shadow: $box-shadow-form;
+  animation: wrsts-tab-control-content-in .2s ease-in-out;
 
   &.active {
     display: block;
   }
-}
-
-wrsts-tab-control-content > div {
-  animation: wrsts-tab-control-content-in .2s ease-in-out;
 }

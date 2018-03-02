@@ -1,11 +1,12 @@
-export class WrstsTabControl {
+import { BaseShadowComponent } from '../../lib/base-shadow-component';
+export class WrstsTabControl extends BaseShadowComponent {
     componentDidLoad() {
         this.bind();
         this.navigateByHash();
     }
     bind() {
-        this.tabs = Array.prototype.slice.call(this.wrstsTabControl.children[0].children);
-        this.contents = Array.prototype.slice.call(this.wrstsTabControl.children[1].children);
+        this.tabs = Array.prototype.slice.call(this.ShadowRoot.children[0].children);
+        this.contents = Array.prototype.slice.call(this.ShadowRoot.children[1].children);
         // todo: test rebinding and what happens with event listeners
         this.tabs.forEach((tab, index) => {
             tab.addEventListener('clicked', () => {
@@ -54,7 +55,8 @@ export class WrstsTabControl {
         return (h("slot", null));
     }
     static get is() { return "wrsts-tab-control"; }
-    static get properties() { return { "bind": { "method": true }, "setTab": { "method": true }, "wrstsTabControl": { "elementRef": true } }; }
+    static get encapsulation() { return "shadow"; }
+    static get properties() { return { "bind": { "method": true }, "elementRef": { "elementRef": true }, "setTab": { "method": true } }; }
     static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-tab-control:**/"; }
 }

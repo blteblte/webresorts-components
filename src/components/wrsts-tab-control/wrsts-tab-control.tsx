@@ -1,14 +1,18 @@
 import { Component, Element, Method, Listen, Event, EventEmitter } from '@stencil/core';
 import { WrstsTabControlTab } from '../wrsts-tab-control-tab/wrsts-tab-control-tab';
 import { WrstsTabControlContent } from '../wrsts-tab-control-content/wrsts-tab-control-content';
+import { BaseShadowComponent } from '../../lib/base-shadow-component';
+
+export type WrstsTabControlType = WrstsTabControl & HTMLElement
 
 @Component({
   tag: 'wrsts-tab-control',
-  styleUrl: 'wrsts-tab-control.scss'
+  styleUrl: 'wrsts-tab-control.scss',
+  shadow: true
 })
-export class WrstsTabControl {
+export class WrstsTabControl extends BaseShadowComponent<WrstsTabControlType> {
 
-  @Element() wrstsTabControl: WrstsTabControl & HTMLElement
+  @Element() elementRef: WrstsTabControlType
   tabs: (WrstsTabControlTab & HTMLElement)[]
   contents: (WrstsTabControlContent & HTMLElement)[]
   locationHash: string
@@ -22,8 +26,8 @@ export class WrstsTabControl {
   }
 
   @Method() bind() {
-    this.tabs = Array.prototype.slice.call(this.wrstsTabControl.children[0].children)
-    this.contents = Array.prototype.slice.call(this.wrstsTabControl.children[1].children)
+    this.tabs = Array.prototype.slice.call(this.ShadowRoot.children[0].children)
+    this.contents = Array.prototype.slice.call(this.ShadowRoot.children[1].children)
 
     // todo: test rebinding and what happens with event listeners
     this.tabs.forEach((tab, index) => {

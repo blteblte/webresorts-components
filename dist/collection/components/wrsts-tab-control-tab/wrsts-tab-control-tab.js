@@ -17,7 +17,8 @@ export class WrstsTabControlTab {
             h("slot", null)));
     }
     static get is() { return "wrsts-tab-control-tab"; }
-    static get properties() { return { "active": { "type": Boolean, "attr": "active", "mutable": true }, "historyTitle": { "type": String, "attr": "history-title" }, "route": { "type": String, "attr": "route" }, "setActive": { "method": true }, "unsetActive": { "method": true }, "wrstsTabControlTab": { "elementRef": true } }; }
+    static get encapsulation() { return "shadow"; }
+    static get properties() { return { "active": { "type": Boolean, "attr": "active", "mutable": true }, "historyTitle": { "type": String, "attr": "history-title" }, "route": { "type": String, "attr": "route" }, "setActive": { "method": true }, "unsetActive": { "method": true } }; }
     static get events() { return [{ "name": "clicked", "method": "clicked", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-tab-control-tab:**/"; }
 }

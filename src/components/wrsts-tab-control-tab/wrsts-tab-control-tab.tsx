@@ -1,12 +1,12 @@
-import { Component, Prop, Event, EventEmitter, Method, Element } from '@stencil/core';
+import { Component, Prop, Event, EventEmitter, Method } from '@stencil/core';
 
 @Component({
   tag: 'wrsts-tab-control-tab',
-  styleUrl: 'wrsts-tab-control-tab.scss'
+  styleUrl: 'wrsts-tab-control-tab.scss',
+  shadow: true
 })
 export class WrstsTabControlTab {
 
-  @Element() wrstsTabControlTab: WrstsTabControlTab & HTMLElement
   @Event() clicked: EventEmitter
   @Prop({ mutable: true }) active: boolean
   @Prop() route: string

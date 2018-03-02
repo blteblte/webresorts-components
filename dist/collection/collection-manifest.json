@@ -498,13 +498,14 @@
         }
       ],
       "hostElement": {
-        "name": "wrstsTabControl"
+        "name": "elementRef"
       },
       "events": [
         {
           "event": "change"
         }
-      ]
+      ],
+      "shadow": true
     },
     {
       "tag": "wrsts-tab-control-content",
@@ -533,9 +534,7 @@
           "name": "unsetActive"
         }
       ],
-      "hostElement": {
-        "name": "wrstsTabControlContent"
-      }
+      "shadow": true
     },
     {
       "tag": "wrsts-tab-control-contents",
@@ -548,7 +547,8 @@
             "components/wrsts-tab-control-contents/wrsts-tab-control-contents.scss"
           ]
         }
-      }
+      },
+      "shadow": true
     },
     {
       "tag": "wrsts-tab-control-tab",
@@ -585,14 +585,12 @@
           "name": "unsetActive"
         }
       ],
-      "hostElement": {
-        "name": "wrstsTabControlTab"
-      },
       "events": [
         {
           "event": "clicked"
         }
-      ]
+      ],
+      "shadow": true
     },
     {
       "tag": "wrsts-tab-control-tabs",
@@ -605,7 +603,8 @@
             "components/wrsts-tab-control-tabs/wrsts-tab-control-tabs.scss"
           ]
         }
-      }
+      },
+      "shadow": true
     },
     {
       "tag": "wrsts-tinymce",

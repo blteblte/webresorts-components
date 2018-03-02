@@ -14,6 +14,7 @@ export class WrstsTabControlContent {
             h("slot", null)));
     }
     static get is() { return "wrsts-tab-control-content"; }
-    static get properties() { return { "active": { "type": Boolean, "attr": "active", "mutable": true }, "setActive": { "method": true }, "unsetActive": { "method": true }, "wrstsTabControlContent": { "elementRef": true } }; }
+    static get encapsulation() { return "shadow"; }
+    static get properties() { return { "active": { "type": Boolean, "attr": "active", "mutable": true }, "setActive": { "method": true }, "unsetActive": { "method": true } }; }
     static get style() { return "/**style-placeholder:wrsts-tab-control-content:**/"; }
 }

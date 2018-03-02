@@ -2,8 +2,10 @@ import '../../stencil.core';
 import { EventEmitter } from '../../stencil.core';
 import { WrstsTabControlTab } from '../wrsts-tab-control-tab/wrsts-tab-control-tab';
 import { WrstsTabControlContent } from '../wrsts-tab-control-content/wrsts-tab-control-content';
-export declare class WrstsTabControl {
-    wrstsTabControl: WrstsTabControl & HTMLElement;
+import { BaseShadowComponent } from '../../lib/base-shadow-component';
+export declare type WrstsTabControlType = WrstsTabControl & HTMLElement;
+export declare class WrstsTabControl extends BaseShadowComponent<WrstsTabControlType> {
+    elementRef: WrstsTabControlType;
     tabs: (WrstsTabControlTab & HTMLElement)[];
     contents: (WrstsTabControlContent & HTMLElement)[];
     locationHash: string;
