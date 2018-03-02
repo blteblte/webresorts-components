@@ -383,10 +383,28 @@
           "name": "bind"
         },
         {
+          "name": "getShadowRoot"
+        },
+        {
+          "name": "getSlot"
+        },
+        {
+          "name": "getSlotElementsByTagName"
+        },
+        {
+          "name": "getSlotNodes"
+        },
+        {
           "name": "selectIndex"
         },
         {
           "name": "selectValue"
+        },
+        {
+          "name": "shadowQuerySelector"
+        },
+        {
+          "name": "shadowQuerySelectorAll"
         },
         {
           "name": "toJson"
@@ -444,10 +462,28 @@
           "name": "focus"
         },
         {
+          "name": "getShadowRoot"
+        },
+        {
+          "name": "getSlot"
+        },
+        {
+          "name": "getSlotElementsByTagName"
+        },
+        {
+          "name": "getSlotNodes"
+        },
+        {
           "name": "hide"
         },
         {
           "name": "select"
+        },
+        {
+          "name": "shadowQuerySelector"
+        },
+        {
+          "name": "shadowQuerySelectorAll"
         },
         {
           "name": "unfocus"
@@ -494,7 +530,25 @@
           "name": "bind"
         },
         {
+          "name": "getShadowRoot"
+        },
+        {
+          "name": "getSlot"
+        },
+        {
+          "name": "getSlotElementsByTagName"
+        },
+        {
+          "name": "getSlotNodes"
+        },
+        {
           "name": "setTab"
+        },
+        {
+          "name": "shadowQuerySelector"
+        },
+        {
+          "name": "shadowQuerySelectorAll"
         }
       ],
       "hostElement": {
@@ -528,12 +582,33 @@
       ],
       "methods": [
         {
+          "name": "getShadowRoot"
+        },
+        {
+          "name": "getSlot"
+        },
+        {
+          "name": "getSlotElementsByTagName"
+        },
+        {
+          "name": "getSlotNodes"
+        },
+        {
           "name": "setActive"
+        },
+        {
+          "name": "shadowQuerySelector"
+        },
+        {
+          "name": "shadowQuerySelectorAll"
         },
         {
           "name": "unsetActive"
         }
       ],
+      "hostElement": {
+        "name": "elementRef"
+      },
       "shadow": true
     },
     {
@@ -547,6 +622,29 @@
             "components/wrsts-tab-control-contents/wrsts-tab-control-contents.scss"
           ]
         }
+      },
+      "methods": [
+        {
+          "name": "getShadowRoot"
+        },
+        {
+          "name": "getSlot"
+        },
+        {
+          "name": "getSlotElementsByTagName"
+        },
+        {
+          "name": "getSlotNodes"
+        },
+        {
+          "name": "shadowQuerySelector"
+        },
+        {
+          "name": "shadowQuerySelectorAll"
+        }
+      ],
+      "hostElement": {
+        "name": "elementRef"
       },
       "shadow": true
     },
@@ -579,12 +677,33 @@
       ],
       "methods": [
         {
+          "name": "getShadowRoot"
+        },
+        {
+          "name": "getSlot"
+        },
+        {
+          "name": "getSlotElementsByTagName"
+        },
+        {
+          "name": "getSlotNodes"
+        },
+        {
           "name": "setActive"
+        },
+        {
+          "name": "shadowQuerySelector"
+        },
+        {
+          "name": "shadowQuerySelectorAll"
         },
         {
           "name": "unsetActive"
         }
       ],
+      "hostElement": {
+        "name": "elementRef"
+      },
       "events": [
         {
           "event": "clicked"
@@ -603,6 +722,29 @@
             "components/wrsts-tab-control-tabs/wrsts-tab-control-tabs.scss"
           ]
         }
+      },
+      "methods": [
+        {
+          "name": "getShadowRoot"
+        },
+        {
+          "name": "getSlot"
+        },
+        {
+          "name": "getSlotElementsByTagName"
+        },
+        {
+          "name": "getSlotNodes"
+        },
+        {
+          "name": "shadowQuerySelector"
+        },
+        {
+          "name": "shadowQuerySelectorAll"
+        }
+      ],
+      "hostElement": {
+        "name": "elementRef"
       },
       "shadow": true
     },

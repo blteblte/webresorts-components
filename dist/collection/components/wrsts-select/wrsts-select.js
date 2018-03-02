@@ -1,13 +1,30 @@
 import { ComponentSerializer, ComponentSerializerResolver } from '../../lib/component-serialization';
-import { BaseShadowComponent } from '../../lib/base-shadow-component';
-export class WrstsSelect extends BaseShadowComponent {
+export class WrstsSelect {
     constructor() {
-        super(...arguments);
         this.setProp = 0; // hax
         this.wrstsSelectOptions = [];
     }
+    getShadowRoot() {
+        return this.elementRef.shadowRoot;
+    }
+    getSlot() {
+        return this.getShadowRoot().querySelector('slot');
+    }
+    getSlotNodes(name) {
+        const slotSelector = name ? `slot[name="${name}"]` : 'slot';
+        return Array.prototype.slice.call(this.getShadowRoot().querySelector(slotSelector).assignedNodes());
+    }
+    shadowQuerySelector(query) {
+        return this.getShadowRoot().querySelector(query);
+    }
+    shadowQuerySelectorAll(query) {
+        return Array.prototype.slice.call(this.getShadowRoot().querySelectorAll(query));
+    }
+    getSlotElementsByTagName(tagName) {
+        return this.getSlotNodes().filter(o => o.tagName === tagName.toUpperCase());
+    }
     onSelectedIndexChanged(newValue, oldValue) {
-        console.log('watch selected index');
+        //console.log('watch selected index')
         if (newValue !== undefined && newValue !== null && parseInt(newValue, 10) !== NaN) {
             if (newValue !== oldValue) {
                 this.selectOptionByIndex(parseInt(newValue, 10));
@@ -85,7 +102,7 @@ export class WrstsSelect extends BaseShadowComponent {
             return;
         }
         e.preventDefault();
-        console.log(this.wrstsSelectOptions);
+        //console.log(this.wrstsSelectOptions)
         let nextIndex = 0;
         const len = this.wrstsSelectOptions.length;
         const focusedIndex = this.wrstsSelectOptions.findIndex(x => x.focused);
@@ -164,7 +181,7 @@ export class WrstsSelect extends BaseShadowComponent {
         this.select = this.shadowQuerySelector('select');
         this.wrstsSelectSelect = this.shadowQuerySelector('.wrsts-select-select');
         this.wrstsSelectOptions = this.getSlotElementsByTagName('wrsts-select-option');
-        console.log(this.wrstsSelectOptions);
+        //console.log(this.wrstsSelectOptions)
         this.wrstsSelectOptions.forEach((wrstsSelectOption, index) => {
             wrstsSelectOption.index = index.toString();
             wrstsSelectOption.addEventListener('clicked', () => {
@@ -285,7 +302,7 @@ export class WrstsSelect extends BaseShadowComponent {
     }
     static get is() { return "wrsts-select"; }
     static get encapsulation() { return "shadow"; }
-    static get properties() { return { "bind": { "method": true }, "elementRef": { "elementRef": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "mutable": true, "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "mutable": true, "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "showDropdown": { "state": true }, "toJson": { "method": true }, "wrstsSelectOptions": { "state": true } }; }
+    static get properties() { return { "bind": { "method": true }, "elementRef": { "elementRef": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "getShadowRoot": { "method": true }, "getSlot": { "method": true }, "getSlotElementsByTagName": { "method": true }, "getSlotNodes": { "method": true }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "mutable": true, "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "mutable": true, "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "shadowQuerySelector": { "method": true }, "shadowQuerySelectorAll": { "method": true }, "showDropdown": { "state": true }, "toJson": { "method": true }, "wrstsSelectOptions": { "state": true } }; }
     static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-select:**/"; }
 }

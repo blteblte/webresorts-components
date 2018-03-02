@@ -1,7 +1,6 @@
 import { Component, Prop, State, Element, Listen, Method, Watch, Event, EventEmitter } from '@stencil/core';
 import { WrstsSelectOption, WrstsSelectOptionType } from '../wrsts-select-option/wrsts-select-option';
 import { SerializationType, ComponentSerializer, ComponentSerializerResolver } from '../../lib/component-serialization';
-import { BaseShadowComponent } from '../../lib/base-shadow-component';
 
 // TODO: huge cleanup needed
 
@@ -12,7 +11,35 @@ export type WrstsSelectType = WrstsSelect & HTMLElement
   styleUrl: 'wrsts-select.scss',
   shadow: true
 })
-export class WrstsSelect extends BaseShadowComponent<WrstsSelectType> {
+export class WrstsSelect {
+  @Method() public getShadowRoot(): ShadowRoot {
+    return this.elementRef.shadowRoot
+  }
+
+  @Method() public getSlot() {
+    return this.getShadowRoot().querySelector('slot')
+  }
+
+  @Method() public getSlotNodes<T extends HTMLElement>(name?: string): T[] {
+    const slotSelector = name ? `slot[name="${name}"]` : 'slot'
+    return Array.prototype.slice.call(
+      (this.getShadowRoot().querySelector(slotSelector) as any).assignedNodes()
+    )
+  }
+
+  @Method() public shadowQuerySelector<T extends HTMLElement>(query: string): T {
+    return this.getShadowRoot().querySelector(query)
+  }
+
+  @Method() public shadowQuerySelectorAll<T extends HTMLElement>(query: string): T[] {
+    return Array.prototype.slice.call(
+      this.getShadowRoot().querySelectorAll(query)
+    )
+  }
+
+  @Method() public getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[] {
+    return this.getSlotNodes().filter(o => o.tagName === tagName.toUpperCase()) as T[]
+  }
 
   @Element() elementRef: WrstsSelectType
   select: HTMLSelectElement
@@ -30,7 +57,7 @@ export class WrstsSelect extends BaseShadowComponent<WrstsSelectType> {
 
   @Prop({ mutable: true }) selectedIndex: string
   @Watch('selectedIndex') onSelectedIndexChanged(newValue, oldValue) {
-    console.log('watch selected index')
+    //console.log('watch selected index')
     if (newValue !== undefined && newValue !== null && parseInt(newValue, 10) !== NaN) {
       if (newValue !== oldValue) {
         this.selectOptionByIndex(parseInt(newValue, 10))
@@ -106,7 +133,7 @@ export class WrstsSelect extends BaseShadowComponent<WrstsSelectType> {
     if (!this.showDropdown) { return }
     e.preventDefault()
 
-    console.log(this.wrstsSelectOptions)
+    //console.log(this.wrstsSelectOptions)
 
     let nextIndex = 0
     const len = this.wrstsSelectOptions.length
@@ -181,7 +208,7 @@ export class WrstsSelect extends BaseShadowComponent<WrstsSelectType> {
     this.wrstsSelectSelect = this.shadowQuerySelector('.wrsts-select-select')
 
     this.wrstsSelectOptions = this.getSlotElementsByTagName<WrstsSelectOptionType>('wrsts-select-option')
-    console.log(this.wrstsSelectOptions)
+    //console.log(this.wrstsSelectOptions)
     this.wrstsSelectOptions.forEach((wrstsSelectOption, index) => {
       wrstsSelectOption.index = index.toString()
       wrstsSelectOption.addEventListener('clicked', () => {

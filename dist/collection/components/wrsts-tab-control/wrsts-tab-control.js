@@ -1,18 +1,46 @@
-import { BaseShadowComponent } from '../../lib/base-shadow-component';
-export class WrstsTabControl extends BaseShadowComponent {
+export class WrstsTabControl {
+    getShadowRoot() {
+        return this.elementRef.shadowRoot;
+    }
+    getSlot() {
+        return this.getShadowRoot().querySelector('slot');
+    }
+    getSlotNodes(name) {
+        const slotSelector = name ? `slot[name="${name}"]` : 'slot';
+        return Array.prototype.slice.call(this.getShadowRoot().querySelector(slotSelector).assignedNodes());
+    }
+    shadowQuerySelector(query) {
+        return this.getShadowRoot().querySelector(query);
+    }
+    shadowQuerySelectorAll(query) {
+        return Array.prototype.slice.call(this.getShadowRoot().querySelectorAll(query));
+    }
+    getSlotElementsByTagName(tagName) {
+        return this.getSlotNodes().filter(o => o.tagName === tagName.toUpperCase());
+    }
     componentDidLoad() {
         this.bind();
         this.navigateByHash();
     }
     bind() {
-        this.tabs = Array.prototype.slice.call(this.ShadowRoot.children[0].children);
-        this.contents = Array.prototype.slice.call(this.ShadowRoot.children[1].children);
+        this.tabs = [];
+        this.contents = [];
+        const controlTabs = this.getSlotElementsByTagName('wrsts-tab-control-tabs');
+        if (controlTabs.length) {
+            this.tabs = controlTabs[0].getSlotElementsByTagName('wrsts-tab-control-tab');
+        }
+        const controlContents = this.getSlotElementsByTagName('wrsts-tab-control-contents');
+        if (controlContents.length) {
+            this.contents = controlContents[0].getSlotElementsByTagName('wrsts-tab-control-content');
+        }
         // todo: test rebinding and what happens with event listeners
-        this.tabs.forEach((tab, index) => {
-            tab.addEventListener('clicked', () => {
-                this.setTab(index);
+        if (this.tabs) {
+            this.tabs.forEach((tab, index) => {
+                tab.addEventListener('clicked', () => {
+                    this.setTab(index);
+                });
             });
-        });
+        }
     }
     navigateByHash() {
         this.locationHash = window.location.hash;
@@ -56,7 +84,7 @@ export class WrstsTabControl extends BaseShadowComponent {
     }
     static get is() { return "wrsts-tab-control"; }
     static get encapsulation() { return "shadow"; }
-    static get properties() { return { "bind": { "method": true }, "elementRef": { "elementRef": true }, "setTab": { "method": true } }; }
+    static get properties() { return { "bind": { "method": true }, "elementRef": { "elementRef": true }, "getShadowRoot": { "method": true }, "getSlot": { "method": true }, "getSlotElementsByTagName": { "method": true }, "getSlotNodes": { "method": true }, "setTab": { "method": true }, "shadowQuerySelector": { "method": true }, "shadowQuerySelectorAll": { "method": true } }; }
     static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-tab-control:**/"; }
 }
