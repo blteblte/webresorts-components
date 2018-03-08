@@ -2,44 +2,47 @@
   "namespace": "WrstsComponents",
   "fsNamespace": "wrsts-components",
   "loader": "../wrsts-components.js",
-  "core": "wrsts-components.prjcmmi2.js",
-  "corePolyfilled": "wrsts-components.axjdwg3u.js",
+  "core": "wrsts-components.xompe7z7.js",
+  "corePolyfilled": "wrsts-components.igdh8x89.js",
   "components": {
+    "wrsts-base-shadow": {
+      "$": "i3jwquf0"
+    },
     "wrsts-button": {
       "$": "dd3od4cn"
     },
     "wrsts-checkbox": {
-      "$": "8yu7fu5p"
+      "$": "hhlophb5"
     },
     "wrsts-input": {
-      "$": "mgmahbxv"
+      "$": "bhjrudtc"
     },
     "wrsts-json-form": {
       "$": "fobjhhdz"
     },
     "wrsts-select": {
-      "$": "rmoprmja"
+      "$": "qb3tyl9g"
     },
     "wrsts-select-option": {
-      "$": "rmoprmja"
+      "$": "qb3tyl9g"
     },
     "wrsts-tab-control": {
-      "$": "i3b10upc"
+      "$": "nknomv9p"
     },
     "wrsts-tab-control-content": {
-      "$": "i3b10upc"
+      "$": "nknomv9p"
     },
     "wrsts-tab-control-contents": {
-      "$": "i3b10upc"
+      "$": "nknomv9p"
     },
     "wrsts-tab-control-tab": {
-      "$": "i3b10upc"
+      "$": "nknomv9p"
     },
     "wrsts-tab-control-tabs": {
-      "$": "i3b10upc"
+      "$": "nknomv9p"
     },
     "wrsts-tinymce": {
-      "$": "0saldvcd"
+      "$": "ttwug3le"
     }
   }
 }

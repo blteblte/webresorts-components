@@ -3,20 +3,14 @@
 /* button */
 @-webkit-keyframes wrsts-checkbox-appear {
   0% {
-    opacity: 0;
-  }
+    opacity: 0; }
   100% {
-    opacity: 1;
-  }
-}
+    opacity: 1; } }
 @keyframes wrsts-checkbox-appear {
   0% {
-    opacity: 0;
-  }
+    opacity: 0; }
   100% {
-    opacity: 1;
-  }
-}
+    opacity: 1; } }
 
 wrsts-checkbox {
   -webkit-animation: wrsts-checkbox-appear .2s ease-in;
@@ -25,51 +19,30 @@ wrsts-checkbox {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  display: inline-table;
-}
-
-wrsts-checkbox[hidden] {
-  display: none;
-}
-
-wrsts-checkbox[disabled] {
-  color: #838383;
-}
-
-wrsts-checkbox input[type="checkbox"] {
-  display: none;
-}
-
-wrsts-checkbox div {
-  display: table;
-}
-
-wrsts-checkbox label {
-  display: inline-block;
-  line-height: 20px;
-}
-
-wrsts-checkbox label::before {
-  content: '';
-  display: inline-block;
-  width: 3px;
-}
-
-wrsts-checkbox i {
-  display: table-cell;
-  width: 20px;
-  height: 20px;
-  transition: background-image .2s ease-in-out;
-}
-
-wrsts-checkbox i.checked {
-  background: url(/assets/img/checkbox-checked.svg);
-}
-
-wrsts-checkbox i.unchecked {
-  background: url(/assets/img/checkbox-unchecked.svg);
-}
-
-wrsts-checkbox i.indeterminate {
-  background: url(/assets/img/checkbox-indeterminate.svg);
-}
+  display: inline-table; }
+  wrsts-checkbox[hidden] {
+    display: none; }
+  wrsts-checkbox[disabled] {
+    color: #838383; }
+  wrsts-checkbox input[type="checkbox"] {
+    display: none; }
+  wrsts-checkbox div {
+    display: table; }
+  wrsts-checkbox label {
+    display: inline-block;
+    line-height: 20px; }
+    wrsts-checkbox label::before {
+      content: '';
+      display: inline-block;
+      width: 3px; }
+  wrsts-checkbox i {
+    display: table-cell;
+    width: 20px;
+    height: 20px;
+    transition: background-image .2s ease-in-out; }
+    wrsts-checkbox i.checked {
+      background: url(/assets/img/checkbox-checked.svg); }
+    wrsts-checkbox i.unchecked {
+      background: url(/assets/img/checkbox-unchecked.svg); }
+    wrsts-checkbox i.indeterminate {
+      background: url(/assets/img/checkbox-indeterminate.svg); }

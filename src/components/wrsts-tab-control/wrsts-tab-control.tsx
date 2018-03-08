@@ -3,6 +3,7 @@ import { WrstsTabControlTab, WrstsTabControlTabType } from '../wrsts-tab-control
 import { WrstsTabControlContent, WrstsTabControlContentType } from '../wrsts-tab-control-content/wrsts-tab-control-content';
 import { WrstsTabControlTabsType } from '../wrsts-tab-control-tabs/wrsts-tab-control-tabs';
 import { WrstsTabControlContentsType } from '../wrsts-tab-control-contents/wrsts-tab-control-contents';
+import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
 
 export type WrstsTabControlType = WrstsTabControl & HTMLElement
 
@@ -11,35 +12,8 @@ export type WrstsTabControlType = WrstsTabControl & HTMLElement
   styleUrl: 'wrsts-tab-control.scss',
   shadow: true
 })
-export class WrstsTabControl {
-  @Method() public getShadowRoot(): ShadowRoot {
-    return this.elementRef.shadowRoot
-  }
-
-  @Method() public getSlot() {
-    return this.getShadowRoot().querySelector('slot')
-  }
-
-  @Method() public getSlotNodes<T extends HTMLElement>(name?: string): T[] {
-    const slotSelector = name ? `slot[name="${name}"]` : 'slot'
-    return Array.prototype.slice.call(
-      (this.getShadowRoot().querySelector(slotSelector) as any).assignedNodes()
-    )
-  }
-
-  @Method() public shadowQuerySelector<T extends HTMLElement>(query: string): T {
-    return this.getShadowRoot().querySelector(query)
-  }
-
-  @Method() public shadowQuerySelectorAll<T extends HTMLElement>(query: string): T[] {
-    return Array.prototype.slice.call(
-      this.getShadowRoot().querySelectorAll(query)
-    )
-  }
-
-  @Method() public getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[] {
-    return this.getSlotNodes().filter(o => o.tagName === tagName.toUpperCase()) as T[]
-  }
+export class WrstsTabControl extends WrstsBaseShadow {
+  constructor() { super() }
 
   @Element() elementRef: WrstsTabControlType
   tabs: (WrstsTabControlTab & HTMLElement)[]

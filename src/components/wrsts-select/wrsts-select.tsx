@@ -1,6 +1,7 @@
 import { Component, Prop, State, Element, Listen, Method, Watch, Event, EventEmitter } from '@stencil/core';
 import { WrstsSelectOption, WrstsSelectOptionType } from '../wrsts-select-option/wrsts-select-option';
 import { SerializationType, ComponentSerializer, ComponentSerializerResolver } from '../../lib/component-serialization';
+import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
 
 // TODO: huge cleanup needed
 
@@ -11,35 +12,14 @@ export type WrstsSelectType = WrstsSelect & HTMLElement
   styleUrl: 'wrsts-select.scss',
   shadow: true
 })
-export class WrstsSelect {
-  @Method() public getShadowRoot(): ShadowRoot {
-    return this.elementRef.shadowRoot
-  }
-
-  @Method() public getSlot() {
-    return this.getShadowRoot().querySelector('slot')
-  }
-
-  @Method() public getSlotNodes<T extends HTMLElement>(name?: string): T[] {
-    const slotSelector = name ? `slot[name="${name}"]` : 'slot'
-    return Array.prototype.slice.call(
-      (this.getShadowRoot().querySelector(slotSelector) as any).assignedNodes()
-    )
-  }
-
-  @Method() public shadowQuerySelector<T extends HTMLElement>(query: string): T {
-    return this.getShadowRoot().querySelector(query)
-  }
-
-  @Method() public shadowQuerySelectorAll<T extends HTMLElement>(query: string): T[] {
-    return Array.prototype.slice.call(
-      this.getShadowRoot().querySelectorAll(query)
-    )
-  }
-
-  @Method() public getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[] {
-    return this.getSlotNodes().filter(o => o.tagName === tagName.toUpperCase()) as T[]
-  }
+export class WrstsSelect extends WrstsBaseShadow {
+  constructor() { super() }
+  // @Method() getShadowRoot = Helpers.getShadowRoot
+  // @Method() getSlot = Helpers.getSlot
+  // @Method() getSlotNodes = Helpers.getSlotNodes
+  // @Method() shadowQuerySelector = Helpers.shadowQuerySelector
+  // @Method() shadowQuerySelectorAll = Helpers.shadowQuerySelectorAll
+  // @Method() getSlotElementsByTagName = Helpers.getSlotElementsByTagName
 
   @Element() elementRef: WrstsSelectType
   select: HTMLSelectElement
@@ -340,9 +320,9 @@ export class WrstsSelect {
       <div class={this.focused ? 'focused' : null}>
 
         <select name={this.name} id={this.id}>
-          {this.wrstsSelectOptions.map((wrstsOption) =>
+          {/* {this.wrstsSelectOptions.map((wrstsOption) =>
             <option value={wrstsOption.value}>{wrstsOption.getSlotNodes().reduce((p, n) => p += n.innerText, '')}</option>
-          )}
+          )} */}
         </select>
 
         <div onClick={this.onSelectClicked.bind(this)}

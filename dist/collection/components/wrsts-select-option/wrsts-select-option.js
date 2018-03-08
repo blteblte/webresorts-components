@@ -1,23 +1,6 @@
-export class WrstsSelectOption {
-    getShadowRoot() {
-        return this.elementRef.shadowRoot;
-    }
-    getSlot() {
-        return this.getShadowRoot().querySelector('slot');
-    }
-    getSlotNodes(name) {
-        const slotSelector = name ? `slot[name="${name}"]` : 'slot';
-        return Array.prototype.slice.call(this.getShadowRoot().querySelector(slotSelector).assignedNodes());
-    }
-    shadowQuerySelector(query) {
-        return this.getShadowRoot().querySelector(query);
-    }
-    shadowQuerySelectorAll(query) {
-        return Array.prototype.slice.call(this.getShadowRoot().querySelectorAll(query));
-    }
-    getSlotElementsByTagName(tagName) {
-        return this.getSlotNodes().filter(o => o.tagName === tagName.toUpperCase());
-    }
+import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
+export class WrstsSelectOption extends WrstsBaseShadow {
+    constructor() { super(); }
     select() {
         if (!this.selected)
             this.selected = true;
@@ -58,7 +41,7 @@ export class WrstsSelectOption {
     }
     static get is() { return "wrsts-select-option"; }
     static get encapsulation() { return "shadow"; }
-    static get properties() { return { "elementRef": { "elementRef": true }, "focus": { "method": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "getShadowRoot": { "method": true }, "getSlot": { "method": true }, "getSlotElementsByTagName": { "method": true }, "getSlotNodes": { "method": true }, "hidden": { "type": Boolean, "attr": "hidden", "mutable": true }, "hide": { "method": true }, "index": { "type": String, "attr": "index" }, "select": { "method": true }, "selected": { "type": Boolean, "attr": "selected", "mutable": true }, "shadowQuerySelector": { "method": true }, "shadowQuerySelectorAll": { "method": true }, "unfocus": { "method": true }, "unhide": { "method": true }, "unselect": { "method": true }, "value": { "type": String, "attr": "value" } }; }
+    static get properties() { return { "elementRef": { "elementRef": true }, "focus": { "method": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "hidden": { "type": Boolean, "attr": "hidden", "mutable": true }, "hide": { "method": true }, "index": { "type": String, "attr": "index" }, "select": { "method": true }, "selected": { "type": Boolean, "attr": "selected", "mutable": true }, "unfocus": { "method": true }, "unhide": { "method": true }, "unselect": { "method": true }, "value": { "type": String, "attr": "value" } }; }
     static get events() { return [{ "name": "clicked", "method": "clicked", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-select-option:**/"; }
 }

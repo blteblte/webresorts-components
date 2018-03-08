@@ -20,6 +20,36 @@ declare global {
 
 
 import {
+  WrstsBaseShadow as WrstsBaseShadow
+} from './components/wrsts-base-shadow/wrsts-base-shadow';
+
+declare global {
+  interface HTMLWrstsBaseShadowElement extends WrstsBaseShadow, HTMLStencilElement {
+  }
+  var HTMLWrstsBaseShadowElement: {
+    prototype: HTMLWrstsBaseShadowElement;
+    new (): HTMLWrstsBaseShadowElement;
+  };
+  interface HTMLElementTagNameMap {
+    "wrsts-base-shadow": HTMLWrstsBaseShadowElement;
+  }
+  interface ElementTagNameMap {
+    "wrsts-base-shadow": HTMLWrstsBaseShadowElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wrsts-base-shadow": JSXElements.WrstsBaseShadowAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WrstsBaseShadowAttributes extends HTMLAttributes {
+      
+    }
+  }
+}
+
+
+import {
   WrstsButton as WrstsButton
 } from './components/wrsts-button/wrsts-button';
 

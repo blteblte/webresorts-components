@@ -2,8 +2,7 @@
 /* tabs */
 /* button */
 :host {
-  display: block;
-}
+  display: block; }
 
 :host > div {
   display: block;
@@ -14,21 +13,12 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  transition: background-color 0.2s ease-in-out;
-}
-
-:host > div.selected {
-  background-color: #e6e6e6;
-}
-
-:host > div:hover {
-  background-color: #f2f2f2;
-}
-
-:host > div.focused {
-  background-color: #e6e6e6;
-}
-
-:host > div.hidden {
-  display: none;
-}
+  transition: background-color 0.2s ease-in-out; }
+  :host > div.selected {
+    background-color: #e6e6e6; }
+  :host > div:hover {
+    background-color: #f2f2f2; }
+  :host > div.focused {
+    background-color: #e6e6e6; }
+  :host > div.hidden {
+    display: none; }

@@ -1,4 +1,5 @@
 import { Component, Prop, Event, EventEmitter, Method, Element } from '@stencil/core';
+import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
 
 export type WrstsTabControlTabType = WrstsTabControlTab & HTMLElement
 
@@ -7,36 +8,7 @@ export type WrstsTabControlTabType = WrstsTabControlTab & HTMLElement
   styleUrl: 'wrsts-tab-control-tab.scss',
   shadow: true
 })
-export class WrstsTabControlTab {
-  @Method() public getShadowRoot(): ShadowRoot {
-    return this.elementRef.shadowRoot
-  }
-
-  @Method() public getSlot() {
-    return this.getShadowRoot().querySelector('slot')
-  }
-
-  @Method() public getSlotNodes<T extends HTMLElement>(name?: string): T[] {
-    const slotSelector = name ? `slot[name="${name}"]` : 'slot'
-    return Array.prototype.slice.call(
-      (this.getShadowRoot().querySelector(slotSelector) as any).assignedNodes()
-    )
-  }
-
-  @Method() public shadowQuerySelector<T extends HTMLElement>(query: string): T {
-    return this.getShadowRoot().querySelector(query)
-  }
-
-  @Method() public shadowQuerySelectorAll<T extends HTMLElement>(query: string): T[] {
-    return Array.prototype.slice.call(
-      this.getShadowRoot().querySelectorAll(query)
-    )
-  }
-
-  @Method() public getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[] {
-    return this.getSlotNodes().filter(o => o.tagName === tagName.toUpperCase()) as T[]
-  }
-
+export class WrstsTabControlTab extends WrstsBaseShadow {
   @Element() elementRef: WrstsTabControlTabType
 
   @Event() clicked: EventEmitter

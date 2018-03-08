@@ -1,6 +1,33 @@
 {
   "components": [
     {
+      "tag": "wrsts-base-shadow",
+      "dependencies": [],
+      "componentClass": "WrstsBaseShadow",
+      "componentPath": "components/wrsts-base-shadow/wrsts-base-shadow.js",
+      "styles": {},
+      "methods": [
+        {
+          "name": "getShadowRoot"
+        },
+        {
+          "name": "getSlot"
+        },
+        {
+          "name": "getSlotElementsByTagName"
+        },
+        {
+          "name": "getSlotNodes"
+        },
+        {
+          "name": "shadowQuerySelector"
+        },
+        {
+          "name": "shadowQuerySelectorAll"
+        }
+      ]
+    },
+    {
       "tag": "wrsts-button",
       "dependencies": [],
       "componentClass": "WrstsButton",
@@ -383,28 +410,10 @@
           "name": "bind"
         },
         {
-          "name": "getShadowRoot"
-        },
-        {
-          "name": "getSlot"
-        },
-        {
-          "name": "getSlotElementsByTagName"
-        },
-        {
-          "name": "getSlotNodes"
-        },
-        {
           "name": "selectIndex"
         },
         {
           "name": "selectValue"
-        },
-        {
-          "name": "shadowQuerySelector"
-        },
-        {
-          "name": "shadowQuerySelectorAll"
         },
         {
           "name": "toJson"
@@ -462,28 +471,10 @@
           "name": "focus"
         },
         {
-          "name": "getShadowRoot"
-        },
-        {
-          "name": "getSlot"
-        },
-        {
-          "name": "getSlotElementsByTagName"
-        },
-        {
-          "name": "getSlotNodes"
-        },
-        {
           "name": "hide"
         },
         {
           "name": "select"
-        },
-        {
-          "name": "shadowQuerySelector"
-        },
-        {
-          "name": "shadowQuerySelectorAll"
         },
         {
           "name": "unfocus"
@@ -530,25 +521,7 @@
           "name": "bind"
         },
         {
-          "name": "getShadowRoot"
-        },
-        {
-          "name": "getSlot"
-        },
-        {
-          "name": "getSlotElementsByTagName"
-        },
-        {
-          "name": "getSlotNodes"
-        },
-        {
           "name": "setTab"
-        },
-        {
-          "name": "shadowQuerySelector"
-        },
-        {
-          "name": "shadowQuerySelectorAll"
         }
       ],
       "hostElement": {
@@ -582,25 +555,7 @@
       ],
       "methods": [
         {
-          "name": "getShadowRoot"
-        },
-        {
-          "name": "getSlot"
-        },
-        {
-          "name": "getSlotElementsByTagName"
-        },
-        {
-          "name": "getSlotNodes"
-        },
-        {
           "name": "setActive"
-        },
-        {
-          "name": "shadowQuerySelector"
-        },
-        {
-          "name": "shadowQuerySelectorAll"
         },
         {
           "name": "unsetActive"
@@ -623,26 +578,6 @@
           ]
         }
       },
-      "methods": [
-        {
-          "name": "getShadowRoot"
-        },
-        {
-          "name": "getSlot"
-        },
-        {
-          "name": "getSlotElementsByTagName"
-        },
-        {
-          "name": "getSlotNodes"
-        },
-        {
-          "name": "shadowQuerySelector"
-        },
-        {
-          "name": "shadowQuerySelectorAll"
-        }
-      ],
       "hostElement": {
         "name": "elementRef"
       },
@@ -677,25 +612,7 @@
       ],
       "methods": [
         {
-          "name": "getShadowRoot"
-        },
-        {
-          "name": "getSlot"
-        },
-        {
-          "name": "getSlotElementsByTagName"
-        },
-        {
-          "name": "getSlotNodes"
-        },
-        {
           "name": "setActive"
-        },
-        {
-          "name": "shadowQuerySelector"
-        },
-        {
-          "name": "shadowQuerySelectorAll"
         },
         {
           "name": "unsetActive"
@@ -725,22 +642,7 @@
       },
       "methods": [
         {
-          "name": "getShadowRoot"
-        },
-        {
-          "name": "getSlot"
-        },
-        {
           "name": "getSlotElementsByTagName"
-        },
-        {
-          "name": "getSlotNodes"
-        },
-        {
-          "name": "shadowQuerySelector"
-        },
-        {
-          "name": "shadowQuerySelectorAll"
         }
       ],
       "hostElement": {
@@ -817,7 +719,49 @@
   "collections": [],
   "compiler": {
     "name": "@stencil/core",
-    "version": "0.6.13",
+    "version": "0.6.18",
     "typescriptVersion": "2.7.2"
-  }
+  },
+  "bundles": [
+    {
+      "components": [
+        "wrsts-checkbox"
+      ]
+    },
+    {
+      "components": [
+        "wrsts-tinymce"
+      ]
+    },
+    {
+      "components": [
+        "wrsts-tab-control",
+        "wrsts-tab-control-content",
+        "wrsts-tab-control-contents",
+        "wrsts-tab-control-tab",
+        "wrsts-tab-control-tabs"
+      ]
+    },
+    {
+      "components": [
+        "wrsts-select",
+        "wrsts-select-option"
+      ]
+    },
+    {
+      "components": [
+        "wrsts-json-form"
+      ]
+    },
+    {
+      "components": [
+        "wrsts-button"
+      ]
+    },
+    {
+      "components": [
+        "wrsts-input"
+      ]
+    }
+  ]
 }

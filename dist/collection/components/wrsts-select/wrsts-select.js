@@ -1,27 +1,10 @@
 import { ComponentSerializer, ComponentSerializerResolver } from '../../lib/component-serialization';
-export class WrstsSelect {
+import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
+export class WrstsSelect extends WrstsBaseShadow {
     constructor() {
+        super();
         this.setProp = 0; // hax
         this.wrstsSelectOptions = [];
-    }
-    getShadowRoot() {
-        return this.elementRef.shadowRoot;
-    }
-    getSlot() {
-        return this.getShadowRoot().querySelector('slot');
-    }
-    getSlotNodes(name) {
-        const slotSelector = name ? `slot[name="${name}"]` : 'slot';
-        return Array.prototype.slice.call(this.getShadowRoot().querySelector(slotSelector).assignedNodes());
-    }
-    shadowQuerySelector(query) {
-        return this.getShadowRoot().querySelector(query);
-    }
-    shadowQuerySelectorAll(query) {
-        return Array.prototype.slice.call(this.getShadowRoot().querySelectorAll(query));
-    }
-    getSlotElementsByTagName(tagName) {
-        return this.getSlotNodes().filter(o => o.tagName === tagName.toUpperCase());
     }
     onSelectedIndexChanged(newValue, oldValue) {
         //console.log('watch selected index')
@@ -292,7 +275,7 @@ export class WrstsSelect {
     }
     render() {
         return (h("div", { class: this.focused ? 'focused' : null },
-            h("select", { name: this.name, id: this.id }, this.wrstsSelectOptions.map((wrstsOption) => h("option", { value: wrstsOption.value }, wrstsOption.getSlotNodes().reduce((p, n) => p += n.innerText, '')))),
+            h("select", { name: this.name, id: this.id }),
             h("div", { onClick: this.onSelectClicked.bind(this), class: 'wrsts-select-select ' + this.getOptionsVisibilityClass() }, this.selectedText),
             h("div", { class: 'wrsts-select-options ' + this.getOptionsVisibilityClass() },
                 this.search
@@ -302,7 +285,7 @@ export class WrstsSelect {
     }
     static get is() { return "wrsts-select"; }
     static get encapsulation() { return "shadow"; }
-    static get properties() { return { "bind": { "method": true }, "elementRef": { "elementRef": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "getShadowRoot": { "method": true }, "getSlot": { "method": true }, "getSlotElementsByTagName": { "method": true }, "getSlotNodes": { "method": true }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "mutable": true, "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "mutable": true, "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "shadowQuerySelector": { "method": true }, "shadowQuerySelectorAll": { "method": true }, "showDropdown": { "state": true }, "toJson": { "method": true }, "wrstsSelectOptions": { "state": true } }; }
+    static get properties() { return { "bind": { "method": true }, "elementRef": { "elementRef": true }, "focused": { "type": Boolean, "attr": "focused", "mutable": true }, "id": { "type": String, "attr": "id" }, "name": { "type": String, "attr": "name" }, "placeholder": { "type": String, "attr": "placeholder" }, "search": { "type": Boolean, "attr": "search" }, "selectedIndex": { "type": String, "attr": "selected-index", "mutable": true, "watchCallbacks": ["onSelectedIndexChanged"] }, "selectedValue": { "type": String, "attr": "selected-value", "mutable": true, "watchCallbacks": ["onSelectedValueChanged"] }, "selectIndex": { "method": true }, "selectValue": { "method": true }, "showDropdown": { "state": true }, "toJson": { "method": true }, "wrstsSelectOptions": { "state": true } }; }
     static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-select:**/"; }
 }

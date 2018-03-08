@@ -1,12 +1,8 @@
 import '../../stencil.core';
+import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
 export declare type WrstsTabControlContentType = WrstsTabControlContent & HTMLElement;
-export declare class WrstsTabControlContent {
-    getShadowRoot(): ShadowRoot;
-    getSlot(): Element;
-    getSlotNodes<T extends HTMLElement>(name?: string): T[];
-    shadowQuerySelector<T extends HTMLElement>(query: string): T;
-    shadowQuerySelectorAll<T extends HTMLElement>(query: string): T[];
-    getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[];
+export declare class WrstsTabControlContent extends WrstsBaseShadow {
+    constructor();
     elementRef: WrstsTabControlContentType;
     active: boolean;
     setActive(): void;

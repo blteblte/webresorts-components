@@ -1,13 +1,8 @@
 import '../../stencil.core';
 import { EventEmitter } from '../../stencil.core';
+import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
 export declare type WrstsTabControlTabType = WrstsTabControlTab & HTMLElement;
-export declare class WrstsTabControlTab {
-    getShadowRoot(): ShadowRoot;
-    getSlot(): Element;
-    getSlotNodes<T extends HTMLElement>(name?: string): T[];
-    shadowQuerySelector<T extends HTMLElement>(query: string): T;
-    shadowQuerySelectorAll<T extends HTMLElement>(query: string): T[];
-    getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[];
+export declare class WrstsTabControlTab extends WrstsBaseShadow {
     elementRef: WrstsTabControlTabType;
     clicked: EventEmitter;
     active: boolean;

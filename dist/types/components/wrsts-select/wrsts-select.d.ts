@@ -2,14 +2,10 @@ import '../../stencil.core';
 import { EventEmitter } from '../../stencil.core';
 import { WrstsSelectOptionType } from '../wrsts-select-option/wrsts-select-option';
 import { SerializationType } from '../../lib/component-serialization';
+import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
 export declare type WrstsSelectType = WrstsSelect & HTMLElement;
-export declare class WrstsSelect {
-    getShadowRoot(): ShadowRoot;
-    getSlot(): Element;
-    getSlotNodes<T extends HTMLElement>(name?: string): T[];
-    shadowQuerySelector<T extends HTMLElement>(query: string): T;
-    shadowQuerySelectorAll<T extends HTMLElement>(query: string): T[];
-    getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[];
+export declare class WrstsSelect extends WrstsBaseShadow {
+    constructor();
     elementRef: WrstsSelectType;
     select: HTMLSelectElement;
     wrstsSelectSelect: HTMLElement;
