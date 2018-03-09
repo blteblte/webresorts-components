@@ -1,8 +1,7 @@
 import '../../stencil.core';
-import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
+import { GetSlotElementsByTagName } from '../helpers';
 export declare type WrstsTabControlTabsType = WrstsTabControlTabs & HTMLElement;
-export declare class WrstsTabControlTabs extends WrstsBaseShadow {
-    constructor();
+export declare class WrstsTabControlTabs implements GetSlotElementsByTagName {
     getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[];
     elementRef: WrstsTabControlTabsType;
     render(): JSX.Element;

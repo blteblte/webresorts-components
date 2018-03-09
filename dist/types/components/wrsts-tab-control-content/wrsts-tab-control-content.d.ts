@@ -1,8 +1,6 @@
 import '../../stencil.core';
-import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
 export declare type WrstsTabControlContentType = WrstsTabControlContent & HTMLElement;
-export declare class WrstsTabControlContent extends WrstsBaseShadow {
-    constructor();
+export declare class WrstsTabControlContent {
     elementRef: WrstsTabControlContentType;
     active: boolean;
     setActive(): void;

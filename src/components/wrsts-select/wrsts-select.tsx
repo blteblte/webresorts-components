@@ -14,12 +14,42 @@ export type WrstsSelectType = WrstsSelect & HTMLElement
 })
 export class WrstsSelect extends WrstsBaseShadow {
   constructor() { super() }
-  // @Method() getShadowRoot = Helpers.getShadowRoot
-  // @Method() getSlot = Helpers.getSlot
-  // @Method() getSlotNodes = Helpers.getSlotNodes
-  // @Method() shadowQuerySelector = Helpers.shadowQuerySelector
-  // @Method() shadowQuerySelectorAll = Helpers.shadowQuerySelectorAll
-  // @Method() getSlotElementsByTagName = Helpers.getSlotElementsByTagName
+
+  @Method() getShadowRoot(): ShadowRoot {
+    return (this as any).elementRef.shadowRoot || ((this as any).elementRef as any)
+  }
+
+  @Method() getSlot() {
+    return this.getShadowRoot().querySelector('slot') || this.getShadowRoot()
+  }
+
+  @Method() getSlotNodes<T extends HTMLElement>(name?: string): T[] {
+    const slotSelector = name ? `slot[name="${name}"]` : 'slot'
+    let assignedNodes
+    const slot = this.getShadowRoot().querySelector(slotSelector)
+    if (slot) {
+      assignedNodes = (slot as any).assignedNodes()
+    } else {
+      assignedNodes = this.getShadowRoot().querySelectorAll('*')
+    }
+    return Array.prototype.slice.call(
+      assignedNodes
+    )
+  }
+
+  @Method() shadowQuerySelector<T extends HTMLElement>(query: string): T {
+    return this.getShadowRoot().querySelector(query)
+  }
+
+  @Method() shadowQuerySelectorAll<T extends HTMLElement>(query: string): T[] {
+    return Array.prototype.slice.call(
+      this.getShadowRoot().querySelectorAll(query)
+    )
+  }
+
+  @Method() getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[] {
+    return this.getSlotNodes().filter(o => o.tagName === tagName.toUpperCase()) as T[]
+  }
 
   @Element() elementRef: WrstsSelectType
   select: HTMLSelectElement

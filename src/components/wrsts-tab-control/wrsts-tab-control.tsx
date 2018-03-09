@@ -3,7 +3,7 @@ import { WrstsTabControlTab, WrstsTabControlTabType } from '../wrsts-tab-control
 import { WrstsTabControlContent, WrstsTabControlContentType } from '../wrsts-tab-control-content/wrsts-tab-control-content';
 import { WrstsTabControlTabsType } from '../wrsts-tab-control-tabs/wrsts-tab-control-tabs';
 import { WrstsTabControlContentsType } from '../wrsts-tab-control-contents/wrsts-tab-control-contents';
-import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
+import { GetSlotElementsByTagName, Helpers } from '../helpers';
 
 export type WrstsTabControlType = WrstsTabControl & HTMLElement
 
@@ -12,8 +12,11 @@ export type WrstsTabControlType = WrstsTabControl & HTMLElement
   styleUrl: 'wrsts-tab-control.scss',
   shadow: true
 })
-export class WrstsTabControl extends WrstsBaseShadow {
-  constructor() { super() }
+export class WrstsTabControl implements GetSlotElementsByTagName {
+
+  @Method() getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[] {
+    return Helpers.getSlotElementsByTagName.bind(this)(tagName)
+  }
 
   @Element() elementRef: WrstsTabControlType
   tabs: (WrstsTabControlTab & HTMLElement)[]

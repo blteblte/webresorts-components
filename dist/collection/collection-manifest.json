@@ -410,10 +410,28 @@
           "name": "bind"
         },
         {
+          "name": "getShadowRoot"
+        },
+        {
+          "name": "getSlot"
+        },
+        {
+          "name": "getSlotElementsByTagName"
+        },
+        {
+          "name": "getSlotNodes"
+        },
+        {
           "name": "selectIndex"
         },
         {
           "name": "selectValue"
+        },
+        {
+          "name": "shadowQuerySelector"
+        },
+        {
+          "name": "shadowQuerySelectorAll"
         },
         {
           "name": "toJson"
@@ -471,10 +489,28 @@
           "name": "focus"
         },
         {
+          "name": "getShadowRoot"
+        },
+        {
+          "name": "getSlot"
+        },
+        {
+          "name": "getSlotElementsByTagName"
+        },
+        {
+          "name": "getSlotNodes"
+        },
+        {
           "name": "hide"
         },
         {
           "name": "select"
+        },
+        {
+          "name": "shadowQuerySelector"
+        },
+        {
+          "name": "shadowQuerySelectorAll"
         },
         {
           "name": "unfocus"
@@ -519,6 +555,9 @@
       "methods": [
         {
           "name": "bind"
+        },
+        {
+          "name": "getSlotElementsByTagName"
         },
         {
           "name": "setTab"
@@ -578,6 +617,11 @@
           ]
         }
       },
+      "methods": [
+        {
+          "name": "getSlotElementsByTagName"
+        }
+      ],
       "hostElement": {
         "name": "elementRef"
       },

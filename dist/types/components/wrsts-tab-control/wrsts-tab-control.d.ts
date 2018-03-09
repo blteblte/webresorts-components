@@ -2,10 +2,10 @@ import '../../stencil.core';
 import { EventEmitter } from '../../stencil.core';
 import { WrstsTabControlTab } from '../wrsts-tab-control-tab/wrsts-tab-control-tab';
 import { WrstsTabControlContent } from '../wrsts-tab-control-content/wrsts-tab-control-content';
-import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
+import { GetSlotElementsByTagName } from '../helpers';
 export declare type WrstsTabControlType = WrstsTabControl & HTMLElement;
-export declare class WrstsTabControl extends WrstsBaseShadow {
-    constructor();
+export declare class WrstsTabControl implements GetSlotElementsByTagName {
+    getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[];
     elementRef: WrstsTabControlType;
     tabs: (WrstsTabControlTab & HTMLElement)[];
     contents: (WrstsTabControlContent & HTMLElement)[];

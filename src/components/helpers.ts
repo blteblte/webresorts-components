@@ -1,35 +1,61 @@
-export function getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[] {
-  return this.getSlotNodes().filter(o => o.tagName === tagName.toUpperCase()) as T[]
-}
 
-export function getShadowRoot(): ShadowRoot {
+//
+function getShadowRoot(): ShadowRoot {
   return (this as any).elementRef.shadowRoot || ((this as any).elementRef as any)
 }
+export interface GetShadowRoot { getShadowRoot: typeof getShadowRoot }
 
-export function getSlot() {
-  return this.getShadowRoot().querySelector('slot') || this.getShadowRoot()
+//
+function getSlot() {
+  return getShadowRoot.bind(this)().querySelector('slot') || getShadowRoot.bind(this)()
 }
+export interface GetSlot { getSlot: typeof getSlot }
 
-export function getSlotNodes<T extends HTMLElement>(name?: string): T[] {
+//
+function getSlotNodes<T extends HTMLElement>(name?: string): T[] {
   const slotSelector = name ? `slot[name="${name}"]` : 'slot'
   let assignedNodes
-  const slot = this.getShadowRoot().querySelector(slotSelector)
+  const slot = getShadowRoot.bind(this)().querySelector(slotSelector)
   if (slot) {
     assignedNodes = (slot as any).assignedNodes()
   } else {
-    assignedNodes = this.getShadowRoot().querySelectorAll('*')
+    assignedNodes = getShadowRoot.bind(this)().querySelectorAll('*')
   }
   return Array.prototype.slice.call(
     assignedNodes
   )
 }
+export interface GetSlotNodes { getSlotNodes: typeof getSlotNodes }
 
-export function shadowQuerySelector<T extends HTMLElement>(query: string): T {
-  return this.getShadowRoot().querySelector(query)
+//
+function shadowQuerySelector<T extends HTMLElement>(query: string): T {
+  return getShadowRoot.bind(this)().querySelector(query)
 }
+export interface ShadowQuerySelector { shadowQuerySelector: typeof shadowQuerySelector }
 
-export function shadowQuerySelectorAll<T extends HTMLElement>(query: string): T[] {
+//
+function shadowQuerySelectorAll<T extends HTMLElement>(query: string): T[] {
   return Array.prototype.slice.call(
-    this.getShadowRoot().querySelectorAll(query)
+    getShadowRoot.bind(this)().querySelectorAll(query)
   )
+}
+export interface ShadowQuerySelectorAll { shadowQuerySelectorAll: typeof shadowQuerySelectorAll }
+
+//
+function getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[] {
+  return getSlotNodes.bind(this)()
+    .filter(o => o.tagName === tagName.toUpperCase()) as T[]
+}
+export interface GetSlotElementsByTagName { getSlotElementsByTagName: typeof getSlotElementsByTagName }
+
+
+
+
+export const Helpers = {
+    getShadowRoot
+  , getSlot
+  , getSlotNodes
+  , shadowQuerySelector
+  , shadowQuerySelectorAll
+  , getSlotElementsByTagName
 }

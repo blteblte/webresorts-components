@@ -1,5 +1,5 @@
-import { Component, Element } from '@stencil/core';
-import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
+import { Component, Element, Method } from '@stencil/core';
+import { GetSlotElementsByTagName, Helpers } from '../helpers';
 
 export type WrstsTabControlContentsType = WrstsTabControlContents & HTMLElement
 
@@ -8,8 +8,11 @@ export type WrstsTabControlContentsType = WrstsTabControlContents & HTMLElement
   styleUrl: 'wrsts-tab-control-contents.scss',
   shadow: true
 })
-export class WrstsTabControlContents extends WrstsBaseShadow {
-  constructor() { super() }
+export class WrstsTabControlContents implements GetSlotElementsByTagName {
+
+  @Method() getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[] {
+    return Helpers.getSlotElementsByTagName.bind(this)(tagName)
+  }
 
   @Element() elementRef: WrstsTabControlContentsType
 

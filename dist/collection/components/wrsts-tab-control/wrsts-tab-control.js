@@ -1,6 +1,8 @@
-import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
-export class WrstsTabControl extends WrstsBaseShadow {
-    constructor() { super(); }
+import { Helpers } from '../helpers';
+export class WrstsTabControl {
+    getSlotElementsByTagName(tagName) {
+        return Helpers.getSlotElementsByTagName.bind(this)(tagName);
+    }
     componentDidLoad() {
         this.bind();
         this.navigateByHash();
@@ -67,7 +69,7 @@ export class WrstsTabControl extends WrstsBaseShadow {
     }
     static get is() { return "wrsts-tab-control"; }
     static get encapsulation() { return "shadow"; }
-    static get properties() { return { "bind": { "method": true }, "elementRef": { "elementRef": true }, "setTab": { "method": true } }; }
+    static get properties() { return { "bind": { "method": true }, "elementRef": { "elementRef": true }, "getSlotElementsByTagName": { "method": true }, "setTab": { "method": true } }; }
     static get events() { return [{ "name": "change", "method": "change", "bubbles": true, "cancelable": true, "composed": true }]; }
     static get style() { return "/**style-placeholder:wrsts-tab-control:**/"; }
 }

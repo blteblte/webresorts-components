@@ -1,8 +1,7 @@
 import '../../stencil.core';
 import { EventEmitter } from '../../stencil.core';
-import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
 export declare type WrstsTabControlTabType = WrstsTabControlTab & HTMLElement;
-export declare class WrstsTabControlTab extends WrstsBaseShadow {
+export declare class WrstsTabControlTab {
     elementRef: WrstsTabControlTabType;
     clicked: EventEmitter;
     active: boolean;

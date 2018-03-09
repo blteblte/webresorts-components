@@ -1,5 +1,4 @@
 import { Component, Prop, Event, EventEmitter, Method, Element } from '@stencil/core';
-import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
 
 export type WrstsTabControlTabType = WrstsTabControlTab & HTMLElement
 
@@ -8,7 +7,8 @@ export type WrstsTabControlTabType = WrstsTabControlTab & HTMLElement
   styleUrl: 'wrsts-tab-control-tab.scss',
   shadow: true
 })
-export class WrstsTabControlTab extends WrstsBaseShadow {
+export class WrstsTabControlTab {
+
   @Element() elementRef: WrstsTabControlTabType
 
   @Event() clicked: EventEmitter

@@ -1,6 +1,4 @@
-import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
-export class WrstsTabControlContent extends WrstsBaseShadow {
-    constructor() { super(); }
+export class WrstsTabControlContent {
     setActive() {
         if (!this.active) {
             this.active = true;

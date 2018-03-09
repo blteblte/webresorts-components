@@ -1,5 +1,5 @@
 import { Component, Element, Method } from '@stencil/core';
-import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
+import { GetSlotElementsByTagName, Helpers } from '../helpers';
 
 export type WrstsTabControlTabsType = WrstsTabControlTabs & HTMLElement
 
@@ -8,11 +8,10 @@ export type WrstsTabControlTabsType = WrstsTabControlTabs & HTMLElement
   styleUrl: 'wrsts-tab-control-tabs.scss',
   shadow: true
 })
-export class WrstsTabControlTabs extends WrstsBaseShadow {
-  constructor() { super() }
+export class WrstsTabControlTabs implements GetSlotElementsByTagName {
 
-  @Method() @PPP() getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[] {
-    return this.getSlotNodes().filter(o => o.tagName === tagName.toUpperCase()) as T[]
+  @Method() getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[] {
+    return Helpers.getSlotElementsByTagName.bind(this)(tagName)
   }
 
   @Element() elementRef: WrstsTabControlTabsType
@@ -24,10 +23,4 @@ export class WrstsTabControlTabs extends WrstsBaseShadow {
   }
 }
 
-function PPP() {
-  return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
-    console.log('PPP', target)
-    console.log('PPP', propertyKey)
-    console.log('PPP', descriptor)
-  }
-}
+

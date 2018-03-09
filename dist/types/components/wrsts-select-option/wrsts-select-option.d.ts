@@ -4,6 +4,12 @@ import { WrstsBaseShadow } from '../wrsts-base-shadow/wrsts-base-shadow';
 export declare type WrstsSelectOptionType = WrstsSelectOption & HTMLElement;
 export declare class WrstsSelectOption extends WrstsBaseShadow {
     constructor();
+    getShadowRoot(): ShadowRoot;
+    getSlot(): Element | ShadowRoot;
+    getSlotNodes<T extends HTMLElement>(name?: string): T[];
+    shadowQuerySelector<T extends HTMLElement>(query: string): T;
+    shadowQuerySelectorAll<T extends HTMLElement>(query: string): T[];
+    getSlotElementsByTagName<T extends HTMLElement>(tagName: string): T[];
     elementRef: WrstsSelectOptionType;
     value: string;
     index: string;
